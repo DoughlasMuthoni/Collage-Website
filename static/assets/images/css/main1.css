@@ -1,0 +1,641 @@
+
+#searchInput {
+    display: none;
+    width: 0;
+    transition: width 0.3s ease, display 0s ease 0.3s;
+    }
+
+#searchInput.show {
+    display: block;
+    width: 200px;
+}
+ /* Breaking news header */
+ .breaking-news {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 6px;
+}
+
+.breaking-news marquee {
+    background-color: rgb(85, 85, 230);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    width: 90%;
+}
+
+.breaking-news span {
+    margin-left: 10px;
+    font-size: 14px;
+}
+/* Main navigation header */
+.main-nav {
+    background-color: hsl(118, 100%, 25%); /* Navy #0098DB */
+    padding: 10px 0;
+}
+
+.main-nav a {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #0098DB;
+}
+.navbar-nav .dropdown:hover .dropdown-menu {
+display: block;
+margin-top: 0;
+}
+.navbar-nav .dropdown:hover > .nav-link {
+color: #0098DB;
+}
+.navbar-brand{
+margin-left: 8;
+}
+
+
+
+body {
+    background-color: #f8f9fa;
+    color: white;
+}
+
+
+.navbar {
+    background-color: hsla(0, 0%, 100%, 0.945);
+    
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0098DB;
+}
+.nav-item {
+        margin-right: 15px; 
+    }
+
+
+.navbar-nav {
+gap: 12px; 
+}
+/* Basic Styling */
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.main-nav a, .main-nav button {
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.main-nav i {
+    margin-right: 5px;
+}
+
+/* Styling for search input */
+#searchInput {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .main-nav a, .main-nav button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        justify-content: flex-start;
+    }
+
+    .main-nav a, .main-nav button {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    /* Hide search input by default on small screens */
+    #searchInput {
+        display: none;
+    }
+
+    /* Show the search button */
+    #searchToggle {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav a, .main-nav button {
+        width: 100%;
+        text-align: left;
+    }
+
+    #searchToggle {
+        display: block;
+    }
+
+    /* Make search bar visible on smaller screens when search button is clicked */
+    #searchInput {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+.search-input {
+width: 200px; 
+margin-left: 12px; 
+}
+
+
+/* Hover styles for dropdown items */
+.dropdown-item:hover {
+    color: #0098DB;
+    background-color: green;
+}
+
+/* Styling for the dropdown menu */
+.dropdown-menu {
+    border-top: 2px solid #007bff;
+    display: none; /* Initially hide the dropdown menu */
+}
+
+.header-border{
+    border-bottom: 2px solid #007bff;
+}
+
+
+/* Ensuring submenu positioning */
+.dropdown-submenu {
+    position: relative;
+}
+
+/* Rotate the arrow when the dropdown is open */
+.toggle-dropdown.rotate {
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+/* Submenu visibility and positioning */
+.dropdown-submenu > .dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 100%; /* Display the submenu to the right */
+    margin-top: -6px;
+    z-index: 1050;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+/* Show the submenu when hovering */
+.dropdown-submenu:hover > .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    margin-left: 2px;
+}
+
+
+/* Styles for mobile and smaller screen sizes */
+@media (max-width: 768px) {
+    /* General dropdown menu adjustments */
+    .dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%; /* Full width on mobile */
+        background-color: #fff;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1; /* Default z-index for regular dropdowns */
+    }
+
+    /* Regular dropdown menus visible when parent is clicked */
+    .nav-item.dropdown.open > .dropdown-menu {
+        display: block !important;
+    }
+
+    /* Submenu adjustments */
+    .dropdown-submenu {
+        position: static; /* Stack submenus below the parent */
+        margin-top: 0;
+    }
+
+    /* Submenu visibility adjustments */
+    .dropdown-submenu > .dropdown-menu {
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width for smaller screens */
+        position: relative; /* Allow stacking */
+        visibility: visible;
+        opacity: 1;
+        z-index: 2; /* Higher z-index for deep dropdowns */
+    }
+
+    /* Make submenu visible when parent is toggled open */
+    .dropdown-submenu.open > .dropdown-menu {
+        display: block !important;
+    }
+
+    /* Align dropdowns properly */
+    .dropdown-submenu > .dropdown-menu,
+    .nav-item.dropdown > .dropdown-menu {
+        left: 0;
+        right: 0;
+    }
+
+    /* Adjust toggle arrow for submenus */
+    .dropdown-submenu > a:after {
+        content: "\f078"; /* FontAwesome chevron icon */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-left: 10px;
+        transform: rotate(0);
+        transition: transform 0.3s ease;
+    }
+
+    /* Rotate arrow when submenu is open */
+    .dropdown-submenu.open > a:after {
+        transform: rotate(90deg); /* Rotate arrow to indicate expanded state */
+    }
+
+    /* Style dropdown items for better touch accessibility */
+    .dropdown-item {
+        padding: 12px 15px;
+        text-align: left;
+        width: 100%;
+    }
+
+    /* Add spacing between dropdown items */
+    .dropdown-item + .dropdown-item {
+        margin-top: 5px;
+    }
+}
+
+/* Optional: Show dropdowns on hover for larger screens */
+@media (min-width: 768px) {
+    .nav-item.dropdown:hover > .dropdown-menu {
+        display: block !important;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
+}
+
+
+
+
+
+.btn-blue {
+    background-color: #0098DB;
+    color: white;
+}
+
+.btn-green {
+    background-color: #116B38;
+    color: white;
+}
+
+.whatsapp-icon {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-icon img {
+    width: 35px;
+    height: 35px;
+}
+/* .carousel styles */
+
+.carousel-inner img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    bottom: 20%;
+}
+
+.carousel-caption .btn {
+    margin: 5px;
+}
+
+/* Add a smooth zoom-in effect */
+.carousel-zoom {
+    transition: transform 1.5s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.carousel-item.active .carousel-zoom {
+    transform: scale(1.1); /* Slight zoom-in for active slides */
+}
+
+.carousel-item:not(.active) .carousel-zoom {
+    transform: scale(1); /* Reset to normal size for inactive slides */
+}
+
+/* Style for buttons in the carousel */
+.carousel-caption .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-blue {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-blue:hover {
+    background-color: #0056b3;
+}
+
+.btn-green {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.btn-green:hover {
+    background-color: #218838;
+}
+
+/* Optional: Responsive text alignment for smaller screens */
+@media (max-width: 768px) {
+    .carousel-caption {
+        text-align: center;
+    }
+}
+
+
+/* General Footer Styles */
+
+
+.footer h4 {
+font-size: 1.25rem;
+color: #c91414;
+margin-bottom: 1rem;
+}
+
+.footer a {
+color: blue;
+transition: color 0.3s ease;
+text-decoration: none;
+}
+
+.footer {
+color: blue;
+background-color: black;
+font-size: 14px;
+padding-bottom: 15px;
+position: relative;
+}
+
+.footer .footer-top {
+padding-top: 15px;
+}
+
+.footer .footer-about .logo {
+margin-bottom: 0;
+}
+
+.footer .footer-about .logo img {
+max-height: 40px;
+margin-right: 6px;
+}
+
+.footer .footer-about .logo span {
+font-size: 26px;
+font-weight: 700;
+letter-spacing: 1px;
+font-family: sans-serif;
+color: #0098DB;
+}
+
+.footer .footer-about p {
+font-size: 14px;
+font-family: sans-serif;
+}
+
+.footer .social-links a {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 40px;
+height: 40px;
+
+border: 1px solid green, transparent 50%;
+font-size: 16px;
+color: #0098DB;
+margin-right: 10px;
+transition: 0.3s;
+
+}
+
+.footer .social-links a:hover {
+color: #0098DB;
+border-color: #0098DB;
+}
+
+.footer h4 {
+font-size: 16px;
+font-weight: bold;
+position: relative;
+padding-bottom: 12px;
+}
+
+.footer .footer-links {
+margin-bottom: 30px;
+}
+
+.footer .footer-links ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.footer .footer-links ul i {
+padding-right: 2px;
+font-size: 12px;
+line-height: 0;
+}
+
+.footer .footer-links ul li {
+padding: 10px 0;
+display: flex;
+align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+padding-top: 0;
+}
+
+.footer .footer-links ul a {
+color: #0098DB;
+display: inline-block;
+line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+color: green;
+}
+
+.footer .footer-contact p {
+margin-bottom: 5px;
+}
+
+
+
+
+.footer .copyright {
+padding-top: 25px;
+padding-bottom: 25px;
+background-color: green;
+color: white;
+}
+
+.footer .copyright p {
+margin-bottom: 0;
+
+}
+
+.footer .credits {
+margin-top: 6px;
+font-size: 13px;
+}
+/* Courses */
+
+
+.courses-table {
+    background-color: #f8f9fa; /* Light background for the section */
+    padding: 2rem 0;
+    }
+
+.courses-table h2 {
+    color: #800000; /* Burgundy color for the header */
+    font-weight: bold;
+    text-transform: uppercase;
+    }
+
+.table-responsive {
+    border: 1px solid #ddd; /* Light border around the table */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden;
+    }
+
+.table thead {
+    background-color: #0098DB; /* Burgundy background for the table header */
+    color: white; /* White text color */
+    }
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #c8c9c8; /* Light gray for alternating rows */
+}
+
+/* # Back to top button */
+
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+  background: #4154f1;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+    }
+.back-to-top i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+    }
+  
+  .back-to-top:hover {
+    background: #6776f4;
+    color: #fff;
+     }
+  
+  .back-to-top.active {
+    visibility: visible;
+    opacity: 1;
+     }
+    .container{
+        padding: 30px;
+       
+    }
+   
+    .contact-info {
+        font-size: 16px;
+        
+    }
+    .contact-info p strong{
+        color: #007bff;
+    }
+    .contact-info p {
+        color: black;
+    }
+    .contact-info .icon {
+        margin-right: 10px;
+        color: #dc3545;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .btn-submit {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+    }
+    .btn-submit:hover{
+        color: black;
+        background-color: #25D366;
+    }

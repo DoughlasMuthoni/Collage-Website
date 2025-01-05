@@ -1,0 +1,51 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Short Courses</title>{% endblock %}
+
+{% block content %}
+    
+    <section class="courses-table py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4 text-primary">{{ level }} Courses</h2>
+            <p class="text-center text-danger text-bold">Main intakes are in January and September</p>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table text-center">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Course Title</th>
+                            <th scope="col">Qualification Grade</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Examiner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if courses %}
+                            {% for course in courses %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ course.course_name }}</td>
+                                <td>{{ course.qualification }}</td>
+                                <td>{{ course.duration }}</td>
+                                <td>{{ course.examination_body }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center text-danger">No courses available for this level.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </section>
+    <section class="apply-section d-flex align-items-center justify-content-center vh-12 bg-light mb-2">
+        <a href="#" class="btn btn-primary btn-lg">Click To Apply</a>
+    </section>
+    
+{% endblock %}

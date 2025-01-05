@@ -1,0 +1,160 @@
+
+{% load static %}
+
+<header>
+       
+    <div class="breaking-news">
+        <span>Upcoming event:</span>
+        <marquee behavior="scroll" direction="left" scrollamount="10">
+            Nurture your talents, skills, and knowledge using state-of-the-art technologies and CBET. | 
+            Launch event for Google Women Tech Makers.
+        </marquee>
+        
+    </div>
+
+</header>
+
+<header>
+    <div class="main-nav d-flex justify-content-center align-items-center">
+        <a href="#">Our Courses</a>
+        <a href="#">JANUARY 2025 INTAKE</a>
+        <button class="btn btn-blue">Apply Now</button>
+        <a href="#">KUCCPS</a>
+        <a href="#">HELB Portal</a>
+        <a href="#">Admin Panel</a>
+        <a href="#">KASNEB</a>
+        <a href="https://wa.me/1234567890?text=Hello,%20I%20would%20like%20to%20inquire%20about..." target="_blank">
+            <i class="bi bi-whatsapp"></i> Chat with us
+        </a>
+        <a href="mailto:Email mwala@gmail.com"><i class="fas fa-envelope "></i>Email mwala@gmail.com</a>
+
+        <li class="nav-item d-flex align-items-center">
+            <button id="searchToggle" class="btn btn-link p-0 me-2">
+                <i class="fas fa-search"></i>
+            </button>
+            <input type="text" id="searchInput" class="form-control search-input me-2" placeholder="Search">
+        </li>
+    </div>
+</header>
+
+<header class="header sticky-top header-border">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
+        <div class="container-fluid"> <!-- Changed from container to container-fluid -->
+            <a class="navbar-brand d-flex align-items-center text-decoration-none" href="#">
+                <img src="{% static 'assets\images\mwala_logo.jpg' %}" alt="Mwala Logo" height="80px" width="80px" class="me-2">
+                <span style="color: #0098DB; font-size: 18px; line-height: 1.2; font-weight: bold;">
+                    Mwala Technical &<br>Vocational College
+                </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'mwala_app:index' %}" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      About us
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="admissionsDropdown">
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:history' %}">Background history</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:adminstration' %}">Adminstration</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admissions
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="admissionsDropdown">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">
+                                Our Courses
+                                <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:allCourses' %}">All Courses</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:diploma' level='diploma' %}
+                                    ">Level 6 (Diploma)</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:certificate' level='certificate' %}">Level 5 (Certificate)</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:artisan' level='artisan' %}">Level 4 (Artisan)</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:nitaCourses' level='NITA' %}">NITA Courses</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:accounting' level='Accounting' %}">Accounting Courses</a></li>
+                                <li><a class="dropdown-item" href="{% url 'mwala_app:shortCourses' level='Short courses' %}">Level 3 (Short Courses)</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Online Application</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationForm' %}">Application Instructions</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Download Application Form</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a></li>
+                    </ul>
+                </li>
+                
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="courses\departments\all_department.html" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Academics
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                          <li><a class="dropdown-item" href="{% url 'mwala_app:departments' %}">Academic Departments</a></li>
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">Support Departments 
+                                <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Sports</a></li>
+                                <li><a class="dropdown-item" href="#">Teaching Timetable</a></li>
+                                <li><a class="dropdown-item" href="#">Examination Timetable</a></li>
+                                <li><a class="dropdown-item" href="#">Academic Calender</a></li>
+                                <li><a class="dropdown-item" href="#">Library </a></li>
+                            </ul>
+                        </li>
+                        
+                        
+                      </ul>
+                  </li>
+                  
+                  
+                  
+                  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Media
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="#">News & Events</a></li>
+                            <li><a class="dropdown-item" href="#">FAQs</a></li>
+                            <li><a class="dropdown-item" href="#">Jobs & Vacancies</a></li>
+                            <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Student Affairs
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                          <li><a class="dropdown-item" href="#">Gaidance & Counceling</a></li>
+                          <li><a class="dropdown-item" href="#">Clubs & Societies</a></li>
+                          <li><a class="dropdown-item" href="#">Government Scholership</a></li>
+                          <li><a class="dropdown-item" href="#">Student Leadership</a></li>
+                      </ul>
+                  </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Contact Us
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                          <li><a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Details</a></li>
+                          <li><a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints</a></li>
+                          
+                      </ul>
+                  </li>
+                  
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

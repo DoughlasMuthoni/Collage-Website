@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Countact Us</title>{% endblock %}
+
+{% block content %}
+
+    
+    <div class="container py-5">
+        <div class="row">
+          <div class="col-md-6  p-4 border rounded shadow-sm">
+            <h3 class="text-danger">Contact Information</h3>
+            <div class="contact-info">
+              <p>
+                <span class="icon"><i class="fas fa-phone"></i></span>
+                <strong >Contact Telephone:</strong> 0758001730
+              </p>
+              <p>
+                <span class="icon"><i class="fas fa-envelope"></i></span>
+                <strong>Email Address:</strong> info@mwalatvc.ac.ke
+              </p>
+              <p>
+                <span class="icon"><i class="fas fa-address-card"></i></span>
+                <strong>Postal Address:</strong> P.O Box 376-90400, Mwala
+              </p>
+              <p>
+                <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                <strong>Physical Address:</strong> physical_address
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 p-4 border rounded shadow-sm">
+            <h3 class="text-danger">Contact Form</h3>
+            <form class="form-container">
+              <div class="mb-3">
+                <label for="name" class="form-label">Enter your name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Enter phone number</label>
+                <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Enter email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email address">
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Write your message here</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Write your message here..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-submit w-100">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

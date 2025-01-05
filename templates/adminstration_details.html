@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Application instructions</title>{% endblock %}
+
+{% block content %}
+    
+    <section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Mwala TVC Management</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Management</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="principal-message py-5 bg-light border-top border-primary">
+        <div class="container border-top border-primary">
+            <div class="row align-items-center shadow-lg rounded bg-white p-4">
+                <!--Image -->
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="{{ admin.image.url }}" alt="Principal Image" class="img-fluid rounded-circle border border-3 border-primary shadow">
+                    <p class="mt-3 fw-bold text-secondary">
+                       {{ admin.title }} <br>
+                        <span class="text-muted">{{ admin.position }}</span>
+                    </p>
+                </div>
+                <!--  Message -->
+                <div class="col-md-8">
+                    <h2 class="text-danger border-bottom pb-2">Message From The {{ admin.position }}</h2>
+                    <p class=" text-justify text-dark">
+                        {{ admin.description }}
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+ 
+{% endblock %}

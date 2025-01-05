@@ -1,0 +1,71 @@
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Application instructions</title>{% endblock %}
+
+{% block content %}
+    
+    <section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h5 class="display-4 fw-bold mb-3">Mwala TVC Application form</h5>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Application Instructions</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h1>Application/Joining Instructions</h1>
+            </div>
+            <div class="card-body">
+
+                <h2 class="mt-4">Admission</h2>
+                <p>We are pleased to inform you that you have been admitted to join  Mwala TVC. The Institute is government-sponsored under the Ministry of Education. It has a mixed day and boarding student population.</p>
+
+                <h2 class="mt-4">Location</h2>
+                <p>The Institute is located 3 kilometers from Mwala town along the Makindu road. It is adjacent to Makueni Girl’s Secondary School and the County Public Works offices.</p>
+
+                <h2 class="mt-4">Compulsory Items</h2>
+                <p>On the day of admission, you must bring the following:</p>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">This admission letter</li>
+                    <li class="list-group-item">Duly filled application form</li>
+                    <li class="list-group-item">KCPE and KCSE Result Slip or Certificate, School Leaving Certificates and their copies</li>
+                    <li class="list-group-item">National ID card, Birth Certificate, and their copies</li>
+                    <li class="list-group-item">2 recently taken passport-size photographs</li>
+                    <li class="list-group-item">Medical Form (attached at the back of this admission letter)</li>
+                    <li class="list-group-item">Fees (Banking Slip)</li>
+                </ul>
+
+                <h2 class="mt-4">Fees</h2>
+                <p>Fees are payable in full at the beginning of each term. All payments are made in Banker’s Cheque or Money Order and addressed to:Mwala TVC.</p>
+                <p><strong>NB:</strong> Cash payments will not be accepted. You can also directly pay into the Institute Account No. 1105324559 of Kenya Commercial Bank Ltd or deposit through our Lipa na Mpesa Service (Pay bill No.178495), Mwala TVC.</p>
+
+                <div class="d-flex justify-content-around mt-4">
+                    <a href="files\fee structure 2025.pdf" class="btn btn-primary btn-lg" download>Download Application Form</a>
+                    <a href="online_application.html" class="btn btn-success btn-lg">Apply Online</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+ 
+{% endblock %}

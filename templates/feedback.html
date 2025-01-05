@@ -1,0 +1,163 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Feedback</title>{% endblock %}
+
+{% block content %}
+  <section class="breadcrumb-section text-white d-flex align-items-center" 
+  style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; background-size: cover;  background-position: center;">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-8 text-center">
+                  <div class="breadcrumb__text">
+                      <h1 class="display-4 fw-bold mb-3">All Departments</h1>
+                      <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                          <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                          <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Departments</a>
+                          <span class="breadcrumb-item active text-success">All Departments</span>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <div class="container py-5">
+      <div class="card-header bg-primary text-white text-center p-3 rounded-3 shadow">
+          <h3>FEEDBACK FORM</h3>
+        </div>
+        <p class="text-dark">
+          At Mwala Technical and Vocational College, we believe in continual improvement of our services. 
+          Therefore, we request you to kindly fill this form to give us feedback on services we offered to you.
+        </p>
+      <div class="card shadow">
+        
+        <div class="card-body ">
+          
+          
+          <!-- Name & Date of Visit Section -->
+          <div class="mb-4 p-4 border rounded shadow-sm">
+            <h5 class="text-primary p-4 border rounded shadow-sm mb-4">Name & Date of Visit</h5>
+            <div class="row g-3 p-4 border rounded shadow-sm">
+              <div class="col-md-6">
+                <label for="organizationName" class="form-label">Organization/Name in Full <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="organizationName" placeholder="e.g., Muling Web Solutions">
+              </div>
+              <div class="col-md-3">
+                <label for="visitDate" class="form-label">Select Date of Visit <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="visitDate">
+              </div>
+              <div class="col-md-3">
+                <label for="timeIn" class="form-label">Select Time In <span class="text-danger">*</span></label>
+                <input type="time" class="form-control" id="timeIn">
+              </div>
+              <div class="col-md-3">
+                <label for="timeOut" class="form-label">Select Time Out <span class="text-danger">*</span></label>
+                <input type="time" class="form-control" id="timeOut">
+              </div>
+            </div>
+          </div>
+
+          <!-- Rate Our Services Section -->
+          <div class="mb-4 p-4 border rounded shadow-sm">
+            <h5 class="text-primary p-4 border rounded shadow-sm">Rate Our Services</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Which department(s) were you visiting? <span class="text-danger">*</span></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="generalEnquiries">
+                  <label class="form-check-label" for="generalEnquiries">General Enquiries</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="procurement">
+                  <label class="form-check-label" for="procurement">Procurement</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="finance">
+                  <label class="form-check-label" for="finance">Finance</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="principal">
+                  <label class="form-check-label" for="principal">Principal</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="admissions">
+                  <label class="form-check-label" for="admissions">Admissions</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Rate the quality of Service Offered <span class="text-danger">*</span></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="serviceRating" id="excellent" value="Excellent">
+                  <label class="form-check-label" for="excellent">Excellent</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="serviceRating" id="veryGood" value="Very Good">
+                  <label class="form-check-label" for="veryGood">Very Good</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="serviceRating" id="good" value="Good">
+                  <label class="form-check-label" for="good">Good</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="serviceRating" id="fair" value="Fair">
+                  <label class="form-check-label" for="fair">Fair</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="serviceRating" id="poor" value="Poor">
+                  <label class="form-check-label" for="poor">Poor</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 p-4 border rounded shadow-sm">
+              <!-- Complaints Section -->
+              <h5 class="text-primary p-4 border rounded shadow-sm">Complaints</h5>
+              <div class="row g-3 align-items-center">
+                <div class="col-md-6">
+                  <label class="form-label">Any Complaints Pertaining to the Services Offered in the College? <span class="text-danger">*</span></label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="complaints" id="complaintsYes" value="Yes">
+                    <label class="form-check-label" for="complaintsYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="complaints" id="complaintsNo" value="No">
+                    <label class="form-check-label" for="complaintsNo">No</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="complaintsDescription" class="form-label">If Yes, Describe the Complaint...</label>
+                  <textarea class="form-control" id="complaintsDescription" rows="3" placeholder="Enter your complaint here..."></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-4 p-4 border rounded shadow-sm">
+              <!-- Compliments Section -->
+              <h5 class="text-primary p-4 border rounded shadow-sm">Compliments</h5>
+              <div class="row g-3 align-items-center">
+                <div class="col-md-6">
+                  <label class="form-label">Any Compliments Pertaining to Our Services? <span class="text-danger">*</span></label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="compliments" id="complimentsYes" value="Yes">
+                    <label class="form-check-label" for="complimentsYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="compliments" id="complimentsNo" value="No">
+                    <label class="form-check-label" for="complimentsNo">No</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="complimentsDescription" class="form-label">If Yes, Enter the Compliments Here...</label>
+                  <textarea class="form-control" id="complimentsDescription" rows="3" placeholder="Enter your compliment here..."></textarea>
+                </div>
+              </div>
+            </div>
+            
+
+          <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

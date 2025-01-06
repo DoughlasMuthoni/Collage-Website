@@ -15,9 +15,6 @@ class Administration(models.Model):
     def __str__(self):
         return f"{self.title} - {self.position}"
 
-
-
-
 class Course(models.Model):
     EXAMINATION_BODY_CHOICES = [
         ('KNEC', 'KNEC'),
@@ -52,3 +49,11 @@ class Course(models.Model):
 
     def __str__(self):
         return self.course_name 
+
+class Notice(models.Model):
+    title = models.CharField(max_length=200)  # Notice title
+    date = models.DateField()  # Notice date
+    link = models.URLField(blank=True, null=True)  # Optional link for more details
+
+    def __str__(self):
+        return self.title

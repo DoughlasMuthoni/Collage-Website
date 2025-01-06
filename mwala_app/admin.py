@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Administration, Course
+from .models import Administration, Course, Notice
 
 @admin.register(Administration)
 class AdministrationAdmin(admin.ModelAdmin):
@@ -44,5 +44,8 @@ class CourseAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(Notice)
+class NoticeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date')
 
 admin.site.register(Course, CourseAdmin)

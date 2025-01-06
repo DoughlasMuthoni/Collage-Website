@@ -50,7 +50,7 @@
     <section id="governance-section" class="my-5 border-top border-primary">
         <div class="container">
             <div class="text-center mb-4">
-                <h2 class="text-white py-3" style="background-color: #0098DB;">GOVERNANCE & ADMINISTRATION</h2>
+                <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">GOVERNANCE & ADMINISTRATION</h2>
             </div>
             <div class="text-center mb-4">
                 <h3 class="text-dark py-0.2">Total Administrators: {{ admin_count }}</h3>
@@ -61,7 +61,7 @@
                 <div class="row">
                     {% for admin in administrators %}
                         <div class="col-md-4 mb-4">
-                            <div class="card h-100">
+                            <div class="card h-100" style="border-bottom: 2px solid red; border-top: 2px solid red;">
                                 <a href="{% url 'mwala_app:details' admin.id %}">
                                     <img src="{{ admin.image.url }}" class="card-img-top" alt="{{ admin.title }}">
                                 </a>

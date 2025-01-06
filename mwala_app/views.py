@@ -1,10 +1,23 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from mwala_app.models import Administration, Course
+from mwala_app.models import Administration, Course, Notice
 
 # Create your views here.
 def homePage(request):
-    return render(request, 'index1.html')
+    notices = Notice.objects.order_by('-date')[:3]
+
+    context = {
+        'notices':notices
+    }
+    return render(request, 'index1.html', context )
+
+def all_notices(request):
+    all_notices = Notice.objects.order_by('-date')  # Fetch all notices
+    return render(request, 'all_notices.html', {'notices': all_notices})
+
+def notice(request):
+    return render(request, 'notice_board.html')
+
 def historyPage(request):
     return render(request, 'about1.html')
 
@@ -104,6 +117,8 @@ def feeStructure(request):
 
 def feedBack(request):
     return render(request, 'feedback.html')
+
+
 
 
 

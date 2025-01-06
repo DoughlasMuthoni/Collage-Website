@@ -12,7 +12,7 @@
             <h2 class="text-center mb-4 text-primary">{{ level }} Courses</h2>
             <p class="text-center text-danger text-bold">Main intakes are in January and September</p>
             <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered align-middle">
+                <table class="table table-striped table-hover table-bordered align-middle" style="border-top: 2px solid red;">
                     <thead class="table text-center">
                         <tr>
                             <th scope="col">No</th>
@@ -45,7 +45,7 @@
         
     </section>
     <section class="apply-section d-flex align-items-center justify-content-center vh-12 bg-light mb-2">
-        <a href="#" class="btn btn-primary btn-lg">Click To Apply</a>
+        <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-primary btn-lg">Click To Apply</a>
     </section>
     
     

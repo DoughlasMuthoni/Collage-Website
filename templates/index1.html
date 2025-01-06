@@ -42,7 +42,62 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <div class="container my-5 note">
+        <!-- Notice Section -->
+        <div class="notices-section">
+          <div class="notices-header">
+            IMPORTANT NOTICES <span class="text-danger">!!!</span>
+          </div>
+          <div class="notices-body">
+            {% for notice in notices %}
+                <!-- Notice 1 -->
+                <div class="notices-item">
+                <span > <a href="{% url 'mwala_app:noticeBoard' %}">{{ notice.title }}</a></span>
+                <span class="notices-item-date">
+                    <i class="bi bi-calendar3"></i> {{ notice.date|date:"F Y" }}
+                </span>
+                </div>
+            {% empty %}
+                <p class="text-center p-3 text-danger">No notices available at the moment.</p>
+            {% endfor %}
+            
+           
+          </div>
+          <div class="notices-footer">
+            <a href="{% url 'mwala_app:all_notices' %}">All College Notices →</a>
+          </div>
+        </div>
+    </div>
+    
+    <div class="container py-2">
+        <h4 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #007bff ; border-bottom: 2px solid red;">Our Programs</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Diploma Courses -->
+           
+                <div class="col">
+                    <div class="program-card h-100">
+                        <h5>Diploma Courses</h5>
+                        <ul>
+                            <li>Electrical & Electronic Eng. (Power Option)</li>
+                            <li>Electrical & Electronic Eng. (Instrumentation)</li>
+                            <li>Electrical & Electronic Eng. (Telecommunication)</li>
+                            <li>Building Technology</li>
+                            <li>Information & Communication Technology</li>
+                            <li>Automotive Engineering</li>
+                            <li>Quantity Surveying</li>
+                        </ul>
+                        <a href="#">View More</a>
+                    </div>
+                </div>
+               
+           
+        </div>
 
+
+    </div>
+
+    
+    
     <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
@@ -50,4 +105,4 @@
 
  
  
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

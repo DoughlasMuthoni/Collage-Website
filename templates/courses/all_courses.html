@@ -12,7 +12,7 @@
         <div class="container">
             <h2 class="text-center mb-4 " style="color:#0098DB ;">All Courses</h2>
             <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered align-middle">
+                <table class="table table-striped table-hover table-bordered align-middle" style="border-top: 2px solid red;">
                     <thead class="table text-center">
                         <tr>
                             <th scope="col">No</th>
@@ -27,7 +27,7 @@
                         {% if courses %}
                             {% for level in courses|dictsort:"course_level" %}
                                 <tr>
-                                    <td colspan="6" class="text-center font-weight-bold  text-white" style="background-color:#0098DB ;">{{ level.course_level }}</td>
+                                    <td colspan="6" class="text-center font-weight-bold  text-white" style="background-color:#0098DB ; border-top: 2px solid red;">{{ level.course_level }}</td>
                                 </tr>
                                 {% for course in courses %}
                                     {% if course.course_level == level.course_level %}
@@ -57,7 +57,7 @@
         
     </section>
     <section class="apply-section d-flex align-items-center justify-content-center vh-12 bg-light mb-2">
-        <a href="#" class="btn btn-primary btn-lg">Click To Apply</a>
+        <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-primary btn-lg">Click To Apply</a>
     </section>
     
 {% endblock %}

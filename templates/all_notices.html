@@ -1,0 +1,47 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title> All Notice</title>{% endblock %}
+
+{% block content %}
+    
+<div class="container my-5">
+    <h1 class="text-center mb-4">All College Notices</h1>
+    <div class="container my-5">
+        <!-- Notice Section -->
+        <div class="notices-section">
+          <div class="notices-header">
+            All NOTICES
+          </div>
+    <div class="notices-body">
+        {% for notice in notices %}
+            <div class="notices-item">
+                <span>
+                    <a href="{{ notice.link }}" target="_blank">{{ notice.title }}</a>
+                </span>
+                <span class="notices-item-date">
+                    <i class="bi bi-calendar3"></i> {{ notice.date|date:"F Y" }}
+                </span>
+            </div>
+        {% empty %}
+            <p class="text-center p-3">No notices available at the moment.</p>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'mwala_app:index' %}" class="btn btn-primary mb-2">Back to Homepage</a>
+    </div>
+</div>
+ 
+{% endblock %}

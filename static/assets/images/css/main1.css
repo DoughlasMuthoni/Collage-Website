@@ -191,6 +191,10 @@ margin-left: 12px;
     border-bottom: 2px solid #007bff;
 }
 
+.note{
+    border-top: 2px solid #007bff;
+}
+
 
 /* Ensuring submenu positioning */
 .dropdown-submenu {
@@ -639,3 +643,104 @@ font-size: 13px;
         color: black;
         background-color: #25D366;
     }
+
+    /* Custom Styling to Match the Design */
+    .notices-section {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    }
+
+    .notices-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    }
+
+    .notices-item {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-left: 4px solid red;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: black;
+      }
+
+    .notices-item:hover {
+       
+        border-bottom: solid #007bff 2px;
+        transform: scale(0.99); /* Zoom-out effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        background-color: #f8f9fa; /* Slight background change */
+    }
+
+    .notices-item-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    }
+
+    .notices-item-date i {
+    margin-right: 5px;
+    }
+
+    .notices-footer {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    }
+
+    .notices-footer a {
+    color: red;
+    text-decoration: none;
+    }
+    .notices-footer a:hover{
+        color: #0056b3;
+    }
+    .notices-footer a:hover {
+    text-decoration: underline;
+    }
+    .notices-item a {
+        text-decoration: none;
+        }
+        .notices-item a:hover {
+            text-decoration: underline;
+        }
+    
+        .program-card {
+            background-color: white; /* Purple background */
+            color: black;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px #007bff;
+        }
+
+        .program-card h5 {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .program-card ul {
+            padding-left: 20px;
+        }
+
+        .program-card a {
+            color: red; /* Gold color for links */
+            text-decoration: none;
+        }
+
+        .program-card a:hover {
+            color: #0098DB;
+            text-decoration: underline;
+        }

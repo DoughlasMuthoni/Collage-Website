@@ -7,6 +7,8 @@ app_name = 'mwala_app'
 
 urlpatterns = [
     path('',views.homePage, name="index"),
+    path('noticeBoard',views.notice, name="noticeBoard"),
+    path('notices/', views.all_notices, name='all_notices'),
     path('history/',views.historyPage, name="history"),
     path('adminstration/',views.adminstrationPage, name="adminstration"),
     path('allCourses/',views.allCourses, name="allCourses"),

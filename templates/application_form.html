@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="breadcrumb__text">
-                        <h5 class="display-4 fw-bold mb-3">Mwala TVC Application form</h5>
+                        <h5 class="display-6 fw-bold mb-3">Mwala TVC Application form</h5>
                         <nav class="breadcrumb d-inline-flex bg-transparent p-0">
                             <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
                             <a href="./index1.html" class="breadcrumb-item text-danger">Application Instructions</a>
@@ -29,7 +29,7 @@
     </section>
     <div class="container mt-5">
         <div class="card shadow">
-            <div class="card-header bg-primary text-white text-center">
+            <div class="card-header bg-primary text-white text-center" style="border-top: 2px solid red;">
                 <h1>Application/Joining Instructions</h1>
             </div>
             <div class="card-body">
@@ -58,7 +58,7 @@
 
                 <div class="d-flex justify-content-around mt-4">
                     <a href="files\fee structure 2025.pdf" class="btn btn-primary btn-lg" download>Download Application Form</a>
-                    <a href="online_application.html" class="btn btn-success btn-lg">Apply Online</a>
+                    <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-success btn-lg">Apply Online</a>
                 </div>
             </div>
         </div>

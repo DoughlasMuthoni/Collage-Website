@@ -1,0 +1,135 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>All Departments</title>{% endblock %}
+
+{% block content %}
+    
+    <section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Gallery images</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Departments</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="department-cards py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">MWALA TECHNICAL & VOCTIONAL COLLAGE GALLERY</h2>
+        </div>
+  
+        <div class="container my-2 text-dark">
+            <h1 class="gallery-title text-danger">College Gallery</h1>
+            <p class="gallery-description">
+              Join us in celebrating the achievements and experiences of our students. 
+              Our gallery is a space for inspiration and connection. Come and discover 
+              the stories behind the faces that shape our college community.
+            </p>
+    <div class="row gy-4 gallery">
+        {% for image in images %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card gallery-item">
+                <img src="{{ image.image.url }}" alt="Gallery Item {{ forloop.counter }}" 
+                    class="card-img-top img-fluid gallery-image"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#imageCarouselModal"
+                    data-index="{{ forloop.counter0 }}"
+                    data-id="{{ image.id }}">
+                <div class="card-body">
+                <p class="card-text text-danger">{{ image.date }}</p>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+        
+              
+    <!-- Modal for the Carousel -->
+    <div class="modal fade" id="imageCarouselModal" tabindex="-1" aria-labelledby="imageCarouselModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="imageCarouselModalLabel">Mwala TVC Images</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner" id="carouselItems"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon text-danger" aria-hidden="true"></span>
+                <span class="visually-hidden text-danger">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon text-danger" aria-hidden="true"></span>
+                <span class="visually-hidden text-danger">Next</span>
+            </button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+            
+    <script>
+        const url = "{% url 'mwala_app:get_images_for_carousel' %}"; // URL rendered correctly
+
+        document.querySelectorAll('.gallery-item img').forEach((img) => {
+        img.addEventListener('click', function() {
+            const imageId = this.getAttribute('data-id');
+            console.log('Clicked image with ID:', imageId);
+
+            fetch(url)  // Using the generated URL
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data received from server:', data);
+
+                // Check if data.images is defined
+                if (!data.images) {
+                console.error('Images data is missing in the response');
+                return;
+                }
+
+                const carouselInner = document.querySelector('#carouselItems');
+                carouselInner.innerHTML = ''; // Clear any previous items
+
+                data.images.forEach((image, index) => {
+                const isActive = index === parseInt(imageId) ? 'active' : '';
+                const carouselItem = `
+                    <div class="carousel-item ${isActive}">
+                    <img src="${image.url}" class="d-block w-100" alt="Image ${index + 1}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>${image.date}</p>
+                    </div>
+                    </div>
+                `;
+                carouselInner.insertAdjacentHTML('beforeend', carouselItem);
+                });
+
+                // Show the modal
+                const modal = new bootstrap.Modal(document.getElementById('imageCarouselModal'));
+                modal.show();
+            })
+            .catch(error => {
+                console.error('Error fetching images:', error);
+            });
+        });
+        });
+
+    </script>
+
+    </div>
+    </div>
+    </section>
+{% endblock %}

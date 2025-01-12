@@ -30,79 +30,33 @@
             </div>
         </div>
     </section>
-    <div class="container mt-5">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white text-center" style="border-top: 2px solid red;">
-                <h3 >MWALA TECHNICAL  STUDENTS ADMISSION APPLICATION FORM</h3>
-            </div>
-            <div class="card-body">
-                <p class="text-center">You can apply for a diploma or a certificate course. The College does not charge any fee for admission application forms.</p>
-                <p class="text-danger text-center">Please note that fields marked with <span class="text-danger">*</span> are mandatory</p>
-                
-                <form action="#" method="post" enctype="multipart/form-data">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="firstName" class="form-label">First Name <span class="text-danger"><span class="text-danger">*</span></span></label>
-                            <input type="text" id="firstName" name="firstName" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="lastName" class="form-label">Last Name<span class="text-danger"><span class="text-danger">*</span></span></label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" required>
-                        </div>
-                    </div>
+   <!-- templates/admission_form.html -->
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center" style="border-top: 2px solid red;">
+            <h3>MWALA TECHNICAL STUDENTS ADMISSION APPLICATION FORM</h3>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                <div id="message-alert" class="alert alert-success">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+            <p class="text-center">You can apply for a diploma or a certificate course. The College does not charge any fee for admission application forms.</p>
+            <p class="text-danger text-center">Please note that fields marked with <span class="text-danger">*</span> are mandatory</p>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Personal Email<span class="text-danger">*</span></label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label">Personal Phone Number<span class="text-danger"><span class="text-danger">*</span></span></label>
-                            <input type="text" id="phone" name="phone" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="kcseGrade" class="form-label">Enter KCSE Mean Grade<span class="text-danger">*</span></label>
-                            <input type="text" id="kcseGrade" name="kcseGrade" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="course" class="form-label">Enter Course Interested In<span class="text-danger">*</span></label>
-                            <input type="text" id="course" name="course" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="intakeMonth" class="form-label">Select Intake Month<span class="text-danger">*</span></label>
-                            <select id="intakeMonth" name="intakeMonth" class="form-select" required>
-                                <option value="">-- Select Month --</option>
-                                <option value="January">January</option>
-                                <option value="May">May</option>
-                                <option value="September">September</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="kcseCertificate" class="form-label">Attach KCSE Certificate/Slip<span class="text-danger">*</span></label>
-                            <input type="file" id="kcseCertificate" name="kcseCertificate" class="form-control" accept=".pdf,.jpg,.png" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="birthCertificate" class="form-label">Attach Birth Certificate<span class="text-danger">*</span></label>
-                            <input type="file" id="birthCertificate" name="birthCertificate" class="form-control" accept=".pdf,.jpg,.png" required>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
-                    </div>
-                </form>
-            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            
         </div>
     </div>
+</div>
+
 
     <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">

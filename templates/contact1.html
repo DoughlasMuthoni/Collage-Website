@@ -9,7 +9,7 @@
     
         <div class="row"  >
           <div class="col-md-6  p-4 border rounded shadow-sm">
-            <h3 class="text-danger">Contact Information</h3>
+            <h2 class="text-danger" style="font-size: 1.1rem;">Contact Information</h2>
             <div class="contact-info">
               <p>
                 <span class="icon"><i class="fas fa-phone"></i></span>
@@ -30,28 +30,22 @@
             </div>
           </div>
           <div class="col-md-6 p-4 border rounded shadow-sm">
-            <h3 class="text-danger">Contact Form</h3>
-            <form class="form-container">
-              <div class="mb-3">
-                <label for="name" class="form-label">Enter your name</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name">
-              </div>
-              <div class="mb-3">
-                <label for="phone" class="form-label">Enter phone number</label>
-                <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Enter email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email address">
-              </div>
-              <div class="mb-3">
-                <label for="message" class="form-label">Write your message here</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Write your message here..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-submit w-100">Submit</button>
+            <h3 class="text-danger"style="font-size: 1.1rem;">Contact Form</h3>
+            {% if messages %}
+            <div id="message-alert" class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+          {% endif %}
+            <form method="post" class="form-container">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-submit w-100 btn-primary">Submit</button>
             </form>
           </div>
         </div>
-      </div>
 
+      </div>
 {% endblock %}
+ 

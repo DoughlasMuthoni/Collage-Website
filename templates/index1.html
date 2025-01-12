@@ -48,20 +48,25 @@
           <div class="notices-header">
             IMPORTANT NOTICES <span class="text-danger">!!!</span>
           </div>
-          <div class="notices-body">
+          <div class="notices-body"  >
             {% for notice in notices %}
                 <!-- Notice 1 -->
-                <div class="notices-item">
-                <span > <a href="{% url 'mwala_app:noticeBoard' %}">{{ notice.title }}</a></span>
-                <span class="notices-item-date">
-                    <i class="bi bi-calendar3"></i> {{ notice.date|date:"F Y" }}
-                </span>
-                </div>
+                
+                    <div class="notices-item">
+                        {% if notice.uploadNotice %}
+                        <a href="{{ notice.uploadNotice.url }}" target="_blank"><span>{{ notice.title }}</span></a>
+                        {% else %}
+                        <span class="text-danger">{{ notice.title }} (No file uploaded)</span> 
+                        {% endif %} 
+                        <span class="notices-item-date">
+                            <i class="bi bi-calendar3 text-danger"></i> {{ notice.date|date:"F Y" }}
+                        </span>
+                    </div>
+                </a>
+                
             {% empty %}
                 <p class="text-center p-3 text-danger">No notices available at the moment.</p>
             {% endfor %}
-            
-           
           </div>
           <div class="notices-footer">
             <a href="{% url 'mwala_app:all_notices' %}">All College Notices →</a>
@@ -69,26 +74,57 @@
         </div>
     </div>
     
+    <div class="jobs-section container my-5">
+        <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #007bff ; border-bottom: 2px solid red;">JOBS AND VACANCIES</h2>
+        <div class="row">
+            {% for jobs in job_vacancies %}
+            
+                <div class="col-md-6 mb-4">
+                     <div class="job-card card p-3 shadow-sm">
+                        <p><strong>Position:</strong> {{ jobs.position }}</p>
+                        <p><strong>Deadline:</strong> {{ jobs.deadlineDate }}</p>
+                        {% if jobs.uploadJobs %}
+                        <a href="{{ jobs.uploadJobs.url }}" class="btn_download">Download</a>
+                        {% else %}
+                        {{ jobs.position }} <span class="text-danger">(No file uploaded)</span>
+                        {% endif %}
+                        <div class="notices-footer">
+                            <a href="{{ jobs.uploadJobs.url }}">Open →</a>
+                        </div>
+                    </div> 
+
+                </div>
+            {% endfor %}  
+            <div class="notices-footer">
+                <a href="{% url 'mwala_app:JobsVacancies' %}">View All →</a>
+              </div>
+        </div>
+
+
     <div class="container py-2">
-        <h4 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #007bff ; border-bottom: 2px solid red;">Our Programs</h4>
+        <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #007bff ; border-bottom: 2px solid red;">OUR PROGRAMS</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <!-- Diploma Courses -->
            
-                <div class="col">
-                    <div class="program-card h-100">
-                        <h5>Diploma Courses</h5>
-                        <ul>
-                            <li>Electrical & Electronic Eng. (Power Option)</li>
-                            <li>Electrical & Electronic Eng. (Instrumentation)</li>
-                            <li>Electrical & Electronic Eng. (Telecommunication)</li>
-                            <li>Building Technology</li>
-                            <li>Information & Communication Technology</li>
-                            <li>Automotive Engineering</li>
-                            <li>Quantity Surveying</li>
-                        </ul>
-                        <a href="#">View More</a>
+            
+                {% for level, courses in courses_by_level.items %}
+                    <div class="col">
+                        <div class="program-card h-100">
+                            <h5>{{ level|title }} Courses</h5>
+                            <ul>
+                                {% for course in courses %}
+                                    <li>{{ course.course_name }}</li>
+                                {% empty %}
+                                    <li>No courses available for this level.</li>
+                                {% endfor %}
+                            </ul>
+                            <a href="/courses/{{ level|slugify }}/">View More</a>
+
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
+           
+            
                
            
         </div>
@@ -96,6 +132,74 @@
 
     </div>
 
+    <section class="department-cards py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">MWALA TECHNICAL & VOCTIONAL COLLAGE DEPARTMENTS</h2>
+            </div>
+            <div class="row text-center">
+                <!-- Card 1 -->
+                 {% for department in departments %}
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card border-primary h-100 w-100">
+                        {% if department.image %}
+                           <a href="{% url 'mwala_app:department_details' department.id %}"> <img src="{{ department.image.url }}" class="card-img-top" alt="{{ department.title }}"></a>
+                        {% else %}
+                            <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}"></a>
+                        {% endif %}
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-primary">{{ department.title }}</h5>
+                                <p class="card-text">{{ department.description|truncatechars:60 }}</p>
+                                <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-2">
+        <div class="row">
+            <!-- Principal Section -->
+            {% if principal_message %}
+            <div class="col-md-3 text-center text-dark">
+                {% if principal_message.image %}
+                <img src="{{ principal_message.image.url }}" class="img-fluid rounded-circle mb-3" alt="{{ principal_message.title }}">
+                {% else %}
+                <img src="path/to/default-image.jpg" class="img-fluid rounded-circle mb-3" alt="Default Principal">
+                {% endif %}
+                <h6 class="fw-bold">{{ principal_message.title }}</h6>
+                <p class="text-muted">{{ principal_message.position }}</p>
+            </div>
+    
+            <!-- Welcome Message -->
+            <div class="col-md-6 text-dark">
+                <h2 class="text-danger fw-bold">Principal's Welcome Message</h2>
+                <p>{{ principal_message.description|truncatechars:650 }}</p>
+                <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-primary">Read More</a>
+            </div>
+            {% else %}
+            <p class="text-muted">Principal's message is not available at the moment.</p>
+            {% endif %}
+    
+            <!-- Mission, Vision, Motto -->
+            <div class="col-md-3 text-dark">
+                <div class="mb-4">
+                    <h4 class="text-danger fw-bold">Mission</h4>
+                    <p>To impart TVET knowledge, nurture skills and attitudes through research, innovation and technology for self-reliance and National development.</p>
+                </div>
+                <div class="mb-4">
+                    <h4 class="text-danger fw-bold">Vision</h4>
+                    <p>To be a Centre of Excellence in the provision of innovative Technical, Vocational Education and Training (TVET) programmes.</p>
+                </div>
+                <div>
+                    <h4 class="text-danger fw-bold">Motto</h4>
+                    <p>Fostering talents and technical skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
     <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">

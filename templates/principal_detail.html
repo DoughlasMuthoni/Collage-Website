@@ -1,0 +1,66 @@
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>principal-message </title>{% endblock %}
+
+{% block content %}
+    
+    <section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Mwala TVC {{ principal_message.position }}</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Management</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container my-5">
+        <div class="row">
+            <!-- Principal Section -->
+            {% if principal_message %}
+            <div class="col-md-3 text-center text-dark">
+                {% if principal_message.image %}
+                <img src="{{ principal_message.image.url }}" class="img-fluid rounded-circle mb-3" alt="{{ principal_message.title }}">
+                {% else %}
+                <img src="path/to/default-image.jpg" class="img-fluid rounded-circle mb-3" alt="Default Principal">
+                {% endif %}
+                <h6 class="fw-bold">{{ principal_message.title }}</h6>
+                <p class="text-muted">{{ principal_message.position }}</p>
+            </div>
+    
+            <!-- Full Welcome Message -->
+            <div class="col-md-9 text-dark">
+                <h2 class="text-danger fw-bold">Principal's Welcome Message</h2>
+                <p>{{ principal_message.description }}</p>
+                <a href="{% url 'mwala_app:index' %}" class="btn btn-secondary">Back to Home</a>
+            </div>
+            {% else %}
+            <p class="text-muted">Principal's message is not available at the moment.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+<a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+ 
+{% endblock %}

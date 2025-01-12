@@ -25,76 +25,27 @@
     </section>
     <section class="department-cards py-5">
     <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">MWALA TECHNICAL & VOCTIONAL COLLAGE DEPARTMENTS</h2>
+        </div>
         <div class="row text-center">
             <!-- Card 1 -->
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card border-primary h-100 w-100">
-                    <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Building Technology and Civil Engineering">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-primary">Building Technology and Civil Engineering</h5>
-                        <p class="card-text">Among other courses, the department offers <strong>Plumbing Level 5 (Craft)</strong>...</p>
-                        <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
+             {% for department in departments %}
+                <div class="col-md-4 mb-4 d-flex">
+                    <div class="card border-primary h-100 w-100">
+                    {% if department.image %}
+                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{{ department.image.url }}" class="card-img-top" alt="{{ department.title }}"></a>
+                    {% else %}
+                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}"></a>
+                    {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title text-primary">{{ department.title }}</h5>
+                            <p class="card-text">{{ department.description|truncatechars:60 }}</p>
+                            <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card border-primary h-100 w-100">
-                    <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Business Studies">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-primary">Business Studies</h5>
-                        <p class="card-text">Among other courses, the department offers <strong>Office Administration Level 5 (Craft)</strong>...</p>
-                        <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card border-primary h-100 w-100">
-                    <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Computing and Informatics">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-primary">Computing and Informatics</h5>
-                        <p class="card-text">Among other courses, the department offers <strong>ICT (Computer Operator) Grade I</strong>...</p>
-                        <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card border-primary h-100 w-100">
-                    <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Business Studies">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-primary">Business Studies</h5>
-                        <p class="card-text">Among other courses, the department offers <strong>Office Administration Level 5 (Craft)</strong>...</p>
-                        <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-4 d-flex">
-            <div class="card border-primary h-100 w-100">
-                <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Business Studies">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-primary">Business Studies</h5>
-                    <p class="card-text">Among other courses, the department offers <strong>Office Administration Level 5 (Craft)</strong>...</p>
-                    <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-4 mb-4 d-flex">
-            <div class="card border-primary h-100 w-100">
-                <img src="{% static 'assets\images\trainer-1-2.jpg' %}" class="card-img-top" alt="Business Studies">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-primary">Business Studies</h5>
-                    <p class="card-text">Among other courses, the department offers <strong>Office Administration Level 5 (Craft)</strong>...</p>
-                    <a href="#" class="btn btn-link text-danger mt-auto">Read More →</a>
-                </div>
-            </div>
-        </div>
+            {% endfor %}
         </div>
     </div>
     </section>

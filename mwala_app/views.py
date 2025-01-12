@@ -1,22 +1,113 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.shortcuts import render, get_object_or_404
-from mwala_app.models import Administration, Course, Notice
+from mwala_app.forms import AdmissionApplicationForm, ContactForm, FeedbackForm
+from django.contrib import messages
+from django.db.models import Q
+from mwala_app.models import Administration, Contact, Course, Department, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment
 
 # Create your views here.
 def homePage(request):
+    
     notices = Notice.objects.order_by('-date')[:3]
+    job_vacancies  = JobsVacancies.objects.order_by('-deadlineDate')[:4]
+    departments = Department.objects.all()
+    principal_message = Administration.objects.filter(position__iexact="Principal").first()
+    # Group courses by their levels
+    course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('course_level')
+    courses_by_level = {
+    level: Course.objects.filter(course_level__iexact=level).order_by('course_name')[:10]
+    for level in course_levels
+}
 
     context = {
-        'notices':notices
+        'notices': notices,
+        'courses_by_level': courses_by_level,
+        'departments': departments,
+        'principal_message': principal_message,
+        'job_vacancies': job_vacancies,
+        
+       
     }
     return render(request, 'index1.html', context )
+
+def courseLevelView(request, level):
+    # Reverse the slugify transformation if needed (e.g., for display or queries)
+    level_name = level.replace('-', ' ').title()
+    
+    # Fetch courses for the given level
+    courses = Course.objects.filter(course_level__iexact=level_name)
+    if not Course.objects.filter(course_level__iexact=level_name).exists():
+     return render(request, 'index1.html', status=404)
+    
+    context = {
+        'level': level_name,
+        'courses': courses,
+    }
+    return render(request, 'courses/course_level.html', context)
 
 def all_notices(request):
     all_notices = Notice.objects.order_by('-date')  # Fetch all notices
     return render(request, 'all_notices.html', {'notices': all_notices})
 
-def notice(request):
-    return render(request, 'notice_board.html')
+
+
+def all_jobsVacancies(request):
+    all_jobsVacancies = JobsVacancies.objects.order_by('-deadlineDate')
+    return render(request, 'all_jobs&vacancies.html', {'all_jobsVacancies':all_jobsVacancies})
+
+
+def collageGallery(request):
+    images = ImageGallery.objects.all()
+    context ={
+        'images':images
+
+    }
+    return render(request, 'collage_gallery.html', context)
+
+
+
+from django.http import JsonResponse
+def get_images_for_carousel(request):
+    try:
+        # Retrieve the images (excluding the direct 'url' in the query)
+        images = ImageGallery.objects.all()
+
+        # Prepare the image data
+        images_data = [
+            {
+                'id': image.id,
+                'url': image.image.url,  # Access the URL of the image field
+                'date': image.date
+            }
+            for image in images
+        ]
+
+        # Return the image data as JSON
+        return JsonResponse({'images': images_data})
+
+    except Exception as e:
+        # Log and return the error if anything goes wrong
+        print(f"Error fetching images: {e}")
+        return JsonResponse({'error': 'Internal Server Error', 'details': str(e)}, status=500)
+
+def newsEvents(request):
+    news = News.objects.all()
+    context = {
+        'news':news
+    }
+    return render(request, 'newsEvents.html', context)
+
+def news_details(request, news_id):
+    news_details = get_object_or_404(News, id=news_id)
+    popular_news = News.objects.order_by('-date')[:5]  
+    recent_news = News.objects.order_by('-date')[:5] 
+    context = {
+       'news':news_details,
+        'popular_news': popular_news,
+        'recent_news': recent_news,
+    }
+    return render(request, 'news_details.html', context)
+
 
 def historyPage(request):
     return render(request, 'about1.html')
@@ -31,6 +122,15 @@ def adminstrationDetails(request, id):
    
     return render(request, 'adminstration_details.html', {'admin':admin})
 
+
+def principalDetail(request):
+    # Fetch the Principal's information
+    principal_message = get_object_or_404(Administration, position__iexact="Principal")
+    
+    context = {
+        'principal_message': principal_message,
+    }
+    return render(request, 'principal_detail.html', context)
 
 def allCourses(request):
     courses = Course.objects.all()
@@ -99,26 +199,136 @@ def nitaCourses(request, level):
     return render(request, 'courses/nita_courses.html', context)
 
 def allDepartments(request):
-    return render(request, 'departments/all_department.html')
+    departments = Department.objects.all()
+
+    context ={
+        'departments':departments
+
+    }
+    return render(request, 'departments/all_department.html', context)
+
+def department_details(request, department_id):
+    department = get_object_or_404(Department, id=department_id)
+    courses = department.courses.all()
+    return render(request, 'departments/department_details.html', {'department': department, 'courses':courses})
+
+
+def supporting_department_details(request, support_department_id):
+
+    supporting_departments = get_object_or_404(SupportingDepartment, id=support_department_id)
+
+    return render(request, 'departments/support_department_details.html', {'department': supporting_departments})
 
 def applicationForm(request):
     return render(request, 'application_form.html')
 
 def applicationPdf(request):
-    return render(request, 'application_pdf.html')
-def onlineApplication(request):
-    return render(request, 'online_application.html')
+    # Fetch the Notice where the title contains 'Application Form' and has a file uploaded
+    application_form = Notice.objects.filter(
+        title__icontains="application_form", uploadNotice__isnull=False
+    ).order_by('-date').first()
 
-def contactPage(request):
-    return render(request, 'contact1.html')
+    # Get the file URL or set to None if no match
+    application_file_url = application_form.uploadNotice.url if application_form else None
+
+    # Render the template
+    return render(request, 'application_pdf.html', {'application_file_url': application_file_url})
 
 def feeStructure(request):
-    return render(request, 'fee_structure.html')
+    # Get the most recent Notice with a file uploaded (i.e., a non-null 'uploadNotice')
+    fee_structure = Notice.objects.filter(uploadNotice__isnull=False).order_by('-date').first()
 
-def feedBack(request):
-    return render(request, 'feedback.html')
+    # Check if there's an uploaded fee structure
+    if fee_structure:
+        fee_file_url = fee_structure.uploadNotice.url  # URL for the uploaded fee structure file
+    else:
+        fee_file_url = None  # If no fee structure is uploaded
+
+    return render(request, 'fee_structure.html', {'fee_structure': fee_file_url})
+
+def feedback_view(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your feedback has been submitted successfully!")
+            return redirect('mwala_app:feedBack')  # Replace 'feedback' with the URL name of your feedback page
+    else:
+        form = FeedbackForm()
+    return render(request, 'feedback.html', {'form': form})
+
+
+def studentAffairs(request, student_affairs_id):
+    student_affairs = get_object_or_404(StudentAffairs, id=student_affairs_id)
+    context = {
+        'student_affairs':student_affairs
+    }
+    return render(request, 'student_affairs.html', context)
+
+def govnt_scholar(request):
+    return render(request, 'student_affairs/govnt_scholar.html')
 
 
 
 
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Save the data to the database
+            contact = Contact(
+                name=form.cleaned_data['name'],
+                phone=form.cleaned_data['phone'],
+                email=form.cleaned_data['email'],
+                message=form.cleaned_data['message']
+            )
+            contact.save()
 
+            # Add a success message
+            messages.success(request, f"Thank you, {contact.name}. Your message has been received!")
+
+            # Redirect to the same form or another page
+            return redirect('mwala_app:contactUs')  # Replace 'contact' with the name of your contact page URL pattern
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact1.html', {'form': form})
+
+
+def admission_application_view(request):
+    if request.method == "POST":
+        form = AdmissionApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Add a success message to display after form submission
+            messages.success(request, 'Application submitted successfully!')
+
+            # Redirect to the form page or a different page (e.g., application success page)
+            return redirect('mwala_app:onlineApplication')
+    else:
+        form = AdmissionApplicationForm()
+
+    return render(request, 'online_application.html', {'form': form})
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    results = []
+    if query:
+        post_results = News.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        )
+        product_results = ImageGallery.objects.filter(
+            Q(image__icontains=query) | Q(description__icontains=query)
+        )
+        product_results = JobsVacancies.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        product_results = Notice.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        product_results = Course.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        results = list(post_results) + list(product_results)
+    return render(request, 'search_results.html', {'query': query, 'results': results})

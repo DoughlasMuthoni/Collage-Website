@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 {% extends 'base.html' %}
 {% load static %}
 {% block title%} <title> All Notice</title>{% endblock %}
@@ -29,7 +17,11 @@
         {% for notice in notices %}
             <div class="notices-item">
                 <span>
-                    <a href="{{ notice.link }}" target="_blank">{{ notice.title }}</a>
+                    {% if notice.uploadNotice %}
+                        <a href="{{ notice.uploadNotice.url }}" target="_blank">{{ notice.title }}</a>
+                    {% else %}
+                    <span class="text-danger">{{ notice.title }} (No file uploaded)</span>
+                    {% endif %}
                 </span>
                 <span class="notices-item-date">
                     <i class="bi bi-calendar3"></i> {{ notice.date|date:"F Y" }}
@@ -38,6 +30,7 @@
         {% empty %}
             <p class="text-center p-3">No notices available at the moment.</p>
         {% endfor %}
+
     </div>
     <div class="text-center mt-4">
         <a href="{% url 'mwala_app:index' %}" class="btn btn-primary mb-2">Back to Homepage</a>

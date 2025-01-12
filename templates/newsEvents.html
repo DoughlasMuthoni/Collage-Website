@@ -1,0 +1,57 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Jobs Section</title>{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">News & Events</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Management</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<div class="container my-4">
+    <h2 class="text-center bg-primary text-white py-2 rounded">News and Events</h2>
+    <div class="row g-4">
+      <!-- First Card -->
+       {% for news in news %}
+      <div class="col-md-4">
+        <div class="card h-150">
+          <img src="{{ news.image.url }}" class="card-img-top" alt="Job Recruitment">
+          
+        </div class="card-text" >
+        <a href="{% url 'mwala_app:news_details' news_id=news.id %}"style="text-decoration: none; 
+"><p class="card-text">
+            {{ news.description|truncatechars:100 }}
+          </p></a> 
+      </div>
+      {% endfor %}
+     
+    </div>
+  </div>
+   
+
+  
+
+
+      
+    
+    <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+{% endblock %}

@@ -1,0 +1,47 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Student Affairs</title>{% endblock %}
+
+{% block content %}
+
+ 
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+        <div class="breadcrumb__text">
+            <h5 class="display-6 fw-bold mb-3">Mwala TVC GAIDANCE AND COUNCELING</h5>
+            <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                
+            </nav>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<section id="history-section" class="my-5">
+    <div class="container">
+        <div class="card-header text-white rounded mb-1" style="background-color: #0098DB; border-bottom: 2px solid red;">
+            <h2 class="text-center mb-0">{{ student_affairs.title }}</h2>
+        </div>
+        <div class="card shadow-lg">
+            
+            <div class="card-body">
+                <p>{{ student_affairs.details }}</p>
+                
+            </div>
+        </div>
+
+        
+    </div>
+</section>
+    <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+{% endblock %}

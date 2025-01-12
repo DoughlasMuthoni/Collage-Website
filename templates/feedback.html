@@ -1,163 +1,199 @@
-
-
 {% extends 'base.html' %}
 {% load static %}
-{% block title%} <title>Feedback</title>{% endblock %}
+{% block title %}
+  <title>Feedback</title>
+{% endblock %}
 
 {% block content %}
+  <!-- Breadcrumb Section -->
   <section class="breadcrumb-section text-white d-flex align-items-center" 
-  style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; background-size: cover;  background-position: center;">
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-lg-8 text-center">
-                  <div class="breadcrumb__text">
-                      <h1 class="display-4 fw-bold mb-3">All Departments</h1>
-                      <nav class="breadcrumb d-inline-flex bg-transparent p-0">
-                          <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
-                          <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Departments</a>
-                          <span class="breadcrumb-item active text-success">All Departments</span>
-                      </nav>
-                  </div>
-              </div>
+      style="background-image: url('{% static 'assets/images/mwala_img3.jpg' %}'); height: 300px; background-size: cover; background-position: center;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="breadcrumb__text">
+            <h1 class="display-4 fw-bold mb-3"> Feedbacks </h1>
+            <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+              <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+              <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Departments</a>
+              <span class="breadcrumb-item active text-success">All Departments</span>
+            </nav>
           </div>
+        </div>
       </div>
+    </div>
   </section>
-  <div class="container py-5">
-      <div class="card-header bg-primary text-white text-center p-3 rounded-3 shadow" >
-          <h3>FEEDBACK FORM</h3>
+
+  <div class="container py-5 text-dark">
+    <h3 class="text-primary text-center mb-4 bg-primary text-white py-2 rounded " style="border-top: 2px solid red;">Feedback Form</h3>
+    {% if messages %}
+      <div id="message-alert" class="alert alert-success" style="display: block;">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+      </div>
+    {% endif %}
+    <p class="text-danger text-center mb-5" style="font-size: 1.2rem;">
+      Your feedback helps us improve our services. Please fill out the form below.
+    </p>
+  
+    <form method="post" class="p-4 border rounded shadow bg-white">
+      {% csrf_token %}
+  
+      <!-- Organization Name -->
+      <div class="mb-4">
+        <label for="id_organization_name" class="form-label">{{ form.organization_name.label }}</label>
+        {{ form.organization_name }}
+        {% if form.organization_name.errors %}
+          <div class="text-danger">{{ form.organization_name.errors }}</div>
+        {% endif %}
+      </div>
+  
+      <!-- Visit Details -->
+      <div class="row g-4">
+        <!-- Visit Date -->
+        <div class="col-md-4">
+          <label for="id_visit_date" class="form-label">{{ form.visit_date.label }}</label>
+          {{ form.visit_date }}
+          {% if form.visit_date.errors %}
+            <div class="text-danger">{{ form.visit_date.errors }}</div>
+          {% endif %}
         </div>
-        <p class="text-dark">
-          At Mwala Technical and Vocational College, we believe in continual improvement of our services. 
-          Therefore, we request you to kindly fill this form to give us feedback on services we offered to you.
-        </p>
-      <div class="card shadow">
-        
-        <div class="card-body ">
-          
-          
-          <!-- Name & Date of Visit Section -->
-          <div class="mb-4 p-4 border rounded shadow-sm">
-            <h5 class="text-primary p-4 border rounded shadow-sm mb-4">Name & Date of Visit</h5>
-            <div class="row g-3 p-4 border rounded shadow-sm">
-              <div class="col-md-6">
-                <label for="organizationName" class="form-label">Organization/Name in Full <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="organizationName" placeholder="e.g., Muling Web Solutions">
-              </div>
-              <div class="col-md-3">
-                <label for="visitDate" class="form-label">Select Date of Visit <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="visitDate">
-              </div>
-              <div class="col-md-3">
-                <label for="timeIn" class="form-label">Select Time In <span class="text-danger">*</span></label>
-                <input type="time" class="form-control" id="timeIn">
-              </div>
-              <div class="col-md-3">
-                <label for="timeOut" class="form-label">Select Time Out <span class="text-danger">*</span></label>
-                <input type="time" class="form-control" id="timeOut">
-              </div>
-            </div>
-          </div>
-
-          <!-- Rate Our Services Section -->
-          <div class="mb-4 p-4 border rounded shadow-sm">
-            <h5 class="text-primary p-4 border rounded shadow-sm">Rate Our Services</h5>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Which department(s) were you visiting? <span class="text-danger">*</span></label>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="generalEnquiries">
-                  <label class="form-check-label" for="generalEnquiries">General Enquiries</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="procurement">
-                  <label class="form-check-label" for="procurement">Procurement</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="finance">
-                  <label class="form-check-label" for="finance">Finance</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="principal">
-                  <label class="form-check-label" for="principal">Principal</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="admissions">
-                  <label class="form-check-label" for="admissions">Admissions</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Rate the quality of Service Offered <span class="text-danger">*</span></label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="serviceRating" id="excellent" value="Excellent">
-                  <label class="form-check-label" for="excellent">Excellent</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="serviceRating" id="veryGood" value="Very Good">
-                  <label class="form-check-label" for="veryGood">Very Good</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="serviceRating" id="good" value="Good">
-                  <label class="form-check-label" for="good">Good</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="serviceRating" id="fair" value="Fair">
-                  <label class="form-check-label" for="fair">Fair</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="serviceRating" id="poor" value="Poor">
-                  <label class="form-check-label" for="poor">Poor</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mb-4 p-4 border rounded shadow-sm">
-              <!-- Complaints Section -->
-              <h5 class="text-primary p-4 border rounded shadow-sm">Complaints</h5>
-              <div class="row g-3 align-items-center">
-                <div class="col-md-6">
-                  <label class="form-label">Any Complaints Pertaining to the Services Offered in the College? <span class="text-danger">*</span></label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="complaints" id="complaintsYes" value="Yes">
-                    <label class="form-check-label" for="complaintsYes">Yes</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="complaints" id="complaintsNo" value="No">
-                    <label class="form-check-label" for="complaintsNo">No</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="complaintsDescription" class="form-label">If Yes, Describe the Complaint...</label>
-                  <textarea class="form-control" id="complaintsDescription" rows="3" placeholder="Enter your complaint here..."></textarea>
-                </div>
-              </div>
-            </div>
-            
-            <div class="mb-4 p-4 border rounded shadow-sm">
-              <!-- Compliments Section -->
-              <h5 class="text-primary p-4 border rounded shadow-sm">Compliments</h5>
-              <div class="row g-3 align-items-center">
-                <div class="col-md-6">
-                  <label class="form-label">Any Compliments Pertaining to Our Services? <span class="text-danger">*</span></label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="compliments" id="complimentsYes" value="Yes">
-                    <label class="form-check-label" for="complimentsYes">Yes</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="compliments" id="complimentsNo" value="No">
-                    <label class="form-check-label" for="complimentsNo">No</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="complimentsDescription" class="form-label">If Yes, Enter the Compliments Here...</label>
-                  <textarea class="form-control" id="complimentsDescription" rows="3" placeholder="Enter your compliment here..."></textarea>
-                </div>
-              </div>
-            </div>
-            
-
-          <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+        <!-- Time In -->
+        <div class="col-md-4">
+          <label for="id_time_in" class="form-label">{{ form.time_in.label }}</label>
+          {{ form.time_in }}
+          {% if form.time_in.errors %}
+            <div class="text-danger">{{ form.time_in.errors }}</div>
+          {% endif %}
+        </div>
+        <!-- Time Out -->
+        <div class="col-md-4">
+          <label for="id_time_out" class="form-label">{{ form.time_out.label }}</label>
+          {{ form.time_out }}
+          {% if form.time_out.errors %}
+            <div class="text-danger">{{ form.time_out.errors }}</div>
+          {% endif %}
         </div>
       </div>
+  
+      <!-- Service Details -->
+      <div class="mt-5 p-4 border rounded bg-light">
+        <h5 class="text-primary mb-4">Service Details</h5>
+        <div class="row g-4">
+          <div class="mb-4">
+            <label for="id_department_choices" class="form-label">
+              {{ form.department_choices.label }}
+            </label>
+            <div class="form-group">
+              {% for checkbox in form.department_choices %}
+                <div class="form-check">
+                  {{ checkbox.tag }}
+                  <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                    {{ checkbox.choice_label }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+            {% if form.department_choices.errors %}
+              <div class="text-danger">{{ form.department_choices.errors }}</div>
+            {% endif %}
+          </div>
+          
+  
+          <!-- Service Rating -->
+          <div class="col-md-6">
+            <label for="id_service_rating" class="form-label">{{ form.service_rating.label }}</label>
+            <div class="form-group">
+              {% for radio in form.service_rating %}
+                <div class="form-check">
+                  {{ radio.tag }}
+                  <label class="form-check-label" for="{{ radio.id_for_label }}">
+                    {{ radio.choice_label }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+            {% if form.service_rating.errors %}
+              <div class="text-danger">{{ form.service_rating.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  
+      <!-- Complaints Section -->
+      <div class="mt-5 p-4 border rounded bg-light">
+        <h5 class="text-primary mb-4">Complaints</h5>
+        <div class="row g-4">
+          <!-- Complaints -->
+          <div class="col-md-6">
+            <label for="id_complaints" class="form-label">{{ form.complaints.label }}</label>
+            <div class="form-group">
+              {% for radio in form.complaints %}
+                <div class="form-check">
+                  {{ radio.tag }}
+                  <label class="form-check-label" for="{{ radio.id_for_label }}">
+                    {{ radio.choice_label }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+            {% if form.complaints.errors %}
+              <div class="text-danger">{{ form.complaints.errors }}</div>
+            {% endif %}
+          </div>
+          <!-- Complaints Description -->
+          <div class="col-md-6">
+            <label for="id_complaints_description" class="form-label">{{ form.complaints_description.label }}</label>
+            {{ form.complaints_description }}
+            {% if form.complaints_description.errors %}
+              <div class="text-danger">{{ form.complaints_description.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  
+      <!-- Compliments Section -->
+      <div class="mt-5 p-4 border rounded bg-light">
+        <h5 class="text-primary mb-4">Compliments</h5>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label for="id_compliments" class="form-label">{{ form.compliments.label }}</label>
+            <div class="form-group">
+              {% for radio in form.compliments %}
+                <div class="form-check">
+                  {{ radio.tag }}
+                  <label class="form-check-label" for="{{ radio.id_for_label }}">
+                    {{ radio.choice_label }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+            {% if form.compliments.errors %}
+              <div class="text-danger">{{ form.compliments.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="col-md-6">
+            <label for="id_compliments_description" class="form-label">{{ form.compliments_description.label }}</label>
+            {{ form.compliments_description }}
+            {% if form.compliments_description.errors %}
+              <div class="text-danger">{{ form.compliments_description.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100 py-3 mt-4">Submit Feedback</button>
+    </form>
+  </div>
+  
+  
+  
+
+
+
+    </div>
   </div>
 
 {% endblock %}

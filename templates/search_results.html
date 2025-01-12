@@ -1,0 +1,24 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>search result</title>{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h3>Search Results</h3>
+    <p>Results for "{{ query }}":</p>
+    <ul class="list-group">
+        {% for result in results %}
+            <li class="list-group-item">
+                {{ result.field1 }} - {{ result.field2 }}
+                <!-- Adjust to display relevant fields -->
+            </li>
+        {% empty %}
+            <li class="list-group-item">No results found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock  %}

@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Jobs Section</title>{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Jobs And Vacancies</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
+                            <a href="./index1.html" class="breadcrumb-item text-danger">Management</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+   
+
+    <div class="jobs-section container my-5">
+    <h2 class="mb-4 text-center">All Jobs and Vacancies</h2>
+    <div class="row">
+        {% for jobs in all_jobsVacancies %}
+        
+            <div class="col-md-6 mb-4">
+                <a href="{{ jobs.uploadJobs.url }}" style="display: block; text-decoration: none; color: inherit;"> <div class="job-card card p-3 shadow-sm">
+                    <p><strong>Position:</strong> {{ jobs.position }}</p>
+                    <p><strong>Deadline:</strong> {{ jobs.deadlineDate }}</p>
+                    {% if jobs.uploadJobs %}
+                    <a href="{{ jobs.uploadJobs.url }}" class="btn_download">Download</a>
+                    {% else %}
+                    {{ jobs.position }} (No file uploaded)
+                    {% endif %}
+                    <div class="notices-footer">
+                        <a href="{{ jobs.uploadJobs.url }}">Open →</a>
+                      </div>
+                </div> </a>
+            </div>
+        {% endfor %}  
+        
+    </div>
+
+
+
+      
+    
+    <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+{% endblock %}

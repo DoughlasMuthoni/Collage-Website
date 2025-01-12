@@ -3,24 +3,25 @@
 
 <header>
        
-    <div class="breaking-news">
-        <span>Upcoming event:</span>
+    <div class="breaking-news"> 
+        <span>News | Events:</span>
         <marquee behavior="scroll" direction="left" scrollamount="10">
-            Nurture your talents, skills, and knowledge using state-of-the-art technologies and CBET. | 
-            Launch event for Google Women Tech Makers.
-        </marquee>
-        
+            {% for news_item in breaking_news %}
+                {{ news_item.title }} ( {{ news_item.date }}) |
+            {% endfor %}
+        </marquee>  
     </div>
+    
 
 </header>
 
 <header>
     <div class="main-nav d-flex justify-content-center align-items-center">
-        <a href="#">Our Courses</a>
-        <a href="#">JANUARY 2025 INTAKE</a>
-        <button class="btn btn-blue">Apply Now</button>
-        <a href="#">KUCCPS</a>
-        <a href="#">HELB Portal</a>
+        <a href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
+        <a href="{% url 'mwala_app:onlineApplication' %}">JANUARY 2025 INTAKE</a>
+         <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-blue" >Apply Now</a>
+        <a href="https://students.kuccps.net/login/">KUCCPS</a>
+        <a href="https://portal.hef.co.ke/auth/signin">HELB Portal</a>
         <a href="#">Admin Panel</a>
         <a href="#">KASNEB</a>
         <a href="https://wa.me/1234567890?text=Hello,%20I%20would%20like%20to%20inquire%20about..." target="_blank">
@@ -29,18 +30,23 @@
         <a href="mailto:Email mwala@gmail.com"><i class="fas fa-envelope "></i>Email mwala@gmail.com</a>
 
         <li class="nav-item d-flex align-items-center">
-            <button id="searchToggle" class="btn btn-link p-0 me-2">
+            <button id="searchToggle" class="btn btn-link p-0 me-2" type="submit">
                 <i class="fas fa-search"></i>
             </button>
-            <input type="text" id="searchInput" class="form-control search-input me-2" placeholder="Search">
+            <form action="{% url 'mwala_app:search' %}" method="get">
+                <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search" value="{{ query|default:'' }}">
+            </form>
+            
         </li>
+
+        
     </div>
 </header>
 
 <header class="header sticky-top header-border">
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
-        <div class="container-fluid"> <!-- Changed from container to container-fluid -->
-            <a class="navbar-brand d-flex align-items-center text-decoration-none" href="#">
+        <div class="container-fluid"> 
+            <a class="navbar-brand d-flex align-items-center text-decoration-none" href="{% url 'mwala_app:index' %}">
                 <img src="{% static 'assets\images\mwala_logo.jpg' %}" alt="Mwala Logo" height="80px" width="80px" class="me-2">
                 <span style="color: #0098DB; font-size: 18px; line-height: 1.2; font-weight: bold;">
                     Mwala Technical &<br>Vocational College
@@ -99,16 +105,17 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
                           <li><a class="dropdown-item" href="{% url 'mwala_app:departments' %}">Academic Departments</a></li>
+                          <li><a class="dropdown-item" href="{% url 'mwala_app:govnt_scholar' %}">Government Scholarship</a></li>
                           <li class="dropdown-submenu">
                             <a class="dropdown-item" href="#">Support Departments 
                                 <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Sports</a></li>
-                                <li><a class="dropdown-item" href="#">Teaching Timetable</a></li>
-                                <li><a class="dropdown-item" href="#">Examination Timetable</a></li>
-                                <li><a class="dropdown-item" href="#">Academic Calender</a></li>
-                                <li><a class="dropdown-item" href="#">Library </a></li>
+                                {% for supporting_department in supporting_departments %}
+                                    <li><a class="dropdown-item" href="{% url 'mwala_app:support_department' support_department_id=supporting_department.id %}">{{ supporting_department.title }}</a></li>
+                                {% empty %}
+                                    <li><a class="dropdown-item" href="#">No departments available</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
                         
@@ -124,22 +131,26 @@
                             Media
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                            <li><a class="dropdown-item" href="#">News & Events</a></li>
-                            <li><a class="dropdown-item" href="#">FAQs</a></li>
-                            <li><a class="dropdown-item" href="#">Jobs & Vacancies</a></li>
-                            <li><a class="dropdown-item" href="#">Photo Gallery</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mwala_app:newsEvents' %}">News & Events</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Photo Gallery</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Student Affairs
                       </a>
-                      <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                          <li><a class="dropdown-item" href="#">Gaidance & Counceling</a></li>
-                          <li><a class="dropdown-item" href="#">Clubs & Societies</a></li>
-                          <li><a class="dropdown-item" href="#">Government Scholership</a></li>
-                          <li><a class="dropdown-item" href="#">Student Leadership</a></li>
-                      </ul>
+                      <ul  class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                        {% for student_affair in all_student_affairs %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
+                                    {{ student_affair.title }}
+                                </a>
+                            </li>
+                        {% empty %}
+                            <li>No affairs available</li>
+                        {% endfor %}
+                    </ul>
                   </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

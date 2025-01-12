@@ -69,3 +69,19 @@ document.querySelectorAll('.nav-item.dropdown > a').forEach(function (dropdown) 
       });
   });
 });
+setTimeout(() => {
+  const alertBox = document.getElementById('message-alert');
+  if (alertBox) {
+      alertBox.style.display = 'none';
+  }
+}, 5000);
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const alertBox = document.getElementById("message-alert");
+  if (alertBox) {
+      setTimeout(function () {
+          alertBox.style.display = "none";
+      }, 5000); // 5000ms = 5 seconds
+  }
+});

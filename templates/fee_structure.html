@@ -26,8 +26,27 @@
     </section>
     <section>
         <div><p style=" text-align: center; font-weight: 700;margin-top: 40px; color: #0098DB; font-size: 1.2rem;">Mwala Technical And Vocational Collage Fee structure.</p></div>
-        <div class="container">
-        <embed src="{% static 'files\fee structure 2025.pdf' %}" type="Application/pdf" width="100%" height="600px">        
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4">Fee Structure</h2>
+    
+                            {% if fee_structure %}
+                                <p class="text-danger">Click below to download the uploaded fee structure:</p>
+                                <a href="{{ fee_structure }}" target="_blank" class="btn btn-primary btn-lg btn-block">
+                                    <i class="fas fa-download"></i> Download Fee Structure
+                                </a>
+                            {% else %}
+                                <div class="alert alert-warning text-center" role="alert">
+                                    <strong>Oops!</strong> No fee structure uploaded yet.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

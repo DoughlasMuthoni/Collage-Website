@@ -33,7 +33,7 @@ class CourseAdmin(admin.ModelAdmin):
     # Alternatively, use fieldsets for grouping the fields
     fieldsets = (
         ('Course Information', {
-            'fields': ('course_name', 'description', 'department'),
+            'fields': ('course_name', 'department'),
             'classes': ('collapse',),  # Optional: Collapse the section by default
         }),
         ('Qualification & Duration', {
@@ -86,7 +86,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 @admin.register(StudentAffairs)
 class StudentAffairsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'details')
+    list_display = ('title','image', 'details')
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):

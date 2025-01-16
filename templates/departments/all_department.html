@@ -40,7 +40,7 @@
                     {% endif %}
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-primary">{{ department.title }}</h5>
-                            <p class="card-text">{{ department.description|truncatechars:60 }}</p>
+                            <p class="card-text">{{ department.description|truncatechars:60|safe }}</p>
                             <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
                         </div>
                     </div>

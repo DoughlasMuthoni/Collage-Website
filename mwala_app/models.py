@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Administration(models.Model):
     id = models.AutoField(primary_key=True)  # Automatically increments for unique ID
     title = models.CharField(max_length=100, help_text="Name of the administrator (e.g., Principal, Dean, etc.)")
     position = models.CharField(max_length=100, help_text="Position or role (e.g., Principal, Vice Principal)")
-    description = models.TextField(help_text="Description of responsibilities or role")
+    description = RichTextUploadingField(help_text="Description of responsibilities or role")
     image = models.ImageField(upload_to='administration_images/', blank=True, null=True, help_text="Upload a profile picture")
 
 
@@ -19,9 +20,9 @@ class Department(models.Model):
     id = models.AutoField(primary_key=True)  # Auto-incrementing primary key
     title = models.CharField(max_length=200)  # Department title
     image = models.ImageField(upload_to='department_images/', blank=True, null=True)  # Department image
-    description = models.TextField()  # Detailed description of the department
+    description =RichTextUploadingField()  # Detailed description of the department
     hod_name = models.CharField(max_length=150)  # Head of Department's name
-    hod_message = models.TextField()  # Message from the Head of Department
+    hod_message =RichTextUploadingField()  # Message from the Head of Department
     
 
     def __str__(self):
@@ -35,16 +36,16 @@ class Course(models.Model):
     ]
 
     COURSE_LEVEL_CHOICES = [
-        ('Diploma', 'Diploma'),
-        ('Certificate', 'Certificate'),
-        ('Artisan', 'Artisan'),
-        ('Short courses', 'Short courses'),
+        ('Diploma(level 6)', 'Diploma(level 6)'),
+        ('Certificate(level 5)', 'Certificate(level 5)'),
+        ('Artisan(level 4)', 'Artisan(level 4)'),
+        ('Short courses(level 3)', 'Short courses(level 3)'),
         ('Accounting', 'Accounting'),
         ('NITA', 'NITA'),
     ]
 
     id = models.AutoField(primary_key=True)
-    description = models.TextField()
+    description =RichTextUploadingField()
     course_name = models.CharField(max_length=255)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='courses')
     qualification = models.CharField(max_length=255)
@@ -54,7 +55,7 @@ class Course(models.Model):
         choices=EXAMINATION_BODY_CHOICES
     )
     course_level = models.CharField(
-        max_length=20,
+        max_length=200,
         choices=COURSE_LEVEL_CHOICES
     )
 
@@ -84,15 +85,16 @@ class SupportingDepartment(models.Model):
     title = models.CharField(max_length=200)  # Title of the department
     image = models.ImageField(upload_to='supporting_departments/', blank=True, null=True)  # Department image
     hod_name = models.CharField(max_length=150)  # Head of Department name
-    hod_message = models.TextField()  # Head of Department message
+    hod_message = RichTextUploadingField()  # Head of Department message
     position = models.CharField(max_length=50)  # Position of the department (e.g., 'Faculty', 'Support')
 
     def __str__(self):
         return self.title
 
 class StudentAffairs(models.Model):
+    image = models.ImageField(upload_to='student_affairs/', blank=True, null=True)
     title = models.CharField(max_length=200)
-    details = models.TextField(max_length=8000) 
+    details = RichTextUploadingField(max_length=8000) 
     
     def __str__(self):
         return self.title
@@ -100,16 +102,18 @@ class StudentAffairs(models.Model):
 
 
 class ImageGallery(models.Model):
-    date = models.DateField() 
-    image = models.ImageField(upload_to='imageGallery/', blank=True, null=True)  
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=200, blank=True, null=True)
+    date = models.DateField()
+    image = models.ImageField(upload_to='imageGallery/', blank=True, null=True)
 
     def __str__(self):
-        return self.date.strftime('%Y-%m-%d')
+        return self.title or self.date.strftime('%Y-%m-%d')
 
 
 class News(models.Model):
     title = models.CharField(max_length=200)  # Title of the news
-    description = models.TextField()  # Description of the news
+    description = RichTextUploadingField()  # Description of the news
     image = models.ImageField(upload_to='news/images/')  # Image file, stored in 'news/images/' directory
     video_attachment = models.FileField(upload_to='news/videos/', blank=True, null=True)  # Optional video attachment
     date = models.DateField()  # Date of the news

@@ -27,17 +27,19 @@
     <section>
         <div><p style=" text-align: center; font-weight: 700;margin-top: 40px; color: #0098DB; font-size: 1.2rem;">Mwala Technical And Vocational Collage Fee structure.</p></div>
         <div class="container mt-5">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center" style="min-height: 20vh;">
                 <div class="col-md-8">
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h2 class="text-center mb-4">Fee Structure</h2>
-    
+        
                             {% if fee_structure %}
-                                <p class="text-danger">Click below to download the uploaded fee structure:</p>
-                                <a href="{{ fee_structure }}" target="_blank" class="btn btn-primary btn-lg btn-block">
-                                    <i class="fas fa-download"></i> Download Fee Structure
-                                </a>
+                                <p class="text-danger text-center">Click below to download the uploaded fee structure:</p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ fee_structure }}" target="_blank" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-download"></i> Download Fee Structure
+                                    </a>
+                                </div>
                             {% else %}
                                 <div class="alert alert-warning text-center" role="alert">
                                     <strong>Oops!</strong> No fee structure uploaded yet.
@@ -48,6 +50,7 @@
                 </div>
             </div>
         </div>
+        
     </section>
 
     <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">

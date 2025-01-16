@@ -1,43 +1,204 @@
 
 {% load static %}
 
-<header>
-       
-    <div class="breaking-news"> 
-        <span>News | Events:</span>
-        <marquee behavior="scroll" direction="left" scrollamount="10">
-            {% for news_item in breaking_news %}
-                {{ news_item.title }} ( {{ news_item.date }}) |
-            {% endfor %}
-        </marquee>  
-    </div>
+<style>
+/* General Dropdown Styling */
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 3px); /* Space below parent */
+    left: 0; /* Start at the left margin */
+    right: 0; /* Align with the right edge */
+    margin: 0;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0; /* Transparent initially */
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1000; /* Ensure it stays on top */
+}
+.nav-item {
+    margin-right: 15px;  /* Adjust the value to your desired gap */
+}
+
+
+/* Show dropdowns on hover */
+.nav-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s; /* No delay on hover */
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.about .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 70px; /* Align with the left margin */
+    right: 70px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.about:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.applicant .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.applicant:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.resources .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.resources:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* Adjust for About Us dropdown menu */
+.nav-item.downloads .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 950px; /* Align with the left margin */
+    right: 20px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.downloads:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Adjust spacing for nav links */
+.nav-link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-link:hover {
+    color: #0098DB;
+    border-bottom: 3px solid #0098DB;
+}
+
+.dropdown-header {
+    color: green;
+    font-size: 1.2rem;
     
+}
 
-</header>
+/* Increase spacing of dropdown items */
+.dropdown-item {
+    padding: 8px 12px; /* Adjust padding for more space between items */
+    font-size: 15px; /* Increase font size for readability */
+    color: black;
+    font-weight: 500;
+}
 
+/* Ensure all columns are the same size */
+.dropdown-menu .container .row {
+    display: flex;
+    justify-content: space-between; /* Distribute columns evenly */
+    margin: 0;
+}
+
+/* Each column should take an equal amount of space */
+.dropdown-menu .container .row .col-md-2,
+.dropdown-menu .container .row .col-md-3 {
+    flex: 1; /* Make columns of equal size */
+    padding: 0 6px; /* Add some padding inside */
+    border-right: 2px solid #ddd; /* Add vertical lines between columns */
+}
+
+/* Remove right border on last column */
+.dropdown-menu .container .row .col-md-3:last-child,
+.dropdown-menu .container .row .col-md-2:last-child {
+    border-right: none;
+}
+
+/* Optional: Adjust header margins to add spacing between the title and items */
+.dropdown-header {
+    margin-bottom: 15px; /* Add margin below the header for more separation */
+}
+
+/* Fixing potential overflow/overlap on small screens */
+@media (max-width: 767px) {
+    .dropdown-menu .container .row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dropdown-menu .container .row .col-md-2,
+    .dropdown-menu .container .row .col-md-3 {
+        padding: 20px 0;
+    }
+}
+
+</style>
+       
 <header>
     <div class="main-nav d-flex justify-content-center align-items-center">
         <a href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
         <a href="{% url 'mwala_app:onlineApplication' %}">JANUARY 2025 INTAKE</a>
-         <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-blue" >Apply Now</a>
+         
+         <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger move" >Apply Now</a>
         <a href="https://students.kuccps.net/login/">KUCCPS</a>
         <a href="https://portal.hef.co.ke/auth/signin">HELB Portal</a>
-        <a href="#">Admin Panel</a>
-        <a href="#">KASNEB</a>
-        <a href="https://wa.me/1234567890?text=Hello,%20I%20would%20like%20to%20inquire%20about..." target="_blank">
-            <i class="bi bi-whatsapp"></i> Chat with us
-        </a>
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+            <a href="{% url 'admin_app:admin_index' %}">Admin Panel</a>
+        {% else %}
+            <a href="{% url 'admin:login' %}">Admin Login</a>
+        {% endif %}
+
+
+        <a href="#">Student Portal</a>
+        
         <a href="mailto:Email mwala@gmail.com"><i class="fas fa-envelope "></i>Email mwala@gmail.com</a>
 
-        <li class="nav-item d-flex align-items-center">
-            <button id="searchToggle" class="btn btn-link p-0 me-2" type="submit">
+        <li class="nav-item-search d-flex align-items-center">
+            <button id="searchToggle" class="btn btn-link p-0 me-2">
                 <i class="fas fa-search"></i>
             </button>
-            <form action="{% url 'mwala_app:search' %}" method="get">
-                <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search" value="{{ query|default:'' }}">
+            <form action="{% url 'mwala_app:allCourses' %}" method="get">
+                <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search for a Course" value="{{ query|default:'' }}">
             </form>
-            
         </li>
+        
+        
 
         
     </div>
@@ -62,110 +223,201 @@
                     <li class="nav-item">
                         <a href="{% url 'mwala_app:index' %}" class="nav-link active">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      About us
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="admissionsDropdown">
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:history' %}">Background history</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:adminstration' %}">Adminstration</a></li>
-                      </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admissions
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="admissionsDropdown">
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="#">
-                                Our Courses
-                                <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:allCourses' %}">All Courses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:diploma' level='diploma' %}
-                                    ">Level 6 (Diploma)</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:certificate' level='certificate' %}">Level 5 (Certificate)</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:artisan' level='artisan' %}">Level 4 (Artisan)</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:nitaCourses' level='NITA' %}">NITA Courses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:accounting' level='Accounting' %}">Accounting Courses</a></li>
-                                <li><a class="dropdown-item" href="{% url 'mwala_app:shortCourses' level='Short courses' %}">Level 3 (Short Courses)</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Online Application</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationForm' %}">Application Instructions</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Download Application Form</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a></li>
-                    </ul>
-                </li>
-                
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="courses\departments\all_department.html" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Academics
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                          <li><a class="dropdown-item" href="{% url 'mwala_app:departments' %}">Academic Departments</a></li>
-                          <li><a class="dropdown-item" href="{% url 'mwala_app:govnt_scholar' %}">Government Scholarship</a></li>
-                          <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="#">Support Departments 
-                                <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                {% for supporting_department in supporting_departments %}
-                                    <li><a class="dropdown-item" href="{% url 'mwala_app:support_department' support_department_id=supporting_department.id %}">{{ supporting_department.title }}</a></li>
-                                {% empty %}
-                                    <li><a class="dropdown-item" href="#">No departments available</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        
-                        
-                      </ul>
-                  </li>
                   
-                  
-                  
-                  
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Media
+                    <li class="nav-item dropdown about position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                            <li><a class="dropdown-item" href="{% url 'mwala_app:newsEvents' %}">News & Events</a></li>
-                            <li><a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a></li>
-                            <li><a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Photo Gallery</a></li>
-                        </ul>
+                        <div class="dropdown-menu custom-dropdown">
+                            <div class="container py-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-2 border-end">
+                                        <h6 class="dropdown-header">General Information</h6>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:history' %}">Our History</a>
+                                        <a class="dropdown-item" href="#">Service Charter</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Gallery</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Us</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints & <br> Feedback</a>
+                                    </div>
+                                    <div class="col-12 col-md-3 border-end">
+                                        <h6 class="dropdown-header">Administration</h6>
+                                    
+                                        {% for admin in administrators %}
+                                            <a class="dropdown-item" href="{% url 'mwala_app:adminstrationDetails' admin.id %}">
+                                                {{ admin.position }}
+                                            </a>
+                                            
+                                        {% endfor %}
+                                    </div>
+                                
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Academic Departments</h6>
+                                        {% for department in departments %}
+                                            <a class="dropdown-item" href="{% url 'mwala_app:department_details' department_id=department.id %}">
+                                                {{ department.title }}
+                                            </a>
+                                        {% empty %}
+                                            <a class="dropdown-item" href="#">No departments available</a>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-3">
+                                        <h6 class="dropdown-header">Non Academic Departments</h6>
+                                        {% for supporting_department in supporting_departments %}
+                                            <a class="dropdown-item" 
+                                            href="{% url 'mwala_app:support_department' support_department_id=supporting_department.id %}">
+                                                {{ supporting_department.title }}
+                                            </a>
+                                        {% empty %}
+                                            <a class="dropdown-item" href="#">No departments available</a>
+                                        {% endfor %}
+
+                                        {% for student_affair in all_student_affairs %}
+                                            <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
+                                                {{ student_affair.title }}
+                                            </a>
+                                        {% empty %}
+                                            <span>No affairs available</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Student Affairs
-                      </a>
-                      <ul  class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                        {% for student_affair in all_student_affairs %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
-                                    {{ student_affair.title }}
-                                </a>
-                            </li>
-                        {% empty %}
-                            <li>No affairs available</li>
-                        {% endfor %}
-                    </ul>
-                  </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       Contact Us
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-                          <li><a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Details</a></li>
-                          <li><a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints</a></li>
-                          
-                      </ul>
-                  </li>
+                    
+                    <li class="nav-item dropdown applicant position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Applicants & students
+                        </a>
+                        <div class="dropdown-menu custom-dropdown ">
+                            <div class="container py-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Prospective Student</h6>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:applicationForm' %}">Application Procedure</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Online Registration</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Student Registration Form</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:govnt_scholar' %}">Government Scholarship</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Join Us</a>
+                                    </div>
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Current Students</h6>
+                                        <a class="dropdown-item" href="#">Students Rules And Regulations</a>
+                                        <a class="dropdown-item" href="#">Examination</a>
+                                        <a class="dropdown-item" href="#">Course Transfer</a>
+                                        <a class="dropdown-item" href="#">Clearance Form</a>
+                                        <a class="dropdown-item" href="#">Fee Refund Form</a>
+                                        <a class="dropdown-item" href="#">Course Transfer Form</a>
+                                        <a class="dropdown-item" href="#">Apply For Graduation</a>
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-4">
+                                        <h6 class="dropdown-header">Important Links</h6>
+                                        <a class="dropdown-item" href="https://portal.hef.co.ke/auth/signin">HELB Student Portal</a>
+                                        <a class="dropdown-item" href="https://students.kuccps.net/login/">KUCCPS Student Portal</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="" class="nav-link active">Services</a>
+                    </li>
+                    <li class="nav-item dropdown resources position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            News & Resources
+                        </a>
+                        <div class="dropdown-menu custom-dropdown">
+                            <div class="container py-3">
+                                <div class="row">
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Government Resources</h6>
+                                        <a class="dropdown-item" href="#">Executive Orders</a>
+                                        <a class="dropdown-item" href="#">Legai Orders</a>
+                                        <a class="dropdown-item" href="#">Regislation On TVETS</a>
+                                        
+                                    </div>
+                                    
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Dawnloadable Resources</h6>
+                                        
+                                        <a class="dropdown-item" href="#"> Mwala Documents</a>
+                                        <a class="dropdown-item" href="#">TVET Dean Resources</a>
+                                    
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <h6 class="dropdown-header">Notice Board</h6>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:newsEvents' %}">News & Events</a>
+                                        <a class="dropdown-item" href="#">Research & Publications</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown downloads position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Downloads
+                        </a>
+                        <div class="dropdown-menu  custom-dropdown">
+                            <div class="container py-3">
+                                <div class="row">
+                                    
+                                    <div class="col-12">
+                                        <h6 class="dropdown-header"> Tenders</h6>
+                                        <a class="dropdown-item" href="#">List Of Prequalified Suppliers</a>
+                                        <a class="dropdown-item" href="#">Provision Of Catering</a>
+                                    </div>
+                                    <div class="col-12">
+                                        <h6 class="dropdown-header"> Jobs & Vacancies</h6>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a>
+                                        
+                                    </div>
+                                    
+                                    <!-- Administration Section -->
+                                    <div class="col-12">
+                                        <h6 class="dropdown-header">Students Downloads</h6>
+                                        <a class="dropdown-item" href="#">Students Rules & Regulations</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a>
+                                        <a class="dropdown-item" href="#">Teaching Practice Form</a>
+                                        <a class="dropdown-item" href="#">All Forms</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </li>
+           
+                
+                
                   
-                   
+                  
+                  
+                  
+                  
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+<header>
+       
+    <div class="breaking-news"> 
+        <span>HIGHLIGHTS:</span>
+        <marquee behavior="scroll" direction="left" scrollamount="10"> 
+            {% for news_item in breaking_news %}
+                {{ news_item.title }} ( {{ news_item.date }}) |
+            {% endfor %}
+        </marquee>  
+    </div>
+    
+
+</header>
+
+

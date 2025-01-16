@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.shortcuts import render, get_object_or_404
 from mwala_app.forms import AdmissionApplicationForm, ContactForm, FeedbackForm
 from django.contrib import messages
+from django.urls import reverse
 from django.db.models import Q
 from mwala_app.models import Administration, Contact, Course, Department, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment
 
@@ -31,19 +32,47 @@ def homePage(request):
     return render(request, 'index1.html', context )
 
 def courseLevelView(request, level):
-    # Reverse the slugify transformation if needed (e.g., for display or queries)
-    level_name = level.replace('-', ' ').title()
-    
+    # Define a mapping of slugs to database course levels
+    level_mapping = {
+        'diplomalevel-6': 'Diploma(level 6)',
+        'certificatelevel-5': 'Certificate(level 5)',
+        'artisanlevel-4': 'Artisan(level 4)',
+        'short-courseslevel-3': 'Short courses(level 3)',
+        'accounting': 'Accounting',
+        'nita': 'NITA',
+    }
+
+    # Convert the slug to the corresponding database format
+    level_name = level_mapping.get(level.lower())
+
+
+    # If the level is not in the mapping, return 404
+    if not level_name:
+        context = {
+            'error_message': f"Invalid course level '{level}'."
+        }
+        return render(request, 'index1.html', context, status=404)
+
     # Fetch courses for the given level
     courses = Course.objects.filter(course_level__iexact=level_name)
-    if not Course.objects.filter(course_level__iexact=level_name).exists():
-     return render(request, 'index1.html', status=404)
-    
+
+
+    # If no courses are found, return 404 with a helpful message
+    if not courses.exists():
+        context = {
+            'error_message': f"No courses found for level '{level_name}'."
+        }
+        return render(request, 'index1.html', context, status=404)
+
+    # Pass the courses and level to the template
     context = {
         'level': level_name,
         'courses': courses,
     }
     return render(request, 'courses/course_level.html', context)
+
+
+
 
 def all_notices(request):
     all_notices = Notice.objects.order_by('-date')  # Fetch all notices
@@ -132,12 +161,38 @@ def principalDetail(request):
     }
     return render(request, 'principal_detail.html', context)
 
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def allCourses(request):
-    courses = Course.objects.all()
+    # Fetch all courses
+    courses = Course.objects.all().order_by('course_level')  # Ensure ordering happens before slicing
+
+    # Get search query
+    query = request.GET.get('q', '')
+    if query:
+        # Filter courses based on the search query
+        courses = courses.filter(
+            Q(course_name__icontains=query) | Q(description__icontains=query)
+        ).order_by('course_level')
+
+    # Pagination
+    paginator = Paginator(courses, 10)  # Show 10 courses per page
+    page = request.GET.get('page')
+    try:
+        paginated_courses = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_courses = paginator.page(1)
+    except EmptyPage:
+        paginated_courses = paginator.page(paginator.num_pages)
+
     context = {
-       'courses' :courses
+        'paginated_courses': paginated_courses,
+        'query': query,
     }
     return render(request, 'courses/all_courses.html', context)
+
+
 
 def diplomaCourses(request, level):
     courses = Course.objects.filter(course_level__iexact=level)
@@ -312,23 +367,16 @@ def admission_application_view(request):
 
 
 def search_view(request):
-    query = request.GET.get('q')
-    results = []
+    query = request.GET.get('q', '')
+
     if query:
-        post_results = News.objects.filter(
-            Q(title__icontains=query) | Q(content__icontains=query)
-        )
-        product_results = ImageGallery.objects.filter(
-            Q(image__icontains=query) | Q(description__icontains=query)
-        )
-        product_results = JobsVacancies.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query)
-        )
-        product_results = Notice.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query)
-        )
-        product_results = Course.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query)
-        )
-        results = list(post_results) + list(product_results)
-    return render(request, 'search_results.html', {'query': query, 'results': results})
+        # Check if the query matches a specific model type (for redirection)
+        if 'course' in query.lower():  # Searching for courses
+            return redirect(reverse('mwala_app:allCourses') + f'?q={query}')
+        
+        # Default case (if none of the above matches)
+        # Handle redirect to a generic search page or display all results as before
+        results = []
+        return render(request, 'search_results.html', {'query': query, 'results': results})
+
+    return render(request, 'search_results.html', {'query': query, 'results': []})

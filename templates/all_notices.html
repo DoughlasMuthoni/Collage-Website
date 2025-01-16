@@ -15,6 +15,7 @@
           </div>
     <div class="notices-body">
         {% for notice in notices %}
+        
             <div class="notices-item">
                 <span>
                     {% if notice.uploadNotice %}
@@ -27,6 +28,7 @@
                     <i class="bi bi-calendar3"></i> {{ notice.date|date:"F Y" }}
                 </span>
             </div>
+        
         {% empty %}
             <p class="text-center p-3">No notices available at the moment.</p>
         {% endfor %}

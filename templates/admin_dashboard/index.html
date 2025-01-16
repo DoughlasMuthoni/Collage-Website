@@ -1,0 +1,93 @@
+
+
+ 
+{% extends 'admin_dashboard/base.html' %}
+{% load static %}
+{% block title%} <title> Home </title>{% endblock %}
+
+{% block content %}
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+      <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'admin_app:admin_index' %}">
+            <i class="bi bi-grid"></i>
+            <span>Dashboard</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-heading">Pages</li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{% url 'admin_app:user_profile' %}">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+          </a>
+        </li><!-- End Profile Page Nav -->
+
+  
+        
+          <a class="nav-link collapsed" href="{% url 'admin_app:register' %}">
+            <i class="bi bi-card-list"></i>
+            <span>Register</span>
+          </a>
+        </li><!-- End Register Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{% url 'admin_app:login' %}">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Login</span>
+          </a>
+        </li><!-- End Login Page Nav -->
+
+      
+
+      </ul>
+
+    </aside><!-- End Sidebar-->
+
+   
+
+      <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_app:admin_index' %}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section dashboard">
+        <div class="row">
+
+          <!-- Left side columns -->
+          <div class="col-lg-8">
+            <div class="row">
+
+            
+
+            
+
+            </div>
+          </div><!-- End Left side columns -->
+
+          <!-- Right side columns -->
+          <div class="col-lg-4">
+
+          
+            <div>
+              <h2>helloo</h2>
+            </div>
+            
+
+
+          
+
+          </div><!-- End Right side columns -->
+
+        </div>
+      </section>
+{% endblock %}

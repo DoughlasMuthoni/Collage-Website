@@ -1,11 +1,11 @@
 
 
 
-// search btn
-document.getElementById('searchToggle').addEventListener('click', function () {
-    const searchInput = document.getElementById('searchInput');
-    searchInput.classList.toggle('show');
-  });
+document.getElementById('searchToggle').addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent form submission if the button is inside a form
+  const searchInput = document.getElementById('searchInput');
+  searchInput.classList.toggle('show');
+      });
 
 
 
@@ -50,25 +50,9 @@ src="https://kit.fontawesome.com/a076d05399.js"
 
 
 
-// Toggle dropdowns on mobile
-document.querySelectorAll('.dropdown-submenu > a').forEach(function (submenu) {
-  submenu.addEventListener('click', function (e) {
-      e.preventDefault();
-      const parent = this.closest('.dropdown-submenu');
-      parent.classList.toggle('open');
-  });
-});
 
-// Close other dropdowns when one is opened
-document.querySelectorAll('.nav-item.dropdown > a').forEach(function (dropdown) {
-  dropdown.addEventListener('click', function () {
-      document.querySelectorAll('.nav-item.dropdown').forEach(function (item) {
-          if (item !== dropdown.closest('.nav-item')) {
-              item.classList.remove('open');
-          }
-      });
-  });
-});
+
+
 setTimeout(() => {
   const alertBox = document.getElementById('message-alert');
   if (alertBox) {

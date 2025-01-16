@@ -34,30 +34,30 @@
     </section>
     <section class="principal-message py-3 bg-light border-top border-primary">
         <div class="container border-top border-primary">
-            <div class="row align-items-center shadow-lg rounded bg-white p-4">
-                <!--Image -->
+            <div class="row shadow-lg rounded department-meassage p-4 d-flex align-items-start">
+                <!-- Image -->
                 <div class="col-md-4 text-center mb-4 mb-md-0">
                     {% if department.image %}
                         <img src="{{ department.image.url }}" class="card-img-top" alt="{{ department.title }}">
                     {% else %}
-                        <img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}">
+                        <img src="{% static 'assets/images/default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}">
                     {% endif %}
-                    <p class="mt-3 fw-bold text-secondary">
+                    <p class="mt-3 fw-bold text-danger">
                        {{ department.title }} <br>
                         <span class="text-muted">{{ department.hod_name }}</span>
                     </p>
                 </div>
-                <!--  Message -->
+                <!-- Message -->
                 <div class="col-md-8">
-                    <h2 class="text-danger border-bottom pb-2">Message From The HOD {{ department.hod_name }}</h2>
-                    <p class=" text-justify text-dark">
-                        {{ department.hod_message }}
+                    <h2 class="text-danger border-bottom pb-2">From {{ department.title }} HOD {{ department.hod_name }}</h2>
+                    <p class="text-justify ">
+                        {{ department.hod_message|safe }}
                     </p>
-                   
                 </div>
             </div>
         </div>
     </section>
+    
     <section class="courses-table py-0 bg-light">
         <div class="container">
             <h2 class="text-center mb-4 text-primary">{{ department.title }} </h2>
@@ -70,6 +70,7 @@
                             <th scope="col">Course Title</th>
                             <th scope="col">Qualification Grade</th>
                             <th scope="col">Duration</th>
+                            <th scope="col">Level</th>
                             <th scope="col">Examiner</th>
                         </tr>
                     </thead>
@@ -81,6 +82,7 @@
                                 <td>{{ course.course_name }}</td>
                                 <td>{{ course.qualification }}</td>
                                 <td>{{ course.duration }}</td>
+                                <td>{{ course.course_level }}</td>
                                 <td>{{ course.examination_body }}</td>
                             </tr>
                             {% empty %}

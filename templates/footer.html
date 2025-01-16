@@ -6,12 +6,12 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center mb-3">
-            <span class="text-green mb-3 text-decoration-line">Mentor</span>
+            <span class="text-green mb-3 text-decoration-line"> Mwala</span>
           </a>
           <div class="footer-contact pt-3">
-            <p class="mb-1"><strong>Address:</strong> A108 Adam Street, New York, NY 535022</p>
+            <p class="mb-1"><strong>Address:</strong>  P.O Box 376-90400, Mwala</p>
             <p class="mb-1"><strong>Phone:</strong> +1 5589 55488 55</p>
-            <p><strong>Email:</strong> <a href="mailto:info@example.com" class="text-decoration-none text-blue">info@example.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@example.com" class="text-decoration-none text-blue">info@mwalatvc.ac.ke</a></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href="#" class="social-icon me-3 text-decoration-none" target="_blank"><i class="bi bi-twitter"></i></a>
@@ -22,36 +22,36 @@
         </div>
   
         <div class="col-lg-2 col-md-3 footer-links  text-decoration-none">
-          <h4 class="text-green mb-3">Useful Links</h4>
+          <h4 class="text-green mb-3">Students Resources</h4>
           <ul class=" text-decoration-none">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="{% url 'mwala_app:index' %}">Home</a></li>
+            <li><a href="{% url 'mwala_app:history' %}">About us</a></li>
+            <li><a href="{% url 'mwala_app:allCourses' %}">All Courses</a></li>
+            <li><a href="{% url 'mwala_app:onlineApplication' %}">Online Application</a></li>
+            <li><a href="{% url 'mwala_app:applicationPdf' %}">Dowload Application form</a></li>
           </ul>
         </div>
   
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4 class="text-green mb-3">Our Services</h4>
+          <h4 class="text-green mb-3">Useful Links</h4>
           <ul class="list-unstyled">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="{% url 'mwala_app:adminstration' %}">Adminstration</a></li>
+            <li><a href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a></li>
+            <li><a href="{% url 'mwala_app:diploma' level='diploma' %}">Diploma Courses</a></li>
+            <li><a href="{% url 'mwala_app:certificate' level='certificate' %}">Certificate Courses</a></li>
+            <li><a href="{% url 'mwala_app:accounting' level='Accounting' %}">Accounting Courses</a></li>
           </ul>
         </div>
 
         
         <div class="col-lg-4 col-md-3 footer-links">
-            <h4 class="text-green mb-3">Our Services</h4>
+            <h4 class="text-green mb-3">Prospective Students</h4>
             <ul class="list-unstyled">
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
+              <li><a href="{% url 'mwala_app:departments' %}">Academic Departments</a></li>
+              <li><a href="{% url 'mwala_app:govnt_scholar' %}">Government Scholarship</a></li>
+              <li><a href="{% url 'mwala_app:newsEvents' %}">News & Events</a></li>
+              <li><a href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a></li>
+              <li><a href="{% url 'mwala_app:gallery' %}">Photo & Gallery</a></li>
             </ul>
           </div>
       </div>

@@ -3,22 +3,83 @@
 
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title%} <title>search result</title>{% endblock %}
 
 {% block content %}
-
+{% load custom_tags %}
 <div class="container mt-5">
     <h3>Search Results</h3>
     <p>Results for "{{ query }}":</p>
+    
+    <!-- News Results -->
+    <h4>News</h4>
     <ul class="list-group">
-        {% for result in results %}
+        {% for result in results.news %}
             <li class="list-group-item">
-                {{ result.field1 }} - {{ result.field2 }}
-                <!-- Adjust to display relevant fields -->
+                <a href="{{ result.get_absolute_url }}">{{ result.title }}</a>
+                <!-- Add any other fields here as needed -->
             </li>
         {% empty %}
-            <li class="list-group-item">No results found.</li>
+            <li class="list-group-item">No news found.</li>
         {% endfor %}
     </ul>
+
+    <!-- Image Gallery Results -->
+    <h4>Image Gallery</h4>
+    <ul class="list-group">
+        {% for result in results.image_gallery %}
+            <li class="list-group-item">
+                <img src="{{ result.image.url }}" alt="Image" width="100">
+                <p>{{ result.description }}</p>
+                <!-- Add any other fields here as needed -->
+            </li>
+        {% empty %}
+            <li class="list-group-item">No images found.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Jobs Vacancies Results -->
+    <h4>Jobs Vacancies</h4>
+    <ul class="list-group">
+        {% for result in results.jobs %}
+            <li class="list-group-item">
+                <p>{{ result.position }}</p>
+                <p>{{ result.uploadJobs }}</p>
+                <!-- Add any other fields here as needed -->
+            </li>
+        {% empty %}
+            <li class="list-group-item">No job vacancies found.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Notices Results -->
+    <h4>Notices</h4>
+    <ul class="list-group">
+        {% for result in results.notices %}
+            <li class="list-group-item">
+                <p>{{ result.title }}</p>
+                <p>{{ result.uploadNotice }}</p>
+                <!-- Add any other fields here as needed -->
+            </li>
+        {% empty %}
+            <li class="list-group-item">No notices found.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Courses Results -->
+    <h4>Courses</h4>
+    <ul class="list-group">
+        {% for result in results.courses %}
+            <li class="list-group-item">
+                <p>{{ result.course_name }}</p>
+                <p>{{ result.description }}</p>
+                <!-- Add any other fields here as needed -->
+            </li>
+        {% empty %}
+            <li class="list-group-item">No courses found.</li>
+        {% endfor %}
+    </ul>
+
 </div>
 {% endblock  %}

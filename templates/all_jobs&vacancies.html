@@ -13,8 +13,8 @@
                     <div class="breadcrumb__text">
                         <h1 class="display-4 fw-bold mb-3">Jobs And Vacancies</h1>
                         <nav class="breadcrumb d-inline-flex bg-transparent p-0">
-                            <a href="./index1.html" class="breadcrumb-item text-danger">Home</a>
-                            <a href="./index1.html" class="breadcrumb-item text-danger">Management</a>
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Management</a>
                             <span class="breadcrumb-item active text-success">All Departments</span>
                         </nav>
                     </div>
@@ -30,20 +30,26 @@
     <div class="row">
         {% for jobs in all_jobsVacancies %}
         
-            <div class="col-md-6 mb-4">
-                <a href="{{ jobs.uploadJobs.url }}" style="display: block; text-decoration: none; color: inherit;"> <div class="job-card card p-3 shadow-sm">
-                    <p><strong>Position:</strong> {{ jobs.position }}</p>
-                    <p><strong>Deadline:</strong> {{ jobs.deadlineDate }}</p>
-                    {% if jobs.uploadJobs %}
-                    <a href="{{ jobs.uploadJobs.url }}" class="btn_download">Download</a>
-                    {% else %}
-                    {{ jobs.position }} (No file uploaded)
-                    {% endif %}
-                    <div class="notices-footer">
-                        <a href="{{ jobs.uploadJobs.url }}">Open →</a>
-                      </div>
-                </div> </a>
+        <div class="col-md-6 mb-4">
+            <div class="job-card card  shadow-sm p-3 rounded-3">
+                <h5 class="card-title text-primary mb-2">
+                    <i class="fas fa-briefcase me-2"></i> {{ jobs.position }}
+                </h5>
+                <p class="mb-1 text-danger"><strong>Deadline:</strong> {{ jobs.deadlineDate }}</p>
+                {% if jobs.uploadJobs %}
+                    <a href="{{ jobs.uploadJobs.url }}" class="btn btn-success btn-sm mt-2">
+                        <i class="fas fa-download me-1"></i> Download
+                    </a>
+                {% else %}
+                    <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No job uploaded</p>
+                {% endif %}
+                <div class="mt-3">
+                    <a href="{{ jobs.uploadJobs.url }}" class="text-decoration-none text-primary">
+                        Open <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
+        </div>
         {% endfor %}  
         
     </div>

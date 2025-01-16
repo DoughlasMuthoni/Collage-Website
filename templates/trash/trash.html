@@ -1,0 +1,91 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="admissionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Admissions
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="admissionsDropdown">
+        <li class="dropdown-submenu">
+            <a class="dropdown-item" href="#">
+                Our Courses
+                <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'mwala_app:allCourses' %}">All Courses</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:diploma' level='diploma' %}
+                    ">Level 6 (Diploma)</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:certificate' level='certificate' %}">Level 5 (Certificate)</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:artisan' level='artisan' %}">Level 4 (Artisan)</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:nitaCourses' level='NITA' %}">NITA Courses</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:accounting' level='Accounting' %}">Accounting Courses</a></li>
+                <li><a class="dropdown-item" href="{% url 'mwala_app:shortCourses' level='Short courses' %}">Level 3 (Short Courses)</a></li>
+            </ul>
+        </li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Online Application</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationForm' %}">Application Instructions</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Download Application Form</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a></li>
+    </ul>
+</li>
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="courses\departments\all_department.html" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Academics
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+        <li><a class="dropdown-item" href="{% url 'mwala_app:departments' %}">Academic Departments</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:govnt_scholar' %}">Government Scholarship</a></li>
+        <li class="dropdown-submenu">
+          <a class="dropdown-item" href="#">Support Departments 
+              <i class="bi bi-chevron-right toggle-dropdown text-blue"></i>
+          </a>
+          <ul class="dropdown-menu">
+              {% for supporting_department in supporting_departments %}
+                  <li><a class="dropdown-item" href="{% url 'mwala_app:support_department' support_department_id=supporting_department.id %}">{{ supporting_department.title }}</a></li>
+              {% empty %}
+                  <li><a class="dropdown-item" href="#">No departments available</a></li>
+              {% endfor %}
+          </ul>
+      </li>
+      
+      
+    </ul>
+</li>
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Media
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+        <li><a class="dropdown-item" href="{% url 'mwala_app:newsEvents' %}">News & Events</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a></li>
+        <li><a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Photo Gallery</a></li>
+    </ul>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Student Affairs
+  </a>
+  <ul  class="dropdown-menu" aria-labelledby="resourcesDropdown">
+    {% for student_affair in all_student_affairs %}
+        <li>
+            <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
+                {{ student_affair.title }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No affairs available</li>
+    {% endfor %}
+</ul>
+</li>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+   Contact Us
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+      <li><a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Details</a></li>
+      <li><a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints</a></li>
+      
+  </ul>
+</li>
+

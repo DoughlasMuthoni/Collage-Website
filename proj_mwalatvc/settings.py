@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom apps
     'mwala_app',
+    'admin_app',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'proj_mwalatvc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +71,11 @@ TEMPLATES = [
                 'mwala_app.context_processors.supporting_department',
                 'mwala_app.context_processors.breaking_news',
                 'mwala_app.context_processors.studentAffairs',
+                'mwala_app.context_processors.courses_search',
+                'mwala_app.context_processors.administration_context',
+                'mwala_app.context_processors.academic_departments',
+                'mwala_app.context_processors.news_context',
+                'mwala_app.context_processors.collage_gallery_context',
             ],
         },
     },
@@ -137,3 +145,23 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS ={
+    'site_header': "MWALA TVC",
+    'site_logo': "assets/dashboard_assets/img/mwala_logo.jpg",
+    'copyright': "Mwala Technical And Vocational Collage",
+}
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+   'default': {
+       'skin': 'moono',
+       'toolbar': 'all',
+       'extraPlugins': ','.join([
+           'widget',
+           'dialog',
+       ]),
+   }
+}

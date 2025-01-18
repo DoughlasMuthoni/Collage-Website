@@ -48,8 +48,9 @@
                     data-bs-target="#imageCarouselModal"
                     data-index="{{ forloop.counter0 }}"
                     data-id="{{ image.id }}">
-                <div class="card-body">
+                <div class="card-body-image">
                 <p class="card-text text-danger">{{ image.date }}</p>
+                <span class="card-text text-dark">{{ image.title }}</span>
                 </div>
             </div>
             </div>
@@ -129,7 +130,7 @@
 
     </script>
 
-        </div>
+    </div>
     </div>
     </section>
 {% endblock %}

@@ -1,175 +1,7 @@
 
 {% load static %}
 
-<style>
-/* General Dropdown Styling */
-.nav-item .dropdown-menu {
-    position: absolute;
-    top: calc(100% + 3px); /* Space below parent */
-    left: 0; /* Start at the left margin */
-    right: 0; /* Align with the right edge */
-    margin: 0;
-    visibility: hidden; /* Initially hidden */
-    opacity: 0; /* Transparent initially */
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
-    z-index: 1000; /* Ensure it stays on top */
-}
-.nav-item {
-    margin-right: 15px;  /* Adjust the value to your desired gap */
-}
 
-
-/* Show dropdowns on hover */
-.nav-item:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s; /* No delay on hover */
-}
-
-/* Adjust for About Us dropdown menu */
-.nav-item.about .dropdown-menu {
-    position: absolute;
-    top: 70%; /* Position just below the parent item */
-    left: 70px; /* Align with the left margin */
-    right: 70px; /* Align with the right margin */
-    margin: 0;
-    padding: 0;
-    z-index: 1000; /* Ensure dropdown is on top */
-    display: none; /* Initially hide */
-}
-
-/* Show dropdown on hover */
-.nav-item.about:hover .dropdown-menu {
-    display: block;
-}
-
-/* Adjust for About Us dropdown menu */
-.nav-item.applicant .dropdown-menu {
-    position: absolute;
-    top: 70%; /* Position just below the parent item */
-    left: 170px; /* Align with the left margin */
-    right: 170px; /* Align with the right margin */
-    margin: 0;
-    padding: 0;
-    z-index: 1000; /* Ensure dropdown is on top */
-    display: none; /* Initially hide */
-}
-
-/* Show dropdown on hover */
-.nav-item.applicant:hover .dropdown-menu {
-    display: block;
-}
-
-/* Adjust for About Us dropdown menu */
-.nav-item.resources .dropdown-menu {
-    position: absolute;
-    top: 70%; /* Position just below the parent item */
-    left: 170px; /* Align with the left margin */
-    right: 170px; /* Align with the right margin */
-    margin: 0;
-    padding: 0;
-    z-index: 1000; /* Ensure dropdown is on top */
-    display: none; /* Initially hide */
-}
-
-/* Show dropdown on hover */
-.nav-item.resources:hover .dropdown-menu {
-    display: block;
-}
-
-
-/* Adjust for About Us dropdown menu */
-.nav-item.downloads .dropdown-menu {
-    position: absolute;
-    top: 70%; /* Position just below the parent item */
-    left: 950px; /* Align with the left margin */
-    right: 20px; /* Align with the right margin */
-    margin: 0;
-    padding: 0;
-    z-index: 1000; /* Ensure dropdown is on top */
-    display: none; /* Initially hide */
-}
-
-/* Show dropdown on hover */
-.nav-item.downloads:hover .dropdown-menu {
-    display: block;
-}
-
-/* Dropdown item hover effect */
-.dropdown-item:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-/* Adjust spacing for nav links */
-.nav-link {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom: 3px solid transparent;
-    transition: color 0.3s, border-bottom 0.3s;
-}
-
-.nav-link:hover {
-    color: #0098DB;
-    border-bottom: 3px solid #0098DB;
-}
-
-.dropdown-header {
-    color: green;
-    font-size: 1.2rem;
-    
-}
-
-/* Increase spacing of dropdown items */
-.dropdown-item {
-    padding: 8px 12px; /* Adjust padding for more space between items */
-    font-size: 15px; /* Increase font size for readability */
-    color: black;
-    font-weight: 500;
-}
-
-/* Ensure all columns are the same size */
-.dropdown-menu .container .row {
-    display: flex;
-    justify-content: space-between; /* Distribute columns evenly */
-    margin: 0;
-}
-
-/* Each column should take an equal amount of space */
-.dropdown-menu .container .row .col-md-2,
-.dropdown-menu .container .row .col-md-3 {
-    flex: 1; /* Make columns of equal size */
-    padding: 0 6px; /* Add some padding inside */
-    border-right: 2px solid #ddd; /* Add vertical lines between columns */
-}
-
-/* Remove right border on last column */
-.dropdown-menu .container .row .col-md-3:last-child,
-.dropdown-menu .container .row .col-md-2:last-child {
-    border-right: none;
-}
-
-/* Optional: Adjust header margins to add spacing between the title and items */
-.dropdown-header {
-    margin-bottom: 15px; /* Add margin below the header for more separation */
-}
-
-/* Fixing potential overflow/overlap on small screens */
-@media (max-width: 767px) {
-    .dropdown-menu .container .row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .dropdown-menu .container .row .col-md-2,
-    .dropdown-menu .container .row .col-md-3 {
-        padding: 20px 0;
-    }
-}
-
-</style>
-       
 <header>
     <div class="main-nav d-flex justify-content-center align-items-center">
         <a href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
@@ -178,11 +10,7 @@
          <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger move" >Apply Now</a>
         <a href="https://students.kuccps.net/login/">KUCCPS</a>
         <a href="https://portal.hef.co.ke/auth/signin">HELB Portal</a>
-        {% if request.user.is_authenticated and request.user.is_superuser %}
-            <a href="{% url 'admin_app:admin_index' %}">Admin Panel</a>
-        {% else %}
-            <a href="{% url 'admin:login' %}">Admin Login</a>
-        {% endif %}
+        
 
 
         <a href="#">Student Portal</a>
@@ -303,7 +131,7 @@
                                     </div>
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Current Students</h6>
-                                        <a class="dropdown-item" href="#">Students Rules And Regulations</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">Students Rules And Regulations</a>
                                         <a class="dropdown-item" href="#">Examination</a>
                                         <a class="dropdown-item" href="#">Course Transfer</a>
                                         <a class="dropdown-item" href="#">Clearance Form</a>
@@ -338,13 +166,13 @@
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Government Resources</h6>
                                         <a class="dropdown-item" href="#">Executive Orders</a>
-                                        <a class="dropdown-item" href="#">Legai Orders</a>
+                                        <a class="dropdown-item" href="#">Legal Orders</a>
                                         <a class="dropdown-item" href="#">Regislation On TVETS</a>
                                         
                                     </div>
                                     
                                     <div class="col-12 col-md-4 border-end">
-                                        <h6 class="dropdown-header">Dawnloadable Resources</h6>
+                                        <h6 class="dropdown-header">Downloadable Resources</h6>
                                         
                                         <a class="dropdown-item" href="#"> Mwala Documents</a>
                                         <a class="dropdown-item" href="#">TVET Dean Resources</a>
@@ -359,55 +187,65 @@
                             </div>
                         </div>
                     </li>
-
-                    <li class="nav-item dropdown downloads position-static">
+                    <li class="nav-item dropdown download position-static">
                         <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Downloads
                         </a>
-                        <div class="dropdown-menu  custom-dropdown">
+                        <div class="dropdown-menu custom-dropdown">
                             <div class="container py-3">
                                 <div class="row">
-                                    
-                                    <div class="col-12">
-                                        <h6 class="dropdown-header"> Tenders</h6>
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Tenders</h6>
                                         <a class="dropdown-item" href="#">List Of Prequalified Suppliers</a>
-                                        <a class="dropdown-item" href="#">Provision Of Catering</a>
+                                         <a class="dropdown-item" href="#">Provision Of Catering</a>
                                     </div>
-                                    <div class="col-12">
-                                        <h6 class="dropdown-header"> Jobs & Vacancies</h6>
+                                    
+                                    <div class="col-12 col-md-4 border-end">
+                                        <h6 class="dropdown-header">Jobs & Vacancies</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a>
-                                        
-                                    </div>
                                     
-                                    <!-- Administration Section -->
-                                    <div class="col-12">
+                                    </div>
+                                    <div class="col-12 col-md-4">
                                         <h6 class="dropdown-header">Students Downloads</h6>
-                                        <a class="dropdown-item" href="#">Students Rules & Regulations</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">Students Rules & Regulations</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Student Registration Form</a>
                                         <a class="dropdown-item" href="#">Teaching Practice Form</a>
-                                        <a class="dropdown-item" href="#">All Forms</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">All Forms</a>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
-                        
                     </li>
+                   
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <div class="custom-dropdown">
+                        <a class="custom-dropdown-toggle" href="#" role="button">
+                            Admin Panel
+                        </a>
+                        <div class="custom-dropdown-menu">
+                            <a class="custom-dropdown-item" href="{% url 'admin_app:admin_index' %}">Dashboard</a>
+                            <a class="custom-dropdown-item" href="{% url 'mwala_app:admission_applications' %}">Applications</a>
+                            
+                            <div class="custom-dropdown-divider"></div>
+                            <a class="custom-dropdown-item logout" href="">Logout</a>
+                        </div>
+                    </div>
+                    
+                        
+                    {% else %}
+                        <a href="{% url 'admin:login' %}">Admin Login</a>
+                    {% endif %} 
+                    
            
-                
-                
-                  
-                  
-                  
-                  
-                  
                 </ul>
             </div>
         </div>
     </nav>
 </header>
 <header>
-       
+    
+
     <div class="breaking-news"> 
         <span>HIGHLIGHTS:</span>
         <marquee behavior="scroll" direction="left" scrollamount="10"> 
@@ -419,5 +257,4 @@
     
 
 </header>
-
 

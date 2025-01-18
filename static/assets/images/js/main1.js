@@ -69,3 +69,80 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 5000); // 5000ms = 5 seconds
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Handle click event for dropdowns on small screens
+  const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+
+  dropdownItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+          // Toggle dropdown visibility
+          if (window.innerWidth <= 767) {
+              const dropdownMenu = item.querySelector('.dropdown-menu');
+              dropdownMenu.classList.toggle('show'); // Toggle visibility of the menu
+          }
+      });
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+      const updateCount = () => {
+          const target = +counter.getAttribute('data-target'); // Target number
+          const count = +counter.innerText; // Current number
+          const increment = target / 100; // Increment value
+
+          if (count < target) {
+              counter.innerText = Math.ceil(count + increment);
+              setTimeout(updateCount, 10); // Adjust speed by changing the timeout value
+          } else {
+              counter.innerText = target; // Set to target if exceeded
+          }
+      };
+
+      updateCount();
+  });
+});
+
+
+// Populate counties
+fetch('/get-counties/')
+.then(response => response.json())
+.then(data => {
+    const countySelect = document.getElementById('id_county');
+    data.counties.forEach(county => {
+        const option = document.createElement('option');
+        option.value = county;
+        option.textContent = county;
+        countySelect.appendChild(option);
+    });
+})
+.catch(error => console.error('Error fetching counties:', error));
+
+// Populate courses based on selected department
+const departmentSelect = document.getElementById('id_department');
+const courseSelect = document.getElementById('id_course');
+
+departmentSelect.addEventListener('change', function () {
+const departmentId = this.value;
+
+// Clear existing courses
+courseSelect.innerHTML = '<option value="" disabled selected>Select a course</option>';
+
+fetch(`/get-courses/${departmentId}/`)
+    .then(response => response.json())
+    .then(data => {
+        data.courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course.id;
+            option.textContent = course.course_name;
+            courseSelect.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching courses:', error));
+});
+
+

@@ -2,7 +2,7 @@
 
 from django import forms
 
-from mwala_app.models import AdmissionApplication, Feedback
+from mwala_app.models import AdmissionApplication, Course, Feedback
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, label="Enter your name", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}))
@@ -70,49 +70,31 @@ class FeedbackForm(forms.ModelForm):
         }
 
 class AdmissionApplicationForm(forms.ModelForm):
+    # Course Level is now a regular ChoiceField
+    course_level = forms.ChoiceField(
+        choices=Course.COURSE_LEVEL_CHOICES, 
+        label="Course Level",
+        required=True,  # Make it required
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
     class Meta:
         model = AdmissionApplication
         fields = [
-            'first_name', 'last_name', 'email', 'phone', 
-            'kcse_grade', 'course', 'intake_month', 
-            'kcse_certificate', 'birth_certificate'
+            'first_name', 'last_name', 'email', 'phone', 'kcse_grade',
+            'department', 'course', 'county', 'intake_month',
+            'kcse_certificate', 'birth_certificate', 'course_level'
         ]
         widgets = {
-            'first_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your first name',
-            }),
-            'last_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your last name',
-            }),
-            'email': forms.EmailInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your email address',
-            }),
-            'phone': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your phone number',
-            }),
-            'kcse_grade': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter your KCSE mean grade',
-            }),
-            'course': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter the course you are interested in',
-            }),
-            'intake_month': forms.Select(attrs={
-                'class': 'form-select',
-            }, choices=[
-                ('January', 'January'),
-                ('May', 'May'),
-                ('September', 'September')
-            ]),
-            'kcse_certificate': forms.ClearableFileInput(attrs={
-                'class': 'form-control',
-            }),
-            'birth_certificate': forms.ClearableFileInput(attrs={
-                'class': 'form-control',
-            }),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email address'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
+            'kcse_grade': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your KCSE mean grade'}),
+            'department': forms.Select(attrs={'class': 'form-select'}),
+            'course': forms.Select(attrs={'class': 'form-select'}),
+            'county': forms.Select(attrs={'class': 'form-select'}),
+            'intake_month': forms.Select(attrs={'class': 'form-select'}, choices=[('January', 'January'), ('May', 'May'), ('September', 'September')]),
+            'kcse_certificate': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'birth_certificate': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }

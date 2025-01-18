@@ -38,6 +38,10 @@ urlpatterns = [
     path('applicationForm/',views.applicationForm, name="applicationForm"),
     path('onlineApplication/',views.admission_application_view, name="onlineApplication"),
     path('applicationPdf/',views.applicationPdf, name="applicationPdf"),
+    path('admissions/', views.admission_applications, name='admission_applications'),
+    path('get_course_levels/<int:course_id>/', views.get_course_levels, name='get_course_levels'),
     path('details/<int:id>/', views.adminstrationDetails, name='details'),
     path('search/', views.search_view, name='search'),
+    path('get-counties/', views.get_counties, name='get_counties'),
+    path('get-courses/<int:department_id>/', views.get_courses, name='get_courses'),
 ]

@@ -170,7 +170,9 @@ class AdmissionApplication(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     kcse_grade = models.CharField(max_length=5)
-    course = models.CharField(max_length=100)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, default=1)  # Default to course with ID 1
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, default=1)  # Default to department with 
+    county = models.CharField(max_length=50, default='Nairobi')
     intake_month = models.CharField(max_length=20)
     kcse_certificate = models.FileField(upload_to='kcse_certificates/')
     birth_certificate = models.FileField(upload_to='birth_certificates/')

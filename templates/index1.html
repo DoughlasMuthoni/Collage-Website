@@ -45,14 +45,14 @@
    
     
     <div class="container-fluid position-relative " style="margin-top: -100px; z-index: 10;">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-decoration-none">
             <!-- Service Charter Box -->
             <div class="col-12 col-md-4 mb-">
                 <div class="card text-center border-0 shadow-lg" style="background-color: #25D366; color: black;">
                     <div class="card-body">
                         <i class="bi bi-file-text" style="font-size: 3rem; color: red; padding: 170px;"></i>
                         <h5 class="card-title mt-3"style="text-align:center;" >Service Charter</h5>
-                        <p class="card-text"style="text-align:center;">View our charter</p>
+                        <a href=""><p class="card-text"style="text-align:center;">View our charter</p></a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <div class="card-body">
                         <i class="bi bi-gear" style="font-size: 3rem; color: red;padding: 170px;"></i>
                         <h5 class="card-title mt-3" style="text-align:center; ">Services</h5>
-                        <p class="card-text" style="text-align:center; ">List of Services</p>
+                        <a href=""><p class="card-text" style="text-align:center; ">List of Services</p></a>
                     </div>
                 </div>
             </div>
@@ -71,10 +71,10 @@
             <!-- Student Downloads Box -->
             <div class="col-12 col-md-4 mb-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: #25D366; color: black;">
-                    <div class="card-body">
+                    <div class="card-body " >
                         <i class="bi bi-download " style="font-size: 3rem; color: red; padding: 170px;"></i>
                         <h5 class="card-title mt-3 content-c"style="text-align:center;">Student Downloads</h5>
-                        <p class="card-text content-c"style="text-align:center;">List of Student forms</p>
+                        <a href="{% url 'mwala_app:all_notices' %}"><p class="card-text content-c"style="text-align:center; ">List of Student forms</p></a>
                     </div>
                 </div>
             </div>
@@ -87,34 +87,41 @@
     <div class="container my-5 note">
         <!-- Notice Section -->
         <div class="notices-section">
-          <div class="notices-header">
-            IMPORTANT NOTICES <span class="text-danger">!!!</span>
-          </div>
-          <div class="notices-body"  >
-            {% for notice in notices %}
-                <!-- Notice 1 -->
-                <a href="{{ notice.uploadNotice.url }}" class="text-decoration-none" >
-                    <div class="notices-item">
-                        {% if notice.uploadNotice %}
-                        <span>{{ notice.title }}</span>
-                        {% else %}
-                        <span class="text-danger">{{ notice.title }} (No file uploaded)</span> 
-                        {% endif %} 
-                        <span class="notices-item-date">
-                            <i class="bi bi-calendar3 text-danger"></i> {{ notice.date|date:"F Y" }}
-                        </span>
-                    </div>
-                </a>
-                
-            {% empty %}
-                <p class="text-center p-3 text-danger">No notices available at the moment.</p>
-            {% endfor %}
-          </div>
-          <div class="notices-footer">
-            <a href="{% url 'mwala_app:all_notices' %}">All College Notices →</a>
-          </div>
+            <div class="notices-header">
+                IMPORTANT NOTICES <span class="text-danger">!!!</span>
+            </div>
+            <div class="notices-body">
+                {% for notice in notices %}
+                    <!-- Notice Item -->
+                    <a href="{{ notice.uploadNotice.url }}" class="text-decoration-none">
+                        <div class="notices-item d-flex align-items-center justify-content-between">
+                            <div>
+                                {% if notice.uploadNotice %}
+                                    <span>{{ notice.title }}</span>
+                                {% else %}
+                                    <span class="text-danger">{{ notice.title }} (No file uploaded)</span> 
+                                {% endif %}
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="notices-item-date me-3">
+                                    <i class="bi bi-calendar3 text-danger"></i> {{ notice.date|date:"F Y" }}
+                                </span>
+                                {% if notice.uploadNotice %}
+                                    <i class="bi bi-download text-success" style="font-size: 1.2rem;"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p class="text-center p-3 text-danger">No notices available at the moment.</p>
+                {% endfor %}
+            </div>
+            <div class="notices-footer">
+                <a href="{% url 'mwala_app:all_notices' %}">All College Notices →</a>
+            </div>
         </div>
     </div>
+    
     
     <div class="container my-2">
         <h2 class="text-start text-success py-2 px-3 rounded d-flex align-items-center">
@@ -130,7 +137,7 @@
                         <h5 class="card-title">{{ news_item.title }}</h5>
                         <a href="{% url 'mwala_app:news_details' news_id=news_item.id %}" style="text-decoration: none;">
                             <p class="card-text">
-                                {{ news_item.description|truncatechars:100 }}
+                                {{ news_item.description|truncatechars:100|safe }}
                             </p>
                         </a>
                     </div>
@@ -142,7 +149,7 @@
         <!-- View All Button -->
         <div class="col-12 mt-4 text-center">
             <a href="{% url 'mwala_app:newsEvents' %}" class="btn btn-outline-danger">
-                View All Jobs <i class="fas fa-arrow-right"></i>
+                View All News <i class="fas fa-arrow-right"></i>
             </a>
         </div>
         
@@ -174,6 +181,8 @@
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No Job uploaded</p>  
             {% endfor %}
             <div class="col-12 mt-4 text-center">
                 <a href="{% url 'mwala_app:JobsVacancies' %}" class="btn btn-outline-primary">
@@ -205,6 +214,9 @@
                     <a href="/courses/{{ level|slugify }}/">View More</a>
                 </div>
             </div>
+
+        {% empty %}
+        <p class="text-danger mt-4 "><i class="fas fa-exclamation-circle me-1 "></i> No programs uploaded yet</p>
         {% endfor %}
         
         </div>
@@ -225,9 +237,9 @@
                     <div class="col-md-4 mb-4 d-flex">
                         <div class="card border-primary h-100 w-100">
                         {% if department.image %}
-                           <a href="{% url 'mwala_app:department_details' department.id %}"> <img src="{{ department.image.url }}" class="card-img-top" alt="{{ department.title }}"></a>
+                           <a href="{% url 'mwala_app:department_details' department.id %}"> <img src="{{ department.image.url }}" class="card-img-top department-image" alt="{{ department.title }}"></a>
                         {% else %}
-                            <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}"></a>
+                            <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top department-image" alt="{{ department.title }}"></a>
                         {% endif %}
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary">{{ department.title }}</h5>
@@ -236,6 +248,8 @@
                             </div>
                         </div>
                     </div>
+                {% empty %}
+                <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No Departments uploaded Yet</p>
                 {% endfor %}
             </div>
         </div>
@@ -254,7 +268,7 @@
                                 <i class="fas fa-trophy text-warning fs-1"></i>
                             </div>
                             <h4 class="card-title fw-bold">Vision</h4>
-                            <p class="card-text">
+                            <p class="card-text text-white">
                                 To be a Global center of Excellence in Technical Vocational Education and Training, Research, and Consultancy.
                             </p>
                         </div>
@@ -272,7 +286,7 @@
                                 <i class="fas fa-bullseye text-primary fs-1"></i>
                             </div>
                             <h4 class="card-title fw-bold">Mission</h4>
-                            <p class="card-text">
+                            <p class="card-text text-white">
                                 To provide high-quality and internationally competitive training for TVET practitioners, undertake research, and consultancies to meet the needs of a dynamic world.
                             </p>
                         </div>
@@ -290,8 +304,8 @@
                                 <i class="fas fa-briefcase text-success fs-1"></i>
                             </div>
                             <h4 class="card-title fw-bold">Mandate</h4>
-                            <p class="card-text">
-                                Training of technical teachers for all technical training institutions in the country.
+                            <p class="card-text text-white">
+                                Training of Students for all technical Courses for TVETS in the country.
                             </p>
                         </div>
                     </div>
@@ -370,6 +384,22 @@
                         <h3 class="text-primary fw-bold">Why Join Mwala TVC</h3>
                         <p>
                             Mwala TVC offers a range of opportunities for growth and development in the TVET sector. Join us to access high-quality training, research, and innovation opportunities.
+                            <ul>
+                                <li>
+                                     <strong>Qualified Faculty:</strong>Our dedicated faculty members have extensive technical and 
+                                    academic expertise, ensuring that students receive the highest quality education.
+                                </li>
+                                <li>
+                                     <strong>Industry Partnerships:</strong> We collaborate with industry leaders to ensure that our 
+                                programs are aligned with current industry trends and demands.
+                                </li>
+                                <li>
+                                   <strong>  Supportive Community: </strong>At Mwala Technical and Vocational College we foster a 
+                                    supportive and inclusive community where students can thrive academically and 
+                                    personally
+                                </li>
+                                
+                            </ul>
                         </p>
                     </div>
                 </div>
@@ -388,12 +418,12 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faqOneHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="false" aria-controls="faqOne">
-                                Where is Kenya School of TVET located?
+                                Where is Mwala TVC  located?
                             </button>
                         </h2>
                         <div id="faqOne" class="accordion-collapse collapse" aria-labelledby="faqOneHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Kenya School of TVET is located in Machakos County Mwala Subcounty, Kenya.
+                            <div class="accordion-body text-danger">
+                                Mwala Technical And vocational collage is located in Machakos County Mwala Sub county, Kenya.
                             </div>
                         </div>
                     </div>
@@ -405,18 +435,68 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Mwala TVC offers various technical, vocational, and teacher training programs.
+                            <div class="accordion-body  text-danger">
+                                Mwala TVC offers various technical training programs.
                             </div>
                         </div>
                     </div>
-                    <!-- Add more FAQ items as needed -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqTwoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                                Is Mwala Technical And Vocational Collage Courses Accredited and registered by the government?
+                            </button>
+                        </h2>
+                        <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body  text-danger">
+                                Yes, by TVET, NTSA and NITA. Besides, all our courses are accredited by all concerned bodies.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqTwoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                               Can you apply for a course online?
+                            </button>
+                        </h2>
+                        <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body  text-danger">
+                                Yes, you can. Use either of the following link:
+                                Use our admissions on the website. http://127.0.0.1:8000/onlineApplication/
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqTwoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                               Can i do more than one Course?
+                            </button>
+                        </h2>
+                        <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-danger">
+                                Yes, you are free to register for more than one course.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqTwoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                                Do you have Hostels at Mwala TVC?
+                            </button>
+                        </h2>
+                        <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body  text-danger">
+                                Yes, we have hostels within our campuses and provide food and accommodation to all our boarding students.
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     
             <!-- About Section -->
             <div class="col-md-6 mb-4">
-                <div class="p-4 bg-success text-white rounded shadow-sm">
+                <div class="p-4 bg-success text-white  shadow-sm">
                     <h3 class="fw-bold">About Mwala TVC</h3>
                     <p>
                         Mwala TVC was established to train technically skilled personnel not only to teach in technical institutions but also for employment in all sectors of the economy.
@@ -438,28 +518,29 @@
             <div class="container my-2 text-dark">
                 <h1 class="gallery-title text-danger">Our Gallery</h1>
                 <p class="gallery-description">
-                  Join us in celebrating the achievements and experiences of our students. 
+                  
                   Our gallery is a space for inspiration and connection. Come and discover 
                   the stories behind the faces that shape our college community.
                 </p>
-        <div class="row gy-4 gallery">
-            {% for image in first_8_images %}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card gallery-item">
-                    <img src="{{ image.image.url }}" alt="Gallery Item {{ forloop.counter }}" 
-                        class="card-img-top img-fluid gallery-image"
-                        data-bs-toggle="modal" 
-                        data-bs-target="#imageCarouselModal"
-                        data-index="{{ forloop.counter0 }}"
-                        data-id="{{ image.id }}">
-                    <div class="card-body">
-                    <p class="card-text text-danger">{{ image.date }}</p>
-                    <span>{{ image.title }}</span>
-                    </div>
+                <div class="row gy-4 gallery">
+                    {% for image in first_8_images %}
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="card gallery-item">
+                                <img src="{{ image.image.url }}" alt="Gallery Item {{ forloop.counter }}" 
+                                    class="card-img-top img-fluid gallery-image"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#imageCarouselModal"
+                                    data-index="{{ forloop.counter0 }}"
+                                    data-id="{{ image.id }}">
+                                <div class="card-body-image">
+                                    <p class="card-text text-danger">{{ image.date }}</p>
+                                    <span>{{ image.title }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                </div>
-            {% endfor %}
-            </div>
+                
             
                   
         <!-- Modal for the Carousel -->
@@ -513,7 +594,7 @@
                     const isActive = index === parseInt(imageId) ? 'active' : '';
                     const carouselItem = `
                         <div class="carousel-item ${isActive}">
-                        <img src="${image.url}" class="d-block w-100" alt="Image ${index + 1}">
+                        <img src="${image.url}" class="d-block w-80" alt="Image ${index + 1}">
                         <div class="carousel-caption d-none d-md-block">
                             <p>${image.date}</p>
                         </div>
@@ -552,9 +633,9 @@
             {% if principal_message %}
             <div class="col-md-3 text-center text-dark">
                 {% if principal_message.image %}
-                <img src="{{ principal_message.image.url }}" class="img-fluid rounded-circle mb-3" alt="{{ principal_message.title }}">
+                <img src="{{ principal_message.image.url }}" class="img-fluid  mb-3" alt="{{ principal_message.title }}">
                 {% else %}
-                <img src="path/to/default-image.jpg" class="img-fluid rounded-circle mb-3" alt="Default Principal">
+                <img src="path/to/default-image.jpg" class="img-fluid  mb-3" alt="Default Principal">
                 {% endif %}
                 <h6 class="fw-bold">{{ principal_message.title }}</h6>
                 <p class="text-muted">{{ principal_message.position }}</p>
@@ -587,6 +668,46 @@
             </div>
         </div>
     </div>
+    <div class="container my-5">
+        <!-- Counter Section -->
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h1 class="fw-bold display-4 text-primary counter" data-target="26">0</h1>
+                <p>Programs</p>
+            </div>
+            <div class="col-md-3">
+                <h1 class="fw-bold display-4 text-primary counter" data-target="24">0</h1>
+                <p>Number of Trainers</p>
+            </div>
+            <div class="col-md-3">
+                <h1 class="fw-bold display-4 text-primary counter" data-target="36829">0</h1>
+                <p>Number of Graduands</p>
+            </div>
+            <div class="col-md-3">
+                <h1 class="fw-bold display-4 text-primary counter" data-target="9">0</h1>
+                <p>Number of Departments</p>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <!-- Partners Section -->
+        <h2 class="text-center mb-4 text-danger">Our Partners</h2>
+        <div class="row justify-content-center text-center align-items-center">
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <img src="{% static 'assets/images/google-img.png' %}" alt="Google" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <img src="{% static 'assets/images/katti-img.png' %}" alt="KATTI" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <img src="{% static 'assets/images/tvet-curric.png' %}" alt="TVET" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 mb-4">
+                <img src="{% static 'assets/images/ministry-edu.png' %}" alt="Ministry of Education" class="img-fluid rounded shadow-sm">
+            </div>
+        </div>
+    </div>
+    
     
     
     <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">

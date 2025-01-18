@@ -4,7 +4,7 @@ from mwala_app.forms import AdmissionApplicationForm, ContactForm, FeedbackForm
 from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Q
-from mwala_app.models import Administration, Contact, Course, Department, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment
+from mwala_app.models import Administration, AdmissionApplication, Contact, Course, Department, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment
 
 # Create your views here.
 def homePage(request):
@@ -290,15 +290,15 @@ def applicationPdf(request):
     return render(request, 'application_pdf.html', {'application_file_url': application_file_url})
 
 def feeStructure(request):
-    # Get the most recent Notice with a file uploaded (i.e., a non-null 'uploadNotice')
-    fee_structure = Notice.objects.filter(uploadNotice__isnull=False).order_by('-date').first()
+    # Fetch the Notice where the title contains 'Fee Structure' and has a file uploaded
+    fee_structure = Notice.objects.filter(
+        title__icontains="fee structure", uploadNotice__isnull=False
+    ).order_by('-date').first()
 
-    # Check if there's an uploaded fee structure
-    if fee_structure:
-        fee_file_url = fee_structure.uploadNotice.url  # URL for the uploaded fee structure file
-    else:
-        fee_file_url = None  # If no fee structure is uploaded
+    # Get the file URL or set to None if no match
+    fee_file_url = fee_structure.uploadNotice.url if fee_structure else None
 
+    # Render the template
     return render(request, 'fee_structure.html', {'fee_structure': fee_file_url})
 
 def feedback_view(request):
@@ -343,7 +343,7 @@ def contact_view(request):
             messages.success(request, f"Thank you, {contact.name}. Your message has been received!")
 
             # Redirect to the same form or another page
-            return redirect('mwala_app:contactUs')  # Replace 'contact' with the name of your contact page URL pattern
+            return redirect('mwala_app:contactUs') 
     else:
         form = ContactForm()
 
@@ -365,6 +365,73 @@ def admission_application_view(request):
 
     return render(request, 'online_application.html', {'form': form})
 
+
+def get_counties(request):
+    counties = [
+        "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita-Taveta",
+        "Garissa", "Wajir", "Mandera", "Marsabit", "Isiolo", "Meru",
+        "Tharaka-Nithi", "Embu", "Kitui", "Machakos", "Makueni",
+        "Nyandarua", "Nyeri", "Kirinyaga", "Murang'a", "Kiambu",
+        "Turkana", "West Pokot", "Samburu", "Trans-Nzoia", "Uasin Gishu",
+        "Elgeyo-Marakwet", "Nandi", "Baringo", "Laikipia", "Nakuru",
+        "Narok", "Kajiado", "Kericho", "Bomet", "Kakamega", "Vihiga",
+        "Bungoma", "Busia", "Siaya", "Kisumu", "Homa Bay", "Migori",
+        "Kisii", "Nyamira", "Nairobi"
+    ]
+    return JsonResponse({'counties': counties})
+
+# API end point to fetch courses based on departments
+def get_courses(request, department_id):
+    courses = Course.objects.filter(department_id=department_id).values('id', 'course_name')
+    return JsonResponse({'courses': list(courses)})
+
+def get_course_levels(request, course_id):
+    try:
+        course = Course.objects.get(id=course_id)  
+        course_levels = [course.course_level] 
+        data = {'course_levels': [{'id': course.id, 'name': course_level} for course_level in course_levels]}
+        return JsonResponse(data) 
+    except Course.DoesNotExist:
+        return JsonResponse({'error': 'Course not found'}, status=404)
+    
+def admission_applications(request):
+    # Fetch all applications initially
+    applications = AdmissionApplication.objects.all()
+
+    # Filter by department if selected
+    department = request.GET.get('department')
+    if department:
+        applications = applications.filter(department__id=department)
+
+    # Filter by course level if selected
+    course_level = request.GET.get('course_level')
+    if course_level:
+        # Filter by course level correctly
+        applications = applications.filter(course__course_level=course_level)
+
+    # Filter by intake month if selected
+    intake_month = request.GET.get('intake_month')
+    if intake_month:
+        applications = applications.filter(intake_month=intake_month)
+
+    # Pagination
+    paginator = Paginator(applications, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Get all departments and course levels for the filter dropdowns
+    departments = Department.objects.all()
+    course_levels = Course.COURSE_LEVEL_CHOICES  
+
+    context = {
+        'page_obj': page_obj,
+        'departments': departments,
+        'course_levels': course_levels,
+        'selected_department': department,
+        'selected_course_level': course_level,
+        'selected_intake_month': intake_month,
+    }
+    return render(request, 'admission_applications.html', context)
 
 def search_view(request):
     query = request.GET.get('q', '')

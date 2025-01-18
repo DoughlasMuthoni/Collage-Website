@@ -115,7 +115,7 @@ from .models import AdmissionApplication
 
 class AdmissionApplicationAdmin(admin.ModelAdmin):
     # Include the new 'submitted_at' field in list_display
-    list_display = ('first_name', 'last_name', 'email', 'phone', 'kcse_grade', 'course', 'intake_month', 'submitted_at')
+    list_display = ('first_name', 'last_name', 'email', 'phone', 'kcse_grade', 'course','county','department', 'intake_month', 'submitted_at')
     
     # Allow these fields to be clickable to go to the detail view
     list_display_links = ('first_name', 'last_name')
@@ -124,12 +124,12 @@ class AdmissionApplicationAdmin(admin.ModelAdmin):
     list_filter = ('intake_month', 'kcse_grade')
 
     # Add a search bar for the first name, last name, and email
-    search_fields = ('first_name', 'last_name', 'email')
+    search_fields = ('first_name', 'last_name', 'get_course_level')
 
     # Group fields in the form view, including 'submitted_at' (which is read-only)
     fieldsets = (
         (None, {
-            'fields': ('first_name', 'last_name', 'email', 'phone', 'kcse_grade', 'course', 'intake_month', 'kcse_certificate', 'birth_certificate')
+            'fields': ('first_name', 'last_name', 'email', 'phone', 'kcse_grade', 'course', 'intake_month', 'kcse_certificate','county','department', 'birth_certificate')
         }),
         ('Submission Info', {
             'fields': ('submitted_at',),

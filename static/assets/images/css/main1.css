@@ -211,115 +211,6 @@ margin-left: 12px;
 }
 
 
-/* Ensuring submenu positioning */
-.dropdown-submenu {
-    position: relative;
-}
-
-/* Rotate the arrow when the dropdown is open */
-.toggle-dropdown.rotate {
-    transform: rotate(45deg);
-    transition: transform 0.3s ease;
-}
-
-/* Submenu visibility and positioning */
-.dropdown-submenu > .dropdown-menu {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 100%; /* Display the submenu to the right */
-    margin-top: -6px;
-    z-index: 1050;
-    transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-/* Show the submenu when hovering */
-.dropdown-submenu:hover > .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    margin-left: 2px;
-}
-
-
-/* Styles for mobile and smaller screen sizes */
-@media (max-width: 768px) {
-    /* General dropdown menu adjustments */
-    .dropdown-menu {
-        position: static;
-        display: none;
-        width: 100%; /* Full width on mobile */
-        background-color: #fff;
-        visibility: visible;
-        opacity: 1;
-        z-index: 1; /* Default z-index for regular dropdowns */
-    }
-
-    
-
-    /* Submenu adjustments */
-    .dropdown-submenu {
-        position: static; /* Stack submenus below the parent */
-        margin-top: 0;
-    }
-
-    /* Submenu visibility adjustments */
-    .dropdown-submenu > .dropdown-menu {
-        display: none; /* Hidden by default */
-        width: 100%; /* Full width for smaller screens */
-        position: relative; /* Allow stacking */
-        visibility: visible;
-        opacity: 1;
-        z-index: 2; /* Higher z-index for deep dropdowns */
-    }
-
-    /* Make submenu visible when parent is toggled open */
-    .dropdown-submenu.open > .dropdown-menu {
-        display: block !important;
-    }
-
-    /* Align dropdowns properly */
-    .dropdown-submenu > .dropdown-menu,
-    .nav-item.dropdown > .dropdown-menu {
-        left: 0;
-        right: 0;
-    }
-
-    /* Adjust toggle arrow for submenus */
-    .dropdown-submenu > a:after {
-        content: "\f078"; /* FontAwesome chevron icon */
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        margin-left: 10px;
-        transform: rotate(0);
-        transition: transform 0.3s ease;
-    }
-
-    /* Rotate arrow when submenu is open */
-    .dropdown-submenu.open > a:after {
-        transform: rotate(90deg); /* Rotate arrow to indicate expanded state */
-    }
-
-
-}
-
-/* Optional: Show dropdowns on hover for larger screens */
-@media (min-width: 768px) {
-    .nav-item.dropdown:hover > .dropdown-menu {
-        display: block !important;
-    }
-
-    .dropdown-submenu:hover > .dropdown-menu {
-        visibility: visible;
-        opacity: 1;
-        display: block;
-    }
-}
-
-
-
-
-
 .btn-blue {
     background-color: #0098DB;
     color: white;
@@ -761,6 +652,30 @@ text-decoration: underline;
     max-height: 400px;
     object-fit: cover;
 }
+.principal-message img {
+    max-height: 280px; /* Adjust height if necessary */
+    object-fit: cover;
+}
+
+form .mb-3 {
+    margin-bottom: 1.5rem; /* Add consistent spacing between fields */
+}
+
+form label {
+    font-weight: bold; /* Highlight labels for better readability */
+}
+
+form .form-select,
+form .form-control {
+    width: 100%; /* Ensure fields take the full width of the container */
+}
+
+
+.department-image {
+    width: 100%; /* Ensure the image takes up the full width of the parent container */
+    height: 300px; /* You can adjust this to your desired height */
+    object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+  }
 
 .row.align-items-start {
     align-items: flex-start !important;
@@ -940,10 +855,10 @@ text-decoration: underline;
   }
 
   .container {
-    max-width: 10000px;
+    max-width: 100%;
     margin-top: 30px;
   }
-
+ 
   .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
@@ -975,4 +890,370 @@ text-decoration: underline;
 .department-meassage{
     
     background: transparent;
+}
+
+/* Ensure all cards have the same height */
+.gallery-item {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    height: 100%; /* Ensure the card stretches to fill the height of its container */
+    border: 1px solid #ddd; /* Optional: Border to visually define the card */
+}
+
+/* Set a fixed height for images, but make sure they maintain aspect ratio */
+.gallery-image {
+    width: 100%; /* Ensure the image takes full width of its container */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio and covers the area */
+}
+
+/* Ensure the card body content stretches to fill the remaining space */
+.card-body-image {
+    flex-grow: 1; /* Makes the body take up remaining space in the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures the text and span stay at the top and bottom */
+}
+
+/* Optional: Styling for the card body */
+.card-body-image .card-text {
+    margin-bottom: 10px; /* Space between the text and title */
+}
+
+.card-body-image span {
+    margin-top: auto; /* Push the title text to the bottom */
+}
+
+/* Optional: Adjust spacing on smaller screens */
+@media (max-width: 767px) {
+    .gallery-image {
+        height: 150px; /* Reduce image height for smaller screens */
+    }
+}
+
+.card-header {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+}
+.card-body p {
+    font-size: 1rem;
+    color: #555;
+}
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+/* General Dropdown Styling */
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 3px); /* Space below parent */
+    left: 0; /* Start at the left margin */
+    right: 0; /* Align with the right edge */
+    margin: 0;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0; /* Transparent initially */
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1000; /* Ensure it stays on top */
+}
+.nav-item {
+    margin-right: 15px;  /* Adjust the value to your desired gap */
+}
+
+
+/* Show dropdowns on hover */
+.nav-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s; /* No delay on hover */
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.about .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 70px; /* Align with the left margin */
+    right: 70px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.about:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.applicant .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.applicant:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.resources .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.resources:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* Adjust for About Us dropdown menu */
+.nav-item.download .dropdown-menu {
+    position: absolute;
+    top: 70%; 
+    left: 170px;
+    right: 80px; 
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    display: none; 
+}
+
+/* Show dropdown on hover */
+.nav-item.download:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Adjust spacing for nav links */
+.nav-link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-link:hover {
+    color: #0098DB;
+    border-bottom: 3px solid #0098DB;
+}
+
+.dropdown-header {
+    color: green;
+    font-size: 1.2rem;
+    
+}
+
+/* Increase spacing of dropdown items */
+.dropdown-item {
+    padding: 8px 12px; /* Adjust padding for more space between items */
+    font-size: 15px; /* Increase font size for readability */
+    color: black;
+    font-weight: 500;
+}
+
+/* Ensure all columns are the same size */
+.dropdown-menu .container .row {
+    display: flex;
+    justify-content: space-between; /* Distribute columns evenly */
+    margin: 0;
+}
+
+/* Each column should take an equal amount of space */
+.dropdown-menu .container .row .col-md-2,
+.dropdown-menu .container .row .col-md-3 {
+    flex: 1; /* Make columns of equal size */
+    padding: 0 6px; /* Add some padding inside */
+    border-right: 2px solid #ddd; /* Add vertical lines between columns */
+}
+
+/* Remove right border on last column */
+.dropdown-menu .container .row .col-md-3:last-child,
+.dropdown-menu .container .row .col-md-2:last-child {
+    border-right: none;
+}
+
+/* Optional: Adjust header margins to add spacing between the title and items */
+.dropdown-header {
+    margin-bottom: 15px;
+}
+
+/* Fixing potential overflow/overlap on small screens */
+@media (max-width: 767px) {
+    .dropdown-menu .container .row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dropdown-menu .container .row .col-md-2,
+    .dropdown-menu .container .row .col-md-3 {
+        padding: 10px 0;
+    }
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 767px) {
+    .nav-item {
+        margin-right: 5px; /* Reduce margin for tighter spacing */
+    }
+
+    .dropdown-menu {
+        position: static; /* Allow dropdowns to flow with the content */
+        width: 100%; /* Make dropdowns span the full width */
+        left: 0; /* Ensure alignment starts at the left */
+        right: 0; /* Ensure alignment ends at the right */
+        visibility: visible; /* Always visible on mobile */
+        opacity: 1; /* Remove opacity transition for simplicity */
+        display: block; /* Always display the dropdown */
+        margin-top: 5px; /* Add some spacing from the parent */
+        padding: 10px; /* Adjust padding for readability */
+        border: 1px solid #ddd; /* Optional: Add a border for clarity */
+        background-color: white; /* Ensure background is visible */
+    }
+    /* Adjust for About Us dropdown menu */
+
+/* Show dropdown on hover */
+.nav-item.downloads:hover .dropdown-menu {
+    display: block;
+}
+    .dropdown-item {
+        padding: 10px 15px; /* Adjust padding for mobile */
+        font-size: 14px; /* Slightly smaller font size for compactness */
+    }
+
+    .dropdown-header {
+        font-size: 1rem; /* Reduce header size for mobile */
+        text-align: left; /* Align text for smaller screens */
+    }
+
+    .nav-link {
+        font-size: 14px; /* Reduce font size for compactness */
+        padding: 8px 10px; /* Adjust padding for better spacing */
+    }
+
+    .dropdown-menu .container {
+        padding: 0; /* Remove extra padding inside dropdown */
+    }
+
+    .dropdown-menu .container .row {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .dropdown-menu .container .row .col-md-2,
+    .dropdown-menu .container .row .col-md-3 {
+        flex: unset; /* Reset flex to allow full width */
+        width: 100%; /* Make each column take full width */
+        padding: 10px 0; /* Add some padding */
+        border-right: none; /* Remove borders on columns */
+    }
+
+    /* Optional: Add a button to toggle dropdowns for better UX */
+    .nav-item .dropdown-toggle {
+        display: block; 
+        width: 100%; 
+        text-align: left; 
+        padding: 8px 10px; 
+    }
+
+    .dropdown-toggle::after {
+        content: '\25BC'; 
+        float: right; 
+    }
+}
+
+/* Custom Dropdown Container */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Toggle */
+.custom-dropdown-toggle {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #0056b3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.custom-dropdown-toggle:hover {
+    background-color: #004494;
+}
+
+/* Dropdown Menu */
+.custom-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Dropdown Item */
+.custom-dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #0056b3;
+}
+
+/* Divider */
+.custom-dropdown-divider {
+    height: 1px;
+    margin: 5px 0;
+    background-color: #ddd;
+}
+
+/* Logout Styling */
+.custom-dropdown-item.logout {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.custom-dropdown-item.logout:hover {
+    color: #c9302c;
+}
+
+/* Show Menu on Hover */
+.custom-dropdown:hover .custom-dropdown-menu {
+    display: block;
 }

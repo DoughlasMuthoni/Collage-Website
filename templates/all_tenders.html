@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Tenders Section</title>{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 200px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Tenders</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Management</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+   
+
+    <div class="jobs-section container my-5">
+    <h2 class="mb-4 text-center">All  Tenders</h2>
+    <div class="row">
+        {% for tenders in all_tenders %}
+        
+        <div class="col-md-6 mb-4">
+            <div class="job-card card  shadow-sm p-3 rounded-3">
+                <h5 class="card-title text-primary mb-2">
+                    <i class="fas fa-briefcase me-2"></i> {{ tenders.name }}
+                </h5>
+                <p class="mb-1 text-danger"><strong>Deadline:</strong> {{ tenders.deadlineDate }}</p>
+                {% if tenders.uploadJobs %}
+                    <a href="{{ tenders.uploadJobs.url }}" class="btn btn-success btn-sm mt-2">
+                        <i class="fas fa-download me-1"></i> Download
+                    </a>
+                {% else %}
+                    <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No tenders uploaded</p>
+                {% endif %}
+                <div class="mt-3">
+                    <a href="{{ tenders.uploadJobs.url }}" class="text-decoration-none text-primary">
+                        Open <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No tenders uploaded</p>
+        {% endfor %}  
+        
+    </div>
+
+
+
+      
+    
+    <a href="https://wa.me/254796536524" class="whatsapp-icon" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+{% endblock %}

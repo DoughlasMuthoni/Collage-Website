@@ -28,30 +28,28 @@
 <div class="container my-4">
     <h2 class="text-center bg-primary text-white py-2 rounded">News and Events</h2>
     <div class="row g-4">
-      <!-- First Card -->
-       {% for news in news %}
-      <div class="col-md-4">
-        <div class="card h-150">
-          <img src="{{ news.image.url }}" class="card-img-top" alt="Job Recruitment">
-          
-        </div class="card-text" >
-        <a href="{% url 'mwala_app:news_details' news_id=news.id %}"style="text-decoration: none; 
-"><p class="card-text">
-            {{ news.description|truncatechars:100 }}
-          </p></a> 
+      <!-- Loop through news items -->
+      {% for news in news %}
+      <div class="col-md-4 d-flex">
+          <div class="card h-100 flex-fill">
+            <a href="{% url 'mwala_app:news_details' news_id=news.id %}" style="text-decoration: none;"><img src="{{ news.image.url }}" class="card-img-top-news img-fluid" alt="News Image">
+              <div class="card-body"></a>
+                  <a href="{% url 'mwala_app:news_details' news_id=news.id %}" style="text-decoration: none;">
+                      <p class="card-text">
+                          {{ news.description|truncatechars:100|safe }}
+                      </p>
+                  </a>
+              </div>
+          </div>
       </div>
       {% endfor %}
-     
-    </div>
   </div>
-   
-
   
+</div>   
 
 
-      
-    
-    <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
+<a href="https://wa.me/254796536524" class="whatsapp-icon" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
 {% endblock %}

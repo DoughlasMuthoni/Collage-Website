@@ -146,3 +146,16 @@ fetch(`/get-courses/${departmentId}/`)
 });
 
 
+document.querySelectorAll('.section-title').forEach(title => {
+          title.addEventListener('click', function () {
+              const icon = this.querySelector('.toggle-icon');
+              if (icon.textContent === '+') {
+                  icon.textContent = '-';
+              } else {
+                  icon.textContent = '+';
+              }
+          });
+      });
+
+
+

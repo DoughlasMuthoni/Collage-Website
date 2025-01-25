@@ -1,6 +1,6 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from django.utils import timezone
 # Create your models here.
 
 
@@ -79,6 +79,14 @@ class JobsVacancies(models.Model):
 
     def __str__(self):
         return self.position
+    
+class Tenders(models.Model):
+    name = models.CharField(max_length=200)
+    deadlineDate = models.DateField()  
+    uploadJobs = models.FileField(upload_to='Tenders/', blank=True, null=True)  
+
+    def __str__(self):
+        return self.name
 
 
 class SupportingDepartment(models.Model):
@@ -94,6 +102,7 @@ class SupportingDepartment(models.Model):
 class StudentAffairs(models.Model):
     image = models.ImageField(upload_to='student_affairs/', blank=True, null=True)
     title = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     details = RichTextUploadingField(max_length=8000) 
     
     def __str__(self):
@@ -160,7 +169,8 @@ class Feedback(models.Model):
     complaints_description = models.TextField(blank=True, null=True)
     compliments = models.CharField(max_length=3, choices=[('Yes', 'Yes'), ('No', 'No')])
     compliments_description = models.TextField(blank=True, null=True)
-
+    submitted_at = models.DateTimeField(default=timezone.now)
+    
     def __str__(self):
         return self.organization_name
 

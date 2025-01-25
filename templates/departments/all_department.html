@@ -34,13 +34,13 @@
                 <div class="col-md-4 mb-4 d-flex">
                     <div class="card border-primary h-100 w-100">
                     {% if department.image %}
-                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{{ department.image.url }}" class="card-img-top" alt="{{ department.title }}"></a>
+                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{{ department.image.url }}" class="card-img-top-news" alt="{{ department.title }}"></a>
                     {% else %}
-                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top" alt="{{ department.title }}"></a>
+                        <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top-news" alt="{{ department.title }}"></a>
                     {% endif %}
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-primary">{{ department.title }}</h5>
-                            <p class="card-text">{{ department.description|truncatechars:60|safe }}</p>
+                            <p class="card-text text-dark">{{ department.description|truncatechars:60|safe }}</p>
                             <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
                         </div>
                     </div>

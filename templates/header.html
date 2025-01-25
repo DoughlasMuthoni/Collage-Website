@@ -2,35 +2,41 @@
 {% load static %}
 
 
-<header>
-    <div class="main-nav d-flex justify-content-center align-items-center">
-        <a href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
-        <a href="{% url 'mwala_app:onlineApplication' %}">JANUARY 2025 INTAKE</a>
-         
-         <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger move" >Apply Now</a>
-        <a href="https://students.kuccps.net/login/">KUCCPS</a>
-        <a href="https://portal.hef.co.ke/auth/signin">HELB Portal</a>
-        
+<header class="bg-light">
+    <div class="main-nav d-flex justify-content-between align-items-center flex-wrap w-100">
+        <!-- Contact Information -->
+        <div class="contact-info d-flex align-items-center">
+            <a href="tel:+254712345678" class="text-white me-4">
+                <i class="fas fa-phone-alt me-2"></i> +254 796536524
+            </a>
+            <a href="mailto:mwalatvc@gmail.com" class="text-white">
+                <i class="fas fa-envelope me-2"></i> mwalatvc@gmail.com
+            </a>
+        </div>
 
+        <!-- Navigation Links -->
+        <nav class="d-flex align-items-center flex-wrap">
+            <a href="{% url 'mwala_app:allCourses' %}" class="me-3">Our Courses</a>
+            <a href="{% url 'mwala_app:onlineApplication' %}" class="me-3">JANUARY 2025 INTAKE</a>
+            <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger me-3 move " style="font-size: 10px;">Apply Now</a>
 
-        <a href="#">Student Portal</a>
-        
-        <a href="mailto:Email mwala@gmail.com"><i class="fas fa-envelope "></i>Email mwala@gmail.com</a>
+            <a href="https://students.kuccps.net/login/" class="me-3">KUCCPS</a>
+            <a href="https://portal.hef.co.ke/auth/signin" class="me-3">HELB Portal</a>
+            <a href="#" class="me-3">Student Portal</a>
+        </nav>
 
-        <li class="nav-item-search d-flex align-items-center">
+        <!-- Search Form -->
+        <div class="nav-item-search d-flex align-items-center">
             <button id="searchToggle" class="btn btn-link p-0 me-2">
                 <i class="fas fa-search"></i>
             </button>
             <form action="{% url 'mwala_app:allCourses' %}" method="get">
                 <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search for a Course" value="{{ query|default:'' }}">
             </form>
-        </li>
-        
-        
-
-        
+        </div>
     </div>
 </header>
+
 
 <header class="header sticky-top header-border">
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
@@ -62,7 +68,7 @@
                                     <div class="col-12 col-md-2 border-end">
                                         <h6 class="dropdown-header">General Information</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:history' %}">Our History</a>
-                                        <a class="dropdown-item" href="#">Service Charter</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:serviceCharter' %}">Service Charter</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Gallery</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Us</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints & <br> Feedback</a>
@@ -132,11 +138,10 @@
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Current Students</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">Students Rules And Regulations</a>
-                                        <a class="dropdown-item" href="#">Examination</a>
-                                        <a class="dropdown-item" href="#">Course Transfer</a>
-                                        <a class="dropdown-item" href="#">Clearance Form</a>
-                                        <a class="dropdown-item" href="#">Fee Refund Form</a>
-                                        <a class="dropdown-item" href="#">Course Transfer Form</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:examinations' %}">Examination</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:courseTransferForm' %}">Course Transfer Form</a>
+                                    <a class="dropdown-item" href="{% url 'mwala_app:clearanceForm' %}">Clearance Form</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:feeRefundForm' %}">Fee Refund Form</a>
                                         <a class="dropdown-item" href="#">Apply For Graduation</a>
                                     </div>
                                     
@@ -154,7 +159,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a href="" class="nav-link active">Services</a>
+                        <a href="{% url 'mwala_app:mwalaServices' %}" class="nav-link active">Services</a>
                     </li>
                     <li class="nav-item dropdown resources position-static">
                         <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -196,13 +201,13 @@
                                 <div class="row">
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Tenders</h6>
-                                        <a class="dropdown-item" href="#">List Of Prequalified Suppliers</a>
-                                         <a class="dropdown-item" href="#">Provision Of Catering</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:tenders' %}"> All Mwala TVC Tenders</a>
+                                         
                                     </div>
                                     
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Jobs & Vacancies</h6>
-                                        <a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">Jobs & Vacancies</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:JobsVacancies' %}">All Mwala TVC Jobs & Vacancies</a>
                                     
                                     </div>
                                     <div class="col-12 col-md-4">
@@ -225,17 +230,15 @@
                         </a>
                         <div class="custom-dropdown-menu">
                             <a class="custom-dropdown-item" href="{% url 'admin_app:admin_index' %}">Dashboard</a>
+                            <a class="custom-dropdown-item" href="{% url 'mwala_app:contact_list' %}">Contact</a>
+                            <a class="custom-dropdown-item" href="{% url 'mwala_app:feedback_list' %}">Feedbacks</a>
                             <a class="custom-dropdown-item" href="{% url 'mwala_app:admission_applications' %}">Applications</a>
-                            
-                            <div class="custom-dropdown-divider"></div>
-                            <a class="custom-dropdown-item logout" href="">Logout</a>
                         </div>
                     </div>
-                    
-                        
-                    {% else %}
-                        <a href="{% url 'admin:login' %}">Admin Login</a>
-                    {% endif %} 
+                {% else %}
+                    <a href="{% url 'admin:login' %}" class="btn btn-primary">Admin Login</a>
+                {% endif %}
+                
                     
            
                 </ul>
@@ -248,7 +251,8 @@
 
     <div class="breaking-news"> 
         <span>HIGHLIGHTS:</span>
-        <marquee behavior="scroll" direction="left" scrollamount="10"> 
+        <marquee behavior="scroll" direction="left" scrollamount="8"> 
+           
             {% for news_item in breaking_news %}
                 {{ news_item.title }} ( {{ news_item.date }}) |
             {% endfor %}

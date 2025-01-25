@@ -3,15 +3,18 @@ from django.shortcuts import render, get_object_or_404
 from mwala_app.forms import AdmissionApplicationForm, ContactForm, FeedbackForm
 from django.contrib import messages
 from django.urls import reverse
+from django.http import JsonResponse
 from django.db.models import Q
-from mwala_app.models import Administration, AdmissionApplication, Contact, Course, Department, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment
+from datetime import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from mwala_app.models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment, Tenders
 
 # Create your views here.
 def homePage(request):
     
     notices = Notice.objects.order_by('-date')[:3]
     job_vacancies  = JobsVacancies.objects.order_by('-deadlineDate')[:4]
-    departments = Department.objects.all()
+    departments = Department.objects.order_by('-title')[:3]
     principal_message = Administration.objects.filter(position__iexact="Principal").first()
     # Group courses by their levels
     course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('course_level')
@@ -42,47 +45,45 @@ def courseLevelView(request, level):
         'nita': 'NITA',
     }
 
-    # Convert the slug to the corresponding database format
     level_name = level_mapping.get(level.lower())
 
-
-    # If the level is not in the mapping, return 404
     if not level_name:
         context = {
             'error_message': f"Invalid course level '{level}'."
         }
         return render(request, 'index1.html', context, status=404)
 
-    # Fetch courses for the given level
     courses = Course.objects.filter(course_level__iexact=level_name)
 
-
-    # If no courses are found, return 404 with a helpful message
     if not courses.exists():
         context = {
             'error_message': f"No courses found for level '{level_name}'."
         }
         return render(request, 'index1.html', context, status=404)
 
-    # Pass the courses and level to the template
+    # Add pagination logic
+    paginator = Paginator(courses, 10)  # Show 10 courses per page
+    page_number = request.GET.get('page')
+    page_courses = paginator.get_page(page_number)
+
+    # Pass the paginated courses and level to the template
     context = {
         'level': level_name,
-        'courses': courses,
+        'courses': page_courses,
     }
     return render(request, 'courses/course_level.html', context)
-
-
-
 
 def all_notices(request):
     all_notices = Notice.objects.order_by('-date')  # Fetch all notices
     return render(request, 'all_notices.html', {'notices': all_notices})
 
-
-
 def all_jobsVacancies(request):
     all_jobsVacancies = JobsVacancies.objects.order_by('-deadlineDate')
     return render(request, 'all_jobs&vacancies.html', {'all_jobsVacancies':all_jobsVacancies})
+
+def all_tenders(request):
+    all_tenders = Tenders.objects.order_by('-deadlineDate')
+    return render(request, 'all_tenders.html', {'all_tenders':all_tenders})
 
 
 def collageGallery(request):
@@ -93,9 +94,6 @@ def collageGallery(request):
     }
     return render(request, 'collage_gallery.html', context)
 
-
-
-from django.http import JsonResponse
 def get_images_for_carousel(request):
     try:
         # Retrieve the images (excluding the direct 'url' in the query)
@@ -115,7 +113,6 @@ def get_images_for_carousel(request):
         return JsonResponse({'images': images_data})
 
     except Exception as e:
-        # Log and return the error if anything goes wrong
         print(f"Error fetching images: {e}")
         return JsonResponse({'error': 'Internal Server Error', 'details': str(e)}, status=500)
 
@@ -148,12 +145,10 @@ def adminstrationPage(request):
 
 def adminstrationDetails(request, id):
     admin = get_object_or_404(Administration, id=id)
-   
     return render(request, 'adminstration_details.html', {'admin':admin})
 
 
 def principalDetail(request):
-    # Fetch the Principal's information
     principal_message = get_object_or_404(Administration, position__iexact="Principal")
     
     context = {
@@ -161,23 +156,17 @@ def principalDetail(request):
     }
     return render(request, 'principal_detail.html', context)
 
-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 def allCourses(request):
-    # Fetch all courses
-    courses = Course.objects.all().order_by('course_level')  # Ensure ordering happens before slicing
-
-    # Get search query
+    courses = Course.objects.all().order_by('course_level') 
     query = request.GET.get('q', '')
     if query:
-        # Filter courses based on the search query
+        
         courses = courses.filter(
             Q(course_name__icontains=query) | Q(description__icontains=query)
         ).order_by('course_level')
 
-    # Pagination
-    paginator = Paginator(courses, 10)  # Show 10 courses per page
+    
+    paginator = Paginator(courses, 10)  
     page = request.GET.get('page')
     try:
         paginated_courses = paginator.page(page)
@@ -193,66 +182,6 @@ def allCourses(request):
     return render(request, 'courses/all_courses.html', context)
 
 
-
-def diplomaCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/diploma_courses.html', context)
-
-
-def accountingCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/accounting_courses.html', context)
-
-
-def certificateCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/certificate_courses.html', context)
-
-
-def artisanCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/artisan_courses.html', context)
-
-
-def shortCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/short_courses.html', context)
-
-
-def nitaCourses(request, level):
-    courses = Course.objects.filter(course_level__iexact=level)
-
-    context = {
-        'level': level,
-        'courses': courses,
-    }
-    return render(request, 'courses/nita_courses.html', context)
-
 def allDepartments(request):
     departments = Department.objects.all()
 
@@ -265,7 +194,17 @@ def allDepartments(request):
 def department_details(request, department_id):
     department = get_object_or_404(Department, id=department_id)
     courses = department.courses.all()
-    return render(request, 'departments/department_details.html', {'department': department, 'courses':courses})
+
+    
+    paginator = Paginator(courses, 10)  
+    page_number = request.GET.get('page')
+    page_courses = paginator.get_page(page_number)
+
+    return render(request, 'departments/department_details.html', {
+        'department': department,
+        'courses': page_courses
+    })
+
 
 
 def supporting_department_details(request, support_department_id):
@@ -278,28 +217,63 @@ def applicationForm(request):
     return render(request, 'application_form.html')
 
 def applicationPdf(request):
-    # Fetch the Notice where the title contains 'Application Form' and has a file uploaded
     application_form = Notice.objects.filter(
         title__icontains="application_form", uploadNotice__isnull=False
     ).order_by('-date').first()
-
-    # Get the file URL or set to None if no match
     application_file_url = application_form.uploadNotice.url if application_form else None
-
-    # Render the template
     return render(request, 'application_pdf.html', {'application_file_url': application_file_url})
 
 def feeStructure(request):
-    # Fetch the Notice where the title contains 'Fee Structure' and has a file uploaded
     fee_structure = Notice.objects.filter(
         title__icontains="fee structure", uploadNotice__isnull=False
     ).order_by('-date').first()
 
-    # Get the file URL or set to None if no match
     fee_file_url = fee_structure.uploadNotice.url if fee_structure else None
 
-    # Render the template
+    
     return render(request, 'fee_structure.html', {'fee_structure': fee_file_url})
+
+def clearanceForm(request):
+    clearing_form = Notice.objects.filter(
+        title__icontains="clearance form", uploadNotice__isnull=False
+    ).order_by('-date').first()
+
+    clearance_file_url = clearing_form.uploadNotice.url if clearing_form else None
+
+    
+    return render(request, 'student_affairs/clearance_form.html', {'clearing_form': clearance_file_url})
+
+def courseTransferForm(request):
+    transfering_form = Notice.objects.filter(
+        title__icontains="course transfer form", uploadNotice__isnull=False
+    ).order_by('-date').first()
+
+    transer_file_url = transfering_form.uploadNotice.url if transfering_form else None
+
+    
+    return render(request, 'student_affairs/course_transfer.html', {'transfering_form': transer_file_url})
+
+def feeRefundForm(request):
+    refunding_form = Notice.objects.filter(
+        title__icontains="fee refunding form", uploadNotice__isnull=False
+    ).order_by('-date').first()
+
+    refunding_file_url = refunding_form.uploadNotice.url if refunding_form else None
+
+    
+    return render(request, 'student_affairs/fee_refund_form.html', {'refunding_form': refunding_file_url})
+
+
+def serviceCharter(request):
+    service_delivery_charter = Notice.objects.filter(
+        title__icontains="service delivery charter", uploadNotice__isnull=False
+    ).order_by('-date').first()
+
+    service_delivery_file_url = service_delivery_charter.uploadNotice.url if service_delivery_charter else None
+
+    
+    return render(request, 'student_affairs/service_charter.html', {'service_delivery_charter': service_delivery_file_url})
+
 
 def feedback_view(request):
     if request.method == 'POST':
@@ -312,7 +286,37 @@ def feedback_view(request):
         form = FeedbackForm()
     return render(request, 'feedback.html', {'form': form})
 
+def feedback_list_view(request):
+    # Get filter inputs
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
 
+    # Fetch all feedbacks
+    feedbacks = Feedback.objects.all().order_by('-submitted_at')
+
+    # Date filter logic
+    if start_date:
+        try:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+            feedbacks = feedbacks.filter(submitted_at__date__gte=start_date)
+        except ValueError:
+            print("Invalid start date format")
+    if end_date:
+        try:
+           
+            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+            feedbacks = feedbacks.filter(submitted_at__date__lte=end_date)
+        except ValueError:
+            print("Invalid end date format")
+    paginator = Paginator(feedbacks, 10)  
+    page_number = request.GET.get('page')
+    page_feedbacks = paginator.get_page(page_number)
+
+    return render(request, 'feedback_list.html', {
+        'feedbacks': page_feedbacks,
+        'start_date': start_date,
+        'end_date': end_date,
+    })
 def studentAffairs(request, student_affairs_id):
     student_affairs = get_object_or_404(StudentAffairs, id=student_affairs_id)
     context = {
@@ -322,9 +326,6 @@ def studentAffairs(request, student_affairs_id):
 
 def govnt_scholar(request):
     return render(request, 'student_affairs/govnt_scholar.html')
-
-
-
 
 def contact_view(request):
     if request.method == 'POST':
@@ -348,6 +349,31 @@ def contact_view(request):
         form = ContactForm()
 
     return render(request, 'contact1.html', {'form': form})
+
+
+def contact_list_view(request):
+   
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    
+    contacts = Contact.objects.all().order_by('-id')
+    if start_date and end_date:
+        contacts = contacts.filter(
+            created_at__date__gte=start_date, 
+            created_at__date__lte=end_date
+        )
+
+    
+    paginator = Paginator(contacts, 10)
+    page_number = request.GET.get('page')
+    page_contacts = paginator.get_page(page_number)
+
+    return render(request, 'contact_list.html', {
+        'all_contacts': page_contacts,
+        'start_date': start_date,
+        'end_date': end_date,
+    })
 
 
 def admission_application_view(request):
@@ -447,3 +473,17 @@ def search_view(request):
         return render(request, 'search_results.html', {'query': query, 'results': results})
 
     return render(request, 'search_results.html', {'query': query, 'results': []})
+
+
+
+def service(request):
+    context ={
+
+    }
+    return render(request, 'services.html')
+
+def examinations(request):
+    context ={
+
+    }
+    return render(request, 'student_affairs/examinations.html')

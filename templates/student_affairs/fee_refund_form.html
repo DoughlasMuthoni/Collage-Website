@@ -1,0 +1,62 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Fee Refunding Form</title>{% endblock %}
+
+{% block content %}
+    
+    <section class="breadcrumb-section text-white d-flex align-items-center" 
+            style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; backgroundsize: cover; background-position: center;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="breadcrumb__text">
+                        <h1 class="display-4 fw-bold mb-3">Mwala TVC Fee Refunding Form</h1>
+                        <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                            <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Fee Refunding Form</a>
+                            <span class="breadcrumb-item active text-success">All Departments</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div><p style=" text-align: center; font-weight: 700;margin-top: 40px; color: #0098DB; font-size: 1.2rem;">Mwala Technical And Vocational Collage Fee Refunding Form.</p></div>
+        <div class="container mt-5">
+            <div class="row justify-content-center align-items-center" style="min-height: 20vh;">
+                <div class="col-md-8">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4">Fee Refunding Form</h2>
+        
+                            {% if refunding_form %}
+                                <p class="text-danger text-center">Click below to download the uploaded  Fee Refunding Form:</p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ refunding_form }}" target="_blank" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-download"></i> Download Fee Refunding Form
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-warning text-center" role="alert">
+                                    <strong>Oops!</strong> No Fee Refunding Form uploaded yet.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <a href="https://wa.me/254796536524" class="whatsapp-icon" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+
+{% endblock %}

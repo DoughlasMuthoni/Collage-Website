@@ -60,17 +60,23 @@
                 <!-- Card 1 -->
                 <div class="row">
                     {% for admin in administrators %}
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100" style="border-bottom: 2px solid red; border-top: 2px solid red;">
-                                <a href="{% url 'mwala_app:details' admin.id %}">
-                                    <img src="{{ admin.image.url }}" class="card-img-top" alt="{{ admin.title }}">
-                                </a>
-                                <div class="card-body text-center btn-green">
-                                    <h5 class="card-title">{{ admin.title }}</h5>
-                                    <p class="card-text">{{ admin.position }}</p>
-                                </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card-admin h-100" style="border-bottom: 2px solid red; border-top: 2px solid red;">
+                            <a href="{% url 'mwala_app:details' admin.id %}">
+                                {% if admin.image %}
+                                <img src="{{ admin.image.url }}" class="card-img-top-admin" alt="{{ admin.title }}">
+                                {% else %}
+                                <img src="{% static 'assets/images/default_img.jpeg' %}" class="card-img-top-admin" alt="Default Principal">
+                                {% endif %}
+                            </a>
+                            <div class="card-body-admin text-center btn-green">
+                                <h5 class="card-title">{{ admin.title }}</h5>
+                                <p class="card-text">{{ admin.position }}</p>
                             </div>
                         </div>
+                    </div>
+                    
+                    
                     {% endfor %}
                 </div>
                 
@@ -78,9 +84,10 @@
         </div>
     </section>
     
-    <a href="https://wa.me/1234567890" class="whatsapp-icon" target="_blank">
+    <a href="https://wa.me/254796536524" class="whatsapp-icon" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
+    
  
 
 {% endblock %}

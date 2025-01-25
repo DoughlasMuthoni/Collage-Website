@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, Notice, StudentAffairs, SupportingDepartment, News
+from .models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, Notice, StudentAffairs, SupportingDepartment, News, Tenders
 
 @admin.register(Administration)
 class AdministrationAdmin(admin.ModelAdmin):
@@ -52,6 +52,11 @@ class NoticeAdmin(admin.ModelAdmin):
 class JobsVacanciesAdmin(admin.ModelAdmin):
     list_display = ('position', 'deadlineDate', 'uploadJobs')
 
+@admin.register(Tenders)
+class TendersAdmin(admin.ModelAdmin):
+    list_display = ('name', 'deadlineDate', 'uploadJobs')
+
+
 @admin.register(ImageGallery)
 class ImageGalleryAdmin(admin.ModelAdmin):
     list_display = ('date', 'image')
@@ -86,7 +91,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 @admin.register(StudentAffairs)
 class StudentAffairsAdmin(admin.ModelAdmin):
-    list_display = ('title','image', 'details')
+    list_display = ('title', 'name', 'image', 'details', )
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
@@ -108,10 +113,6 @@ class FeedbackAdmin(admin.ModelAdmin):
     ordering = ('-visit_date',)  # Sorts by most recent visit date by default
 
 
-
-
-from django.contrib import admin
-from .models import AdmissionApplication
 
 class AdmissionApplicationAdmin(admin.ModelAdmin):
     # Include the new 'submitted_at' field in list_display

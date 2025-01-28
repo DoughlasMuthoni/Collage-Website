@@ -105,7 +105,7 @@
                                         {% empty %}
                                             <a class="dropdown-item" href="#">No departments available</a>
                                         {% endfor %}
-                                        <a class="dropdown-item" href="{% url 'mwala_app:examinations' %}">Examination</a>
+                                        
                                         {% for student_affair in all_student_affairs %}
                                             <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
                                                 {{ student_affair.title }}

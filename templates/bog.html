@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Board Of Governors</title>{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; background-size: cover; background-position: center;">
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+        <div class="breadcrumb__text">
+            <h1 class="display-4 fw-bold mb-3">Board Of Governors</h1>
+            <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Departments</a>
+                <span class="breadcrumb-item active text-success">All Departments</span>
+            </nav>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<div class="container my-5">
+   
+    <div class="card-header text-white rounded mb-3" style="background-color: #0098DB; border-bottom: 2px solid red;">
+        <h2 class="text-center mb-0">Constitution of Governing Council</h2>
+    </div>
+    <div class="row">
+        <!-- Left Section -->
+        <div class="col-md-8">
+            
+            <h2 class="h5">Constitution of Governing Council</h2>
+            <p>
+                As per the TVET Act 2024, the governing council consists of:
+            </p>
+            <ol>
+                <li>A chairperson who shall be appointed by the President of the Republic of Kenya.</li>
+                <li>The Principal Secretary, the State Department for TVET or designated representative.</li>
+                <li>The Principal Secretary responsible for finance or designated representative.</li>
+                <li>The CEO Council of Governors or designated representative.</li>
+                <li>A representative nominated by the Kenya Engineering Technology Registration Board.</li>
+                <li>One principal representing TVET institutions.</li>
+                <li>
+                    Three independent members appointed by the Cabinet Secretary in any of the following areas:
+                    <ul>
+                        <li>Leadership and management</li>
+                        <li>Financial management</li>
+                        <li>Technology</li>
+                        <li>Industry</li>
+                        <li>Engineering</li>
+                        <li>Information communication technology</li>
+                    </ul>
+                </li>
+            <li> The Chief Executive Officer of the School.</li>
+
+            </ol>
+            <p>Currently the Constitution of the council is as follows</p>
+            <img src="{% static  'assets\images\mwala_img4.jpg'  %}" alt="Kenya School of TVET" class="img-fluid w-100 mb-4" style="height:300px;">
+        </div>
+        <!-- Right Section -->
+        <div class="col-md-4">
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Nicholas Marete">
+                <div>
+                    <h6>Chairman BOM
+                    </h6>
+                    <p>Kioko Kilukumi
+                    </p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Dr. Edwin Tarno HSC FEnv">
+                <div>
+                    <h6>Governing Council Secretary / CEO</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Dr. Glory Mutungi">
+                <div>
+                    <h6>Member</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Alice Mutai">
+                <div>
+                    <h6>Member</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Wilfred Ochengo">
+                <div>
+                    <h6>Member</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Mr. John O. Sengeny">
+                <div>
+                    <h6>Member</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="Arwings Owiti">
+                <div>
+                    <h6>Treasury Representative</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="member">
+                <img src="{% static  'assets\images\default_img.jpeg'  %}" alt="PS TVET Representative">
+                <div>
+                    <h6>PS TVET Representative</h6>
+                    <p>Unknown</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

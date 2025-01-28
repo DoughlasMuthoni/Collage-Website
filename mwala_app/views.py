@@ -14,8 +14,8 @@ def homePage(request):
     
     notices = Notice.objects.order_by('-date')[:3]
     job_vacancies  = JobsVacancies.objects.order_by('-deadlineDate')[:4]
-    departments = Department.objects.order_by('-title')[:3]
-    principal_message = Administration.objects.filter(position__iexact="Principal").first()
+    departments = Department.objects.order_by('-title')[:5]
+    principal_message = Administration.objects.filter(position__iexact="Chief Principal").first()
     # Group courses by their levels
     course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('course_level')
     courses_by_level = {
@@ -487,3 +487,7 @@ def examinations(request):
 
     }
     return render(request, 'student_affairs/examinations.html')
+
+
+def Bog(request):
+    return render(request, 'bog.html')

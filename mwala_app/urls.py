@@ -10,6 +10,7 @@ urlpatterns = [
     path('principal-detail/', views.principalDetail, name='principal_detail'), 
     path('courses/<slug:level>/', views.courseLevelView, name='course_level'),
     path('notices/', views.all_notices, name='all_notices'),
+    path('bog/', views.Bog, name='bog'),
     path('JobsVacancies/', views.all_jobsVacancies, name='JobsVacancies'),
     path('tenders/', views.all_tenders, name='tenders'),
     path('gallery', views.collageGallery, name='gallery'),

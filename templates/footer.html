@@ -40,6 +40,24 @@
             <li><a href="{% url 'mwala_app:all_notices' %}">All Forms</a></li>
             <li><a href="{% url 'mwala_app:applicationPdf' %}">Students Registration Form</a></li>
             <li><a href="{% url 'mwala_app:feeRefundForm' %}">Fee Refund Form</a></li>
+            {% if request.user.is_authenticated and request.user.is_superuser %}
+            <div class="custom-dropdown">
+                <a class="" href="#" role="button">
+                    Admin Panel
+                </a>
+                <div class="custom-dropdown-menu">
+                    <a class="custom-dropdown-item" href="{% url 'admin_app:admin_index' %}">Dashboard</a>
+                    <a class="custom-dropdown-item" href="{% url 'mwala_app:contact_list' %}">Contact</a>
+                    <a class="custom-dropdown-item" href="{% url 'mwala_app:feedback_list' %}">Feedbacks</a>
+                    <a class="custom-dropdown-item" href="{% url 'mwala_app:admission_applications' %}">Applications</a>
+                </div>
+            </div>
+            {% else %}
+            <a class="" href="{% url 'admin:login' %}" role="button">
+                Login
+            </a>
+            
+            {% endif %}
           </ul>
         </div>
 

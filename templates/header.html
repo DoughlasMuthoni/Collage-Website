@@ -22,7 +22,7 @@
 
             <a href="https://students.kuccps.net/login/" class="me-3">KUCCPS</a>
             <a href="https://portal.hef.co.ke/auth/signin" class="me-3">HELB Portal</a>
-            <a href="#" class="me-3">Student Portal</a>
+          
         </nav>
 
         <!-- Search Form -->
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="col-12 col-md-3 border-end">
                                         <h6 class="dropdown-header">Administration</h6>
-                                    
+                                        <a class="dropdown-item" href="{% url 'mwala_app:bog' %}"> Board Of Governors </a>
                                         {% for admin in administrators %}
                                             <a class="dropdown-item" href="{% url 'mwala_app:adminstrationDetails' admin.id %}">
                                                 {{ admin.position }}
@@ -105,7 +105,7 @@
                                         {% empty %}
                                             <a class="dropdown-item" href="#">No departments available</a>
                                         {% endfor %}
-
+                                        <a class="dropdown-item" href="{% url 'mwala_app:examinations' %}">Examination</a>
                                         {% for student_affair in all_student_affairs %}
                                             <a class="dropdown-item" href="{% url 'mwala_app:studentAffairs' student_affairs_id=student_affair.id %}">
                                                 {{ student_affair.title }}
@@ -223,24 +223,6 @@
                         </div>
                     </li>
                    
-                    {% if request.user.is_authenticated and request.user.is_superuser %}
-                    <div class="custom-dropdown">
-                        <a class="custom-dropdown-toggle" href="#" role="button">
-                            Admin Panel
-                        </a>
-                        <div class="custom-dropdown-menu">
-                            <a class="custom-dropdown-item" href="{% url 'admin_app:admin_index' %}">Dashboard</a>
-                            <a class="custom-dropdown-item" href="{% url 'mwala_app:contact_list' %}">Contact</a>
-                            <a class="custom-dropdown-item" href="{% url 'mwala_app:feedback_list' %}">Feedbacks</a>
-                            <a class="custom-dropdown-item" href="{% url 'mwala_app:admission_applications' %}">Applications</a>
-                        </div>
-                    </div>
-                {% else %}
-                    <a href="{% url 'admin:login' %}" class="btn btn-primary">Admin Login</a>
-                {% endif %}
-                
-                    
-           
                 </ul>
             </div>
         </div>

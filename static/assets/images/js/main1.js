@@ -87,25 +87,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll('.counter');
-
-  counters.forEach(counter => {
+    const counters = document.querySelectorAll(".counter");
+  
+    // Function to animate the counter
+    const animateCounter = (counter) => {
+      const target = +counter.getAttribute("data-target"); // Target number
       const updateCount = () => {
-          const target = +counter.getAttribute('data-target'); // Target number
-          const count = +counter.innerText; // Current number
-          const increment = target / 100; // Increment value
-
-          if (count < target) {
-              counter.innerText = Math.ceil(count + increment);
-              setTimeout(updateCount, 10); // Adjust speed by changing the timeout value
-          } else {
-              counter.innerText = target; // Set to target if exceeded
-          }
+        const count = +counter.innerText.replace("+", "") || 0; // Current number
+        const increment = target / 100; // Increment value
+  
+        if (count < target) {
+          counter.innerText = `${Math.ceil(count + increment)}+`;
+          setTimeout(updateCount, 10); // Adjust speed by changing the timeout value
+        } else {
+          counter.innerText = `${target}+`; // Set to target if exceeded
+        }
       };
-
+  
       updateCount();
+    };
+  
+    // Observe when counters enter the viewport
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            animateCounter(counter);
+            observer.unobserve(counter); // Stop observing once animation starts
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+  
+    counters.forEach((counter) => {
+      observer.observe(counter);
+    });
   });
-});
+  
 
 
 // Populate counties

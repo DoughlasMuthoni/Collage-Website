@@ -20,7 +20,7 @@ class Department(models.Model):
     id = models.AutoField(primary_key=True)  # Auto-incrementing primary key
     title = models.CharField(max_length=200)  # Department title
     image = models.ImageField(upload_to='department_images/', blank=True, null=True)  # Department image
-    description =RichTextUploadingField()  # Detailed description of the department
+    description =models.CharField(max_length=1200)  # Detailed description of the department
     hod_name = models.CharField(max_length=150)  # Head of Department's name
     hod_message =RichTextUploadingField()  # Message from the Head of Department
     

@@ -4,7 +4,8 @@
 
 # context_processors.py
 
-from .models import ImageGallery, News, StudentAffairs, SupportingDepartment, Administration, Department
+from .models import ImageGallery, News, StudentAffairs, SupportingDepartment, Administration, Department, Course
+from django.db.models import Q
 
 def supporting_department(request):
     # Fetch all supporting departments from the database
@@ -29,8 +30,7 @@ def breaking_news(request):
     return {'breaking_news': recent_news}
 
 
-from django.db.models import Q
-from .models import Course
+
 
 def courses_search(request):
     query = request.GET.get('q', '')  # Get the search query from the URL

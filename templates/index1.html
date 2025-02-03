@@ -438,7 +438,7 @@
                         </h2>
                         <div id="faqOne" class="accordion-collapse collapse" aria-labelledby="faqOneHeading" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-danger">
-                                Mwala Technical And vocational collage is located in Machakos County Mwala Sub county, Kenya.
+                                Mwala Technical and Vocational College is a public Technical and Vocational Education Training Institution situated about 250 meters, off Makutano/Kithimani road, Mwala Sub county. The College is approximately 102.9 kilometers from Nairobi city and 36.9 kilometers East of Machakos Town. 
                             </div>
                         </div>
                     </div>
@@ -451,7 +451,7 @@
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
                             <div class="accordion-body  text-danger">
-                                Mwala TVC offers various technical training programs.
+                                The College offers courses Accredited by Technical and Vocational Education and Training Authority (TVETA), in accordance with TVET) Act No. 29 of 2013. The College offers academic programmes spread across seven teaching departments; namely: Agriculture and Applied Sciences, Building and Civil Engineering, Business Studies and ICT, Electrical and Electronic Engineering, Fashion Design and Cosmetology, Hospitality and Tourism Management, Mechanical and Automotive Engineering.
                             </div>
                         </div>
                     </div>
@@ -463,7 +463,7 @@
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
                             <div class="accordion-body  text-danger">
-                                Yes, by TVET, NTSA and NITA. Besides, all our courses are accredited by all concerned bodies.
+                                The College offers courses Accredited by Technical and Vocational Education and Training Authority (TVETA), in accordance with TVET) Act No. 29 of 2013.
                             </div>
                         </div>
                     </div>
@@ -475,7 +475,7 @@
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
                             <div class="accordion-body  text-danger">
-                                Yes, you can. Use either of the following link:
+                                Yes, you can. Use the following link:
                                 Use our admissions on the website. http://127.0.0.1:8000/onlineApplication/
                             </div>
                         </div>
@@ -568,7 +568,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="imageCarouselModalLabel">Mwala TVC Images</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body">
                 <div id="carouselExample" class="carousel slide">
@@ -589,48 +589,55 @@
                 
     <script>
             const url = "{% url 'mwala_app:get_images_for_carousel' %}"; // URL rendered correctly
-    
-            document.querySelectorAll('.gallery-item img').forEach((img) => {
-            img.addEventListener('click', function() {
-                const imageId = this.getAttribute('data-id');
-                console.log('Clicked image with ID:', imageId);
-    
-                fetch(url)  // Using the generated URL
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Data received from server:', data);
-    
-                    // Check if data.images is defined
-                    if (!data.images) {
-                    console.error('Images data is missing in the response');
-                    return;
-                    }
-    
-                    const carouselInner = document.querySelector('#carouselItems');
-                    carouselInner.innerHTML = ''; // Clear any previous items
-    
-                    data.images.forEach((image, index) => {
-                    const isActive = index === parseInt(imageId) ? 'active' : '';
-                    const carouselItem = `
-                        <div class="carousel-item ${isActive}">
-                        <img src="${image.url}" class="d-block w-80" alt="Image ${index + 1}">
-                        <div class="carousel-caption d-none d-md-block">
-                            <p>${image.date}</p>
-                        </div>
-                        </div>
-                    `;
-                    carouselInner.insertAdjacentHTML('beforeend', carouselItem);
-                    });
-    
-                    // Show the modal
-                    const modal = new bootstrap.Modal(document.getElementById('imageCarouselModal'));
-                    modal.show();
-                })
-                .catch(error => {
-                    console.error('Error fetching images:', error);
-                });
+
+document.querySelectorAll('.gallery-item img').forEach((img) => {
+    img.addEventListener('click', function() {
+        const imageId = this.getAttribute('data-id');
+        console.log('Clicked image with ID:', imageId);
+
+        fetch(url)  // Using the generated URL
+        .then(response => response.json())
+        .then(data => {
+            console.log('Data received from server:', data);
+
+            // Check if data.images is defined
+            if (!data.images) {
+                console.error('Images data is missing in the response');
+                return;
+            }
+
+            const carouselInner = document.querySelector('#carouselItems');
+            carouselInner.innerHTML = ''; // Clear any previous items
+
+            data.images.forEach((image, index) => {
+                const isActive = index === parseInt(imageId) ? 'active' : '';
+                const carouselItem = `
+                    <div class="carousel-item ${isActive}">
+                    <img src="${image.url}" class="d-block w-100" alt="Image ${index + 1}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p>${image.date}</p>
+                    </div>
+                    </div>
+                `;
+                carouselInner.insertAdjacentHTML('beforeend', carouselItem);
             });
-            });
+
+            // Show the modal
+            const modal = new bootstrap.Modal(document.getElementById('imageCarouselModal'));
+            modal.show();
+        })
+        .catch(error => {
+            console.error('Error fetching images:', error);
+        });
+    });
+});
+
+// Close the modal when the close button is clicked
+document.querySelector('#imageCarouselModal ').addEventListener('click', function() {
+    const modal = new bootstrap.Modal(document.getElementById('imageCarouselModal'));
+    modal.hide();
+});
+
     
     </script>
 
@@ -660,8 +667,8 @@
     
                  <!-- Welcome Message -->
                 <div class="col-md-6 text-dark">
-                    <h2 class="text-danger fw-bold">Principal's Welcome Message</h2>
-                    <p>{{ principal_message.description|truncatechars:650|safe }}</p>
+                    <h2 class="text-danger fw-bold">Mwala TVC Chief Principal</h2>
+                    <p>{{ principal_message.description|truncatechars:1200|safe }}</p>
                     
                     <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-primary">Read More</a>
                 </div>

@@ -20,6 +20,7 @@ class Department(models.Model):
     id = models.AutoField(primary_key=True)  # Auto-incrementing primary key
     title = models.CharField(max_length=200)  # Department title
     image = models.ImageField(upload_to='department_images/', blank=True, null=True)  # Department image
+    hod_image = models.ImageField(upload_to='hod_images/', blank=True, null=True)  
     description =models.CharField(max_length=1200)  # Detailed description of the department
     hod_name = models.CharField(max_length=150)  # Head of Department's name
     hod_message =RichTextUploadingField()  # Message from the Head of Department
@@ -79,7 +80,16 @@ class JobsVacancies(models.Model):
 
     def __str__(self):
         return self.position
-    
+from django.db import models
+
+class Brochures(models.Model):
+    title = models.CharField(max_length=200)
+    brochure = models.FileField(upload_to='brochures/', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Tenders(models.Model):
     name = models.CharField(max_length=200)
     deadlineDate = models.DateField()  

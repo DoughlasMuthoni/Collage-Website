@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.db.models import Q
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from mwala_app.models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment, Tenders
+from mwala_app.models import Administration, AdmissionApplication, Brochures, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, News, Notice, StudentAffairs, SupportingDepartment, Tenders
 
 # Create your views here.
 def homePage(request):
@@ -17,7 +17,7 @@ def homePage(request):
     departments = Department.objects.order_by('-title')[:5]
     principal_message = Administration.objects.filter(position__iexact="Chief Principal").first()
     # Group courses by their levels
-    course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('course_level')
+    course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('-course_level')[:3]
     courses_by_level = {
     level: Course.objects.filter(course_level__iexact=level).order_by('course_name')[:10]
     for level in course_levels
@@ -149,7 +149,7 @@ def adminstrationDetails(request, id):
 
 
 def principalDetail(request):
-    principal_message = get_object_or_404(Administration, position__iexact="Principal")
+    principal_message = get_object_or_404(Administration, position__iexact="Chief Principal")
     
     context = {
         'principal_message': principal_message,
@@ -491,3 +491,10 @@ def examinations(request):
 
 def Bog(request):
     return render(request, 'bog.html')
+
+def Brochure(request):
+    mwala_brochures = Brochures.objects.all()
+    context = {
+        'mwala_brochures': mwala_brochures,
+    }
+    return render(request, 'brochure.html', context)

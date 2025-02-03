@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} <title>Mwala TVC Brochure</title>{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-section text-white d-flex align-items-center" 
+style="background-image: url('{% static "assets/images/mwala_img3.jpg" %}'); height: 300px; backgroundsize: cover; background-position: center;">
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+        <div class="breadcrumb__text">
+            <h1 class="display-4 fw-bold mb-3">Mwala TVC Brochures</h1>
+            <nav class="breadcrumb d-inline-flex bg-transparent p-0">
+                <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
+                <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Brochures</a>
+                <span class="breadcrumb-item active text-success">All Departments</span>
+            </nav>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<section id="history-section " class="my-4 ">
+    <div class="container">
+        
+        <div class="card shadow-lg section">
+            
+            <div class="container mt-2">
+                <div class="row justify-content-center align-items-center" style="min-height: 20vh;">
+                    <div class="col-md-8">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <h2 class="text-center mb-4">Mwala TVC Brochures</h2>
+            
+                                {% if mwala_brochures %}
+                                    <p class="text-danger text-center">Click below to download the uploaded Brochures:</p>
+                                    
+                                        {% for brochure in mwala_brochures %}
+                                            
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ brochure.brochure.url }}" target="_blank" class="btn btn-primary btn-lg">
+                                                    <i class="fas fa-download"></i> Download 
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                   
+                                {% else %}
+                                    <div class="alert alert-warning text-center" role="alert">
+                                        <strong>Oops!</strong> No brochures uploaded yet.
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+</section>
+{% endblock %}

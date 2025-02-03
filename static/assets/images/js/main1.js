@@ -1,11 +1,39 @@
 
 
 
-document.getElementById('searchToggle').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent form submission if the button is inside a form
-  const searchInput = document.getElementById('searchInput');
-  searchInput.classList.toggle('show');
-      });
+document.addEventListener("DOMContentLoaded", function () {
+    const searchToggle = document.getElementById("searchToggle");
+    const searchInput = document.getElementById("searchInput");
+    const searchForm = searchInput.closest("form");
+
+    searchToggle.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent unintended form submission
+
+        // Toggle visibility of the search input
+        searchInput.classList.toggle("show");
+
+        if (searchInput.classList.contains("show")) {
+            searchInput.style.display = "block";
+            searchInput.focus(); // Auto-focus when shown
+        } else {
+            searchInput.style.display = "none";
+
+            // If input has text, submit search on second click
+            if (searchInput.value.trim() !== "") {
+                searchForm.submit();
+            }
+        }
+    });
+
+    // Allow "Enter" key to submit the search
+    searchInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent default form submission
+            searchForm.submit();
+        }
+    });
+});
+
 
 
 
@@ -77,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
   dropdownItems.forEach(item => {
       item.addEventListener('click', function (e) {
           // Toggle dropdown visibility
-          if (window.innerWidth <= 767) {
+          if (window.innerWidth <= 992) {
               const dropdownMenu = item.querySelector('.dropdown-menu');
               dropdownMenu.classList.toggle('show'); // Toggle visibility of the menu
           }

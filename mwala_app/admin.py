@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, Notice, StudentAffairs, SupportingDepartment, News, Tenders
+from .models import Administration, AdmissionApplication, Contact, Course, Department, Feedback, ImageGallery, JobsVacancies, Brochures, Notice, StudentAffairs, SupportingDepartment, News, Tenders
 
 @admin.register(Administration)
 class AdministrationAdmin(admin.ModelAdmin):
@@ -65,13 +65,13 @@ class ImageGalleryAdmin(admin.ModelAdmin):
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'hod_name', 'image')  # Fields to display in the list view
+    list_display = ('id', 'title', 'hod_name', 'image','hod_image',)  # Fields to display in the list view
     search_fields = ('title', 'hod_name', 'course__title')  # Fields to enable search functionality
     list_filter = ('title',)  # Add filters for courses
     readonly_fields = ('id',)  # Make the 'id' field read-only
     fieldsets = (
         (None, {
-            'fields': ('title', 'image', 'description', 'hod_name', 'hod_message')
+            'fields': ('title', 'image', 'hod_image','description', 'hod_name', 'hod_message')
         }),
         ('Additional Info', {
             'fields': ('id',),
@@ -88,6 +88,10 @@ class SupportingDepartmentAdmin(admin.ModelAdmin):
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'date')
+
+@admin.register(Brochures)
+class BrochuresAdmin(admin.ModelAdmin):
+    list_display = ('title','brochure',)
 
 @admin.register(StudentAffairs)
 class StudentAffairsAdmin(admin.ModelAdmin):

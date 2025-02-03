@@ -11,6 +11,7 @@ urlpatterns = [
     path('courses/<slug:level>/', views.courseLevelView, name='course_level'),
     path('notices/', views.all_notices, name='all_notices'),
     path('bog/', views.Bog, name='bog'),
+    path('Brochure/', views.Brochure, name='Brochure'),
     path('JobsVacancies/', views.all_jobsVacancies, name='JobsVacancies'),
     path('tenders/', views.all_tenders, name='tenders'),
     path('gallery', views.collageGallery, name='gallery'),

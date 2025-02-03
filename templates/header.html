@@ -28,7 +28,7 @@
         <!-- Search Form -->
         <div class="nav-item-search d-flex align-items-center">
             <button id="searchToggle" class="btn btn-link p-0 me-2">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" ></i>
             </button>
             <form action="{% url 'mwala_app:allCourses' %}" method="get">
                 <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search for a Course" value="{{ query|default:'' }}">
@@ -69,6 +69,7 @@
                                         <h6 class="dropdown-header">General Information</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:history' %}">Our History</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:serviceCharter' %}">Service Charter</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:Brochure' %}">Mwala TVC Brochures</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:gallery' %}">Gallery</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:contactUs' %}">Contact Us</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:feedBack' %}">Complaints & <br> Feedback</a>
@@ -179,7 +180,7 @@
                                     <div class="col-12 col-md-4 border-end">
                                         <h6 class="dropdown-header">Downloadable Resources</h6>
                                         
-                                        <a class="dropdown-item" href="#"> Mwala Documents</a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:serviceCharter' %}">Service Charter</a>
                                         <a class="dropdown-item" href="#">TVET Dean Resources</a>
                                     
                                     </div>

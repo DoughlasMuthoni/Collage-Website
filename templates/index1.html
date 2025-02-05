@@ -44,42 +44,50 @@
     </div>
    
     
-    <div class="container-fluid position-relative " style="margin-top: -100px; z-index: 10;">
-        <div class="row justify-content-center text-decoration-none">
+    <div class="container-fluid position-relative" style="margin-top: -100px; z-index: 10;">
+        <div class="row justify-content-center text-decoration-none gx-3 gy-4">
             <!-- Service Charter Box -->
-            <div class="col-12 col-md-4 mb-">
+            <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body">
-                        <i class="bi bi-file-text" style="font-size: 3rem; color: red; padding: 170px;"></i>
-                        <h5 class="card-title mt-3"style="text-align:center;" >Service Charter</h5>
-                        <a href="{% url 'mwala_app:serviceCharter' %}"><p class="card-text view"style="text-align:center; color:white;">View our charter</p></a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                        <i class="bi bi-file-text" style="font-size: 3rem; color: red;"></i>
+                        <h5 class="card-title mt-3" style="text-align:center;">Service Charter</h5>
+                        <a href="{% url 'mwala_app:serviceCharter' %}">
+                            <p class="card-text view" style="text-align:center; color:white;">View our charter</p>
+                        </a>
                     </div>
                 </div>
             </div>
     
             <!-- Services Box -->
-            <div class="col-12 col-md-4 mb-4">
+            <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body">
-                        <i class="bi bi-gear" style="font-size: 3rem; color: red;padding: 170px;"></i>
-                        <h5 class="card-title mt-3" style="text-align:center; ">Services</h5>
-                        <a href="{% url 'mwala_app:mwalaServices' %}"><p class="card-text view" style="text-align:center; color: white; ">List of Services</p></a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                        <i class="bi bi-gear" style="font-size: 3rem; color: red;"></i>
+                        <h5 class="card-title mt-3" style="text-align:center;">Services</h5>
+                        <a href="{% url 'mwala_app:mwalaServices' %}">
+                            <p class="card-text view" style="text-align:center; color:white;">List of Services</p>
+                        </a>
                     </div>
                 </div>
             </div>
     
             <!-- Student Downloads Box -->
-            <div class="col-12 col-md-4 mb-4">
+            <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body " >
-                        <i class="bi bi-download " style="font-size: 3rem; color: red; padding: 170px;"></i>
-                        <h5 class="card-title mt-3 content-c"style="text-align:center;">Student Downloads</h5>
-                        <a href="{% url 'mwala_app:all_notices' %}"><p class="card-text view content-c"style="text-align:center; color:white;">List of Student forms</p></a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
+                        <i class="bi bi-download" style="font-size: 3rem; color: red;"></i>
+                        <h5 class="card-title mt-3 content-c" style="text-align:center;">Student Downloads</h5>
+                        <a href="{% url 'mwala_app:all_notices' %}">
+                            <p class="card-text view content-c" style="text-align:center; color:white;">List of Student forms</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
     
     <div class="container my-5 note">
         <!-- Notice Section -->
@@ -173,7 +181,9 @@
                                 <i class="fas fa-download me-1"></i> Download
                             </a>
                         {% else %}
-                            <p class="text-danger mt-2 text-center"><i class="fas fa-exclamation-circle me-1"></i> No Job uploaded</p>
+                        <a href="#" class="btn btn-success btn-sm mt-2">
+                            <i class="fas fa-download me-1"></i> NO job Uploaded yet
+                        </a>
                         {% endif %}
                         <div class="mt-3">
                             <a href="{{ jobs.uploadJobs.url }}" class="text-decoration-none text-primary">
@@ -500,7 +510,7 @@
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
                             <div class="accordion-body  text-danger">
-                                Yes, we have hostels within our campuses and provide food and accommodation to all our boarding students.
+                                Yes, we have hostels within our campus and provide food and accommodation to all our boarding students.
 
 
                             </div>

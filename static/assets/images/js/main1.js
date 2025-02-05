@@ -35,23 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-
-document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
-  submenu.addEventListener('mouseover', function () {
-      const dropdown = submenu.querySelector('.dropdown-menu');
-      if (dropdown) {
-          dropdown.classList.add('show');
-      }
-  });
-
-submenu.addEventListener('mouseout', function () {
-    const dropdown = submenu.querySelector('.dropdown-menu');
-    if (dropdown) {
-        dropdown.classList.remove('show');
-    }
-  });
-});
 // Get the back-to-top button
 const backToTopButton = document.querySelector('.back-to-top');
 
@@ -100,18 +83,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Handle click event for dropdowns on small screens
-  const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+  const dropdownItems = document.querySelectorAll('.nav-item.dropdown .dropdown-toggle');
 
   dropdownItems.forEach(item => {
       item.addEventListener('click', function (e) {
-          // Toggle dropdown visibility
           if (window.innerWidth <= 992) {
-              const dropdownMenu = item.querySelector('.dropdown-menu');
-              dropdownMenu.classList.toggle('show'); // Toggle visibility of the menu
+              e.preventDefault(); // Prevent default anchor behavior
+              e.stopPropagation(); // Stop event from bubbling up
+              
+              let dropdownMenu = this.nextElementSibling;
+              
+              // Close other open dropdowns
+              document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                  if (menu !== dropdownMenu) {
+                      menu.classList.remove('show');
+                  }
+              });
+
+              // Toggle current dropdown
+              dropdownMenu.classList.toggle('show');
           }
       });
   });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+          document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+              menu.classList.remove('show');
+          });
+      }
+  });
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -128,7 +128,7 @@
                             <div class="container py-3">
                                 <div class="row">
                                     <div class="col-12 col-md-4 border-end">
-                                        <h6 class="dropdown-header">Prospective Student</h6>
+                                        <h6 class="dropdown-header">Prospective Students</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:applicationForm' %}">Application Procedure</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:onlineApplication' %}">Online Registration</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a>
@@ -173,8 +173,6 @@
                                         <h6 class="dropdown-header">Government Resources</h6>
                                         <a class="dropdown-item" href="#">Executive Orders</a>
                                         <a class="dropdown-item" href="#">Legal Orders</a>
-                                        <a class="dropdown-item" href="#">Regislation On TVETS</a>
-                                        
                                     </div>
                                     
                                     <div class="col-12 col-md-4 border-end">
@@ -216,7 +214,6 @@
                                         <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">Students Rules & Regulations</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:feeStructure' %}">Fee Structure</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:applicationPdf' %}">Student Registration Form</a>
-                                        <a class="dropdown-item" href="#">Teaching Practice Form</a>
                                         <a class="dropdown-item" href="{% url 'mwala_app:all_notices' %}">All Forms</a>
                                     </div>
                                 </div>
@@ -237,7 +234,7 @@
         <marquee behavior="scroll" direction="left" scrollamount="8"> 
            
             {% for news_item in breaking_news %}
-                {{ news_item.title }} ( {{ news_item.date }}) |
+               <a href="{% url 'mwala_app:newsEvents' %}" class="text-decoration-none text-white" >{{ news_item.title }} ( {{ news_item.date }}) |</a> 
             {% endfor %}
         </marquee>  
     </div>

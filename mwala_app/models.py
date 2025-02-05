@@ -104,7 +104,7 @@ class SupportingDepartment(models.Model):
     image = models.ImageField(upload_to='supporting_departments/', blank=True, null=True)  # Department image
     hod_name = models.CharField(max_length=150)  # Head of Department name
     hod_message = RichTextUploadingField()  # Head of Department message
-    position = models.CharField(max_length=50)  # Position of the department (e.g., 'Faculty', 'Support')
+    position = models.CharField(max_length=100) 
 
     def __str__(self):
         return self.title

@@ -1193,21 +1193,26 @@ button.btn-primary:hover {
     }
 
     .dropdown-menu {
-        position: static;
+        position: absolute;
         width: 100%;
         left: 0;
         right: 0;
         visibility: visible;
-        opacity: 1;
-        display: block;
+        opacity: 0;
+        display: none;
         margin-top: 5px;
         padding: 10px;
         border: 1px solid #ddd;
         background-color: white;
         max-height: 400px; /* Limit dropdown height */
         overflow-y: auto; /* Enable scrolling */
+        transition: opacity 0.3s ease-in-out;
     }
-
+    .show {
+        display: block !important;
+        visibility: visible;
+        opacity: 1;
+    }
     .dropdown-item {
         padding: 10px 15px;
         font-size: 14px;

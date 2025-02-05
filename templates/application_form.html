@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="breadcrumb__text">
-                        <h5 class="display-6 fw-bold mb-3">Mwala TVC Application form</h5>
+                        <h5 class="display-6 fw-bold mb-3">Mwala TVC Application Instructions</h5>
                         <nav class="breadcrumb d-inline-flex bg-transparent p-0">
                             <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
                             <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Application Instructions</a>
@@ -30,17 +30,17 @@
     <div class="container mt-5">
         <div class="card shadow">
             <div class="card-header bg-primary text-white text-center" style="border-top: 2px solid red;">
-                <h1>Application/Joining Instructions</h1>
+                <h2>Application/Joining Instructions</h2>
             </div>
             <div class="card-body">
 
-                <h2 class="mt-4">Admission</h2>
+                <h4 class="mt-4">Admission</h4>
                 <p>We are pleased to inform you that you have been admitted to join  Mwala TVC. The Institute is government-sponsored under the Ministry of Education. It has a mixed day and boarding student population.</p>
 
-                <h2 class="mt-4">Location</h2>
-                <p>The Institute is located 3 kilometers from Mwala town along the Makindu road. It is about 2km from Mwala Market.</p>
+                <h4 class="mt-4">Location</h4>
+                <p>Mwala Technical and Vocational College is a public Technical and Vocational Education Training Institution situated about 250 meters, off Makutano/Kithimani road, Mwala Sub county. The College is approximately 102.9 kilometers from Nairobi city and 36.9 kilometers East of Machakos Town. </p>
 
-                <h2 class="mt-4">Compulsory Items</h2>
+                <h4 class="mt-4">Compulsory Items</h4>
                 <p>On the day of admission, you must bring the following:</p>
                 <ul class="list-group mb-4">
                     <li class="list-group-item">This admission letter</li>
@@ -49,12 +49,15 @@
                     <li class="list-group-item">National ID card, Birth Certificate, and their copies</li>
                     <li class="list-group-item">2 recently taken passport-size photographs</li>
                     <li class="list-group-item">Medical Form (attached at the back of this admission letter)</li>
-                    <li class="list-group-item">Fees (Banking Slip)</li>
+                    <li class="list-group-item">A Bank Slip of Kshs. 500 Application Fee</li>
                 </ul>
 
-                <h2 class="mt-4">Fees</h2>
-                <p>Fees are payable in full at the beginning of each term. All payments are made in Banker’s Cheque or Money Order and addressed to:Mwala TVC.</p>
-                <p><strong>NB:</strong> Cash payments will not be accepted. You can also directly pay into the Institute Account No.  of Kenya Commercial Bank Ltd or deposit through our Lipa na Mpesa Service (Pay bill No.), Mwala TVC.</p>
+                <h4 class="mt-4">Fees</h4>
+                <p>The fees should be paid in total by bankers’ cheque or deposited directly to Mwala Technical and Vocational
+                    College, Account Number: 1286272297, Kenya Commercial Bank, Masii Branch. You can also use our pay
+                    bill Number 522522 to Deposit the money to the above bank account number and send us the message as a
+                    prove of payment. Cash will not be accepted. </p>
+                <p><strong>NB:</strong> Cash payments will not be accepted. You can also directly pay into the Institute  Account Number: 1286272297, Kenya Commercial Bank, Masii Branch or deposit through our Lipa na Mpesa Service (Pay bill No. 522522), Mwala TVC.</p>
 
                 <div class="d-flex justify-content-around mt-4">
                     <a href="{% url 'mwala_app:applicationPdf' %}" class="btn btn-primary btn-lg" >Download Application Form</a>

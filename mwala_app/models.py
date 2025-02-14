@@ -40,7 +40,7 @@ class Course(models.Model):
         ('Diploma(level 6)', 'Diploma(level 6)'),
         ('Certificate(level 5)', 'Certificate(level 5)'),
         ('Artisan(level 4)', 'Artisan(level 4)'),
-        ('Short courses(level 3)', 'Short courses(level 3)'),
+        ('Short Courses(level 3)', 'Short Courses(level 3)'),
         ('Accounting', 'Accounting'),
         ('NITA', 'NITA'),
     ]

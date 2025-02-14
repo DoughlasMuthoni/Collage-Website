@@ -8,7 +8,7 @@
             <div class="carousel-item active">
                 <img src="{% static 'assets\images\mwala_img4.jpg' %}" class="d-block w-100 carousel-zoom" alt="Slide 1">
                 <div class="carousel-caption">
-                    <h1>Welcome to Mwala Technical And Vocational Collage</h1>
+                    <h1>Welcome to Mwala Technical and Vocational College</h1>
                     <p>The Future Belongs to Those Who See Possibilities Today</p>
                     <a href="{% url 'mwala_app:allCourses' %}"><button class="btn btn-blue">Find a Course</button></a>
                     <a href="{% url 'mwala_app:onlineApplication' %}"><button class="btn btn-green">Apply Now</button></a>
@@ -286,7 +286,7 @@
                             </div>
                             <h4 class="card-title fw-bold">Vision</h4>
                             <p class="card-text text-white">
-                                To be a leading center of excellence in technical and vocational education, producing globally competitive graduates who drive progress and innovation.
+                                A Centre of Excellence in Technical Training for Employable Workforce. 
                             </p>
                         </div>
                     </div>
@@ -304,14 +304,15 @@
                             </div>
                             <h4 class="card-title fw-bold">Mission</h4>
                             <p class="card-text text-white">
-                                To empower individuals through comprehensive technical training and education that meets the demands of a dynamic and evolving job market while fostering innovation, professionalism, and community engagement.
+                                To Produce Competent Employable Graduates by Facilitating Learning, Research and
+                                Innovative Dissemination of Knowledge, Skills and Productive Work Attitudes to Meet SocioEconomic and Cultural Needs of the Citizens of Kenya and Beyond. 
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
     
-            <!-- Mandate -->
+            <!-- motto -->
             <div class="col-md-4">
                 <div class="card border-0 text-white"  style="height:300px;">
                     <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img4.jpg'); background-size: cover; background-position: center; height: 100vh;">
@@ -320,9 +321,9 @@
                             <div class="icon mb-3">
                                 <i class="fas fa-briefcase text-success fs-1"></i>
                             </div>
-                            <h4 class="card-title fw-bold">Mandate</h4>
+                            <h4 class="card-title fw-bold">Motto</h4>
                             <p class="card-text text-white">
-                                Training of Students for all technical Courses for TVETS in the country.
+                                Unlocking Knowledge, Skills and Work Behaviour in The Heart of Africa
                             </p>
                         </div>
                     </div>
@@ -337,11 +338,11 @@
                 <i class="fas fa-cogs me-2"></i> OUR CORE VALUES
             </h2>
             <p class="mt-2">
+                <span class="fw-semibold">Accountability</span> &bull; 
                 <span class="fw-semibold">Professionalism</span> &bull; 
-                <span class="fw-semibold">Innovation</span> &bull; 
                 <span class="fw-semibold">Integrity</span> &bull; 
-                <span class="fw-semibold">Inclusivity</span> &bull; 
-                <span class="fw-semibold">Accountability</span>
+                <span class="fw-semibold">Respect</span> &bull; 
+                <span class="fw-semibold">Diversity, Equity, and Inclusion</span>
             </p>
         </div>
     </div>
@@ -468,7 +469,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
-                                Is Mwala Technical And Vocational Collage Courses Accredited and registered by the government?
+                                Is Mwala Technical and Vocational Collage Courses Accredited and registered by the government?
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
@@ -677,7 +678,7 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
     
                  <!-- Welcome Message -->
                 <div class="col-md-6 text-dark">
-                    <h2 class="text-danger fw-bold">Mwala TVC Chief Principal</h2>
+                    <h2 class="text-danger fw-bold">Chief Principal Mwala TVC </h2>
                     <p>{{ principal_message.description|truncatechars:1200|safe }}</p>
                     
                     <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-primary">Read More</a>
@@ -690,19 +691,16 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
             <div class="col-md-3 text-dark">
                 <div class="mb-4">
                     <h4 class="text-danger fw-bold">Mission</h4>
-                    <p>To Facilitate Learning, Research and Innovative Dissemination of Knowledge, Skills and 
-                        Productive Work Attitudes to Produce Competent Employable Graduates, Through 
-                        Conducive Industry-Community Collaboration and Partnerships, to Meet Socio-Economic 
-                        and Cultural Needs of the Citizens of Kenya and Beyond.</p>
+                    <p> To Produce Competent Employable Graduates by Facilitating Learning, Research and
+                        Innovative Dissemination of Knowledge, Skills and Productive Work Attitudes to Meet SocioEconomic and Cultural Needs of the Citizens of Kenya and Beyond. </p>
                 </div>
                 <div class="mb-4">
                     <h4 class="text-danger fw-bold">Vision</h4>
-                    <p>To be a Centre of Excellence and A Member of Global Academic Community in Technical 
-                        Training and Development of Employable Workforce. </p>
+                    <p> A Centre of Excellence in Technical Training for Employable Workforce.  </p>
                 </div>
                 <div>
                     <h4 class="text-danger fw-bold">Motto</h4>
-                    <p>Fostering talents and technical skills.</p>
+                    <p> Unlocking Knowledge, Skills and Work Behaviour in The Heart of Africa</p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ def homePage(request):
     notices = Notice.objects.order_by('-date')[:3]
     job_vacancies  = JobsVacancies.objects.order_by('-deadlineDate')[:4]
     departments = Department.objects.order_by('-title')[:5]
-    principal_message = Administration.objects.filter(position__iexact="Chief Principal").first()
+    principal_message = Administration.objects.filter(position__iexact="Office of Chief Principal").first()
     # Group courses by their levels
     course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('-course_level')[:3]
     courses_by_level = {
@@ -218,7 +218,7 @@ def applicationForm(request):
 
 def applicationPdf(request):
     application_form = Notice.objects.filter(
-        title__icontains="application_form", uploadNotice__isnull=False
+        title__icontains="Application Form", uploadNotice__isnull=False
     ).order_by('-date').first()
     application_file_url = application_form.uploadNotice.url if application_form else None
     return render(request, 'application_pdf.html', {'application_file_url': application_file_url})
@@ -235,7 +235,7 @@ def feeStructure(request):
 
 def clearanceForm(request):
     clearing_form = Notice.objects.filter(
-        title__icontains="clearance form", uploadNotice__isnull=False
+        title__icontains="Clearance Form", uploadNotice__isnull=False
     ).order_by('-date').first()
 
     clearance_file_url = clearing_form.uploadNotice.url if clearing_form else None
@@ -245,7 +245,7 @@ def clearanceForm(request):
 
 def courseTransferForm(request):
     transfering_form = Notice.objects.filter(
-        title__icontains="course transfer form", uploadNotice__isnull=False
+        title__icontains="Course Transfer Form", uploadNotice__isnull=False
     ).order_by('-date').first()
 
     transer_file_url = transfering_form.uploadNotice.url if transfering_form else None
@@ -255,7 +255,7 @@ def courseTransferForm(request):
 
 def feeRefundForm(request):
     refunding_form = Notice.objects.filter(
-        title__icontains="fee refunding form", uploadNotice__isnull=False
+        title__icontains="Fee Refunding Form", uploadNotice__isnull=False
     ).order_by('-date').first()
 
     refunding_file_url = refunding_form.uploadNotice.url if refunding_form else None
@@ -266,7 +266,7 @@ def feeRefundForm(request):
 
 def serviceCharter(request):
     service_delivery_charter = Notice.objects.filter(
-        title__icontains="service delivery charter", uploadNotice__isnull=False
+        title__icontains="Service Delivery Charter", uploadNotice__isnull=False
     ).order_by('-date').first()
 
     service_delivery_file_url = service_delivery_charter.uploadNotice.url if service_delivery_charter else None

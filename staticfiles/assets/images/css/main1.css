@@ -1,8 +1,5 @@
 
 
-
-
-
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -20,19 +17,22 @@
 
 .move {
     color: #fff;
+    font-size: 1rem; /* Adjust font size for better readability */
     background-color: #ff0000;
     border-color: #007bff;
     position: relative;
     animation: pulse 1.5s infinite;
     transition: all 0.3s ease;
-    border-radius: 50%;
-    width: 10vw; /* Responsive size (10% of viewport width) */
-    height: 10vw; /* Keep it square */
-    max-width: 56px; /* Max size for large screens */
-    max-height: 56px; /* Max size for large screens */
+    /* border-radius: 50%; */
+    width: 8vw; /* Responsive width */
+    height: 8vw; /* Responsive height */
+    max-width: 60px; /* Ensure button doesn't get too large */
+    max-height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center; /* Center text alignment */
+    line-height: 1.2; /* Adjust for better text fit */
 }
 
 .move:hover {
@@ -54,17 +54,19 @@
 /* Media Queries for Responsiveness */
 @media screen and (max-width: 768px) {
     .move {
-        width: 15vw; /* Larger size on smaller screens */
-        height: 15vw;
-        max-width: 50px; /* Limit the size on very small screens */
-        max-height: 50px;
+        font-size: 0.9rem; /* Slightly smaller text */
+        width: 12vw; /* Larger size for smaller screens */
+        max-width: 60px; /* Ensure button doesn't get too large */
+        max-height: 35px; /* Limit the size */
+        
     }
 }
 
 @media screen and (max-width: 480px) {
     .move {
-        width: 20vw; /* Even larger on extremely small screens */
-        height: 20vw;
+        font-size: 0.8rem; /* Smaller text for extra small screens */
+        width: 16vw; /* Larger button size */
+        height: 16vw;
         max-width: 40px;
         max-height: 40px;
     }
@@ -106,12 +108,27 @@
     margin-left: 10px;
     font-size: 14px;
 }
-/* Main navigation header */
-.main-nav {
-    background-color: hsl(118, 100%, 25%); /* Navy #0098DB */
-    padding: 10px 0;
+
+
+/* General Header Styling */
+header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f8f9fa; 
 }
 
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center links on desktop */
+    align-items: center;
+    padding: 10px 15px;
+    background-color: hsl(118, 100%, 25%);
+}
+
+/* Navigation Links */
 .main-nav a {
     color: white;
     font-size: 14px;
@@ -125,74 +142,79 @@
     color: #0098DB;
 }
 
-/* Basic Styling */
-.main-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+/* Dropdown Menu Styling */
+.nav-item {
+    position: relative;
+    margin-right: 15px;
 }
 
-.main-nav a, .main-nav button {
-    margin: 5px;
-    padding: 10px;
-    text-align: center;
+/* Dropdown Hidden by Default */
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    min-width: 180px;
+    background: white;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1000;
 }
 
-.main-nav i {
-    margin-right: 5px;
+/* Show dropdown on hover (Desktop) */
+.nav-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
 }
 
-/* Styling for search input */
-#searchInput {
-    display: none;
+/* Ensure Dropdown is Clickable (Mobile) */
+.nav-item .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
 }
 
-@media (max-width: 1200px) {
-    .main-nav a, .main-nav button {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
+/* Responsive Styling */
 @media (max-width: 768px) {
     .main-nav {
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .main-nav a, .main-nav button {
-        font-size: 12px;
-        padding: 6px;
+    /* Adjust dropdown for small screens */
+    .nav-item .dropdown-menu {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        display: none; /* Hide by default */
     }
 
-    /* Hide search input by default on small screens */
+    /* Show dropdown when parent is clicked */
+    .nav-item.active .dropdown-menu {
+        display: block;
+    }
+
+    /* Adjust search input */
     #searchInput {
         display: none;
     }
 
-    /* Show the search button */
     #searchToggle {
         display: block;
     }
 }
 
 @media (max-width: 576px) {
-    .main-nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .main-nav a, .main-nav button {
+    .main-nav a {
         width: 100%;
         text-align: left;
     }
 
-    #searchToggle {
-        display: block;
-    }
-
-    /* Make search bar visible on smaller screens when search button is clicked */
+    /* Make search bar visible when toggled */
     #searchInput {
         display: block;
         width: 100%;
@@ -200,124 +222,9 @@
     }
 }
 
-
-.search-input {
-width: 200px; 
-margin-left: 12px; 
-}
-
 .note{
     border-top: 2px solid #007bff;
 }
-
-
-/* Ensuring submenu positioning */
-.dropdown-submenu {
-    position: relative;
-}
-
-/* Rotate the arrow when the dropdown is open */
-.toggle-dropdown.rotate {
-    transform: rotate(45deg);
-    transition: transform 0.3s ease;
-}
-
-/* Submenu visibility and positioning */
-.dropdown-submenu > .dropdown-menu {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 100%; /* Display the submenu to the right */
-    margin-top: -6px;
-    z-index: 1050;
-    transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-/* Show the submenu when hovering */
-.dropdown-submenu:hover > .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    margin-left: 2px;
-}
-
-
-/* Styles for mobile and smaller screen sizes */
-@media (max-width: 768px) {
-    /* General dropdown menu adjustments */
-    .dropdown-menu {
-        position: static;
-        display: none;
-        width: 100%; /* Full width on mobile */
-        background-color: #fff;
-        visibility: visible;
-        opacity: 1;
-        z-index: 1; /* Default z-index for regular dropdowns */
-    }
-
-    
-
-    /* Submenu adjustments */
-    .dropdown-submenu {
-        position: static; /* Stack submenus below the parent */
-        margin-top: 0;
-    }
-
-    /* Submenu visibility adjustments */
-    .dropdown-submenu > .dropdown-menu {
-        display: none; /* Hidden by default */
-        width: 100%; /* Full width for smaller screens */
-        position: relative; /* Allow stacking */
-        visibility: visible;
-        opacity: 1;
-        z-index: 2; /* Higher z-index for deep dropdowns */
-    }
-
-    /* Make submenu visible when parent is toggled open */
-    .dropdown-submenu.open > .dropdown-menu {
-        display: block !important;
-    }
-
-    /* Align dropdowns properly */
-    .dropdown-submenu > .dropdown-menu,
-    .nav-item.dropdown > .dropdown-menu {
-        left: 0;
-        right: 0;
-    }
-
-    /* Adjust toggle arrow for submenus */
-    .dropdown-submenu > a:after {
-        content: "\f078"; /* FontAwesome chevron icon */
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        margin-left: 10px;
-        transform: rotate(0);
-        transition: transform 0.3s ease;
-    }
-
-    /* Rotate arrow when submenu is open */
-    .dropdown-submenu.open > a:after {
-        transform: rotate(90deg); /* Rotate arrow to indicate expanded state */
-    }
-
-
-}
-
-/* Optional: Show dropdowns on hover for larger screens */
-@media (min-width: 768px) {
-    .nav-item.dropdown:hover > .dropdown-menu {
-        display: block !important;
-    }
-
-    .dropdown-submenu:hover > .dropdown-menu {
-        visibility: visible;
-        opacity: 1;
-        display: block;
-    }
-}
-
-
-
 
 
 .btn-blue {
@@ -337,7 +244,7 @@ margin-left: 12px;
 }
 .whatsapp-icon {
     position: fixed;
-    bottom: 20px;
+    bottom: 12px;
     right: 12px;
     width: 60px;
     height: 60px;
@@ -369,18 +276,30 @@ margin-left: 12px;
     margin: 5px;
 }
 
-/* Add a smooth zoom-in effect */
-.carousel-zoom {
-    transition: transform 1.5s ease-in-out; /* Smooth transition for zoom effect */
+/* Add keyframes for zoom-in and zoom-out */
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1); /* Normal size */
+    }
+    50% {
+        transform: scale(1.3); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out */
+    }
 }
 
+/* Apply the zoom-in and zoom-out animation */
 .carousel-item.active .carousel-zoom {
-    transform: scale(1.1); /* Slight zoom-in for active slides */
+    animation: zoomInOut 5.0s ease-in-out; /* Animation for active slide */
 }
 
+/* Reset inactive items */
 .carousel-item:not(.active) .carousel-zoom {
-    transform: scale(1); /* Reset to normal size for inactive slides */
+    transform: scale(1); /* Reset to normal size */
+    animation: none; /* No animation for inactive slides */
 }
+
 
 /* Style for buttons in the carousel */
 .carousel-caption .btn {
@@ -724,7 +643,11 @@ text-decoration: underline;
 .notices-item a:hover {
     text-decoration: underline;
 }
-
+.view{
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+}
 .program-card {
     background-color: white; /* Purple background */
     color: black;
@@ -761,6 +684,62 @@ text-decoration: underline;
     max-height: 400px;
     object-fit: cover;
 }
+
+.card-img-top-news {
+    height: 200px;
+    object-fit: cover; 
+    width: 100%; 
+    display: block; 
+}
+
+
+.card-admin {
+    height: 100%; /* Ensure the card takes the full height of its container */
+    display: flex; /* Enable flexbox for alignment */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.card-img-top-admin {
+    height: 220px; /* Set a fixed height for the image */
+    width: 100%; /* Make the image take up the full width */
+    object-fit: contain; /* Ensure the full image is visible and scaled proportionally */
+    background-color: #f8f9fa; /* Optional: Add a background color for better presentation */
+    border-bottom: 1px solid #ddd; 
+}
+
+.card-body-admin {
+    flex-grow: 1; /* Ensure the card body stretches to fill the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.principal-message img {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+form .mb-3 {
+    margin-bottom: 1.5rem; 
+}
+
+form label {
+    font-weight: bold; 
+}
+
+form .form-select,
+form .form-control {
+    width: 100%;
+}
+
+
+.department-image {
+    width: 100%; 
+    height: 300px;
+    object-fit: cover; 
+  }
 
 .row.align-items-start {
     align-items: flex-start !important;
@@ -847,23 +826,23 @@ text-decoration: underline;
   /* Smaller screens: Reduce the scale to avoid overflow */
   @media (max-width: 576px) {
     .gallery-item:hover {
-      transform: scale(1.2); /* Smaller zoom on small screens */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Less pronounced shadow */
+      transform: scale(1.05); /* Smaller zoom on small screens */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
     }
   }
   
-  /* Larger screens: Optional: You can add more specific breakpoints if needed */
+  /* Larger screens */
   @media (min-width: 768px) {
     .gallery-item:hover {
-      transform: scale(1.6); /* Adjust the scale on medium screens */
+      transform: scale(1.3); 
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     }
   }
   
   
   .gallery-image {
-    width: 100%; /* Ensure the image takes up the full width of the parent container */
-    height: 200px; /* You can adjust this to your desired height */
+    width: 100%; 
+    height: 300px; 
     object-fit: cover; /* Maintain aspect ratio and crop if necessary */
   }
 
@@ -940,10 +919,10 @@ text-decoration: underline;
   }
 
   .container {
-    max-width: 10000px;
+    max-width: 100%;
     margin-top: 30px;
   }
-
+ 
   .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
@@ -972,9 +951,478 @@ text-decoration: underline;
     color: red;
   }
 
-.department-message{
+.department-meassage{
     
     background: transparent;
 }
 
+/* Ensure all cards have the same height */
+.gallery-item {
+    display: flex;
+    flex-direction: column; 
+    height: 100%; 
+    border: 1px solid #ddd; 
+}
 
+/* Set a fixed height for images, but make sure they maintain aspect ratio */
+.gallery-image {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+
+.card-body-image {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures the text and span stay at the top and bottom */
+}
+
+/* Optional: Styling for the card body */
+.card-body-image .card-text {
+    margin-bottom: 10px; /* Space between the text and title */
+}
+
+.card-body-image span {
+    margin-top: auto; /* Push the title text to the bottom */
+}
+
+/* Optional: Adjust spacing on smaller screens */
+@media (max-width: 767px) {
+    .gallery-image {
+        height: 150px; /* Reduce image height for smaller screens */
+    }
+}
+
+.card-header {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+}
+.card-body p {
+    font-size: 1rem;
+    color: #555;
+}
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+/* General Dropdown Styling */
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1000;
+    overflow-y: auto; /* Enable scrolling */
+}
+
+.nav-item {
+    margin-right: 15px;
+}
+
+/* Show dropdowns on hover */
+.nav-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+    
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.about .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 70px; /* Align with the left margin */
+    right: 70px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+    max-height: 450px; /* Set a fixed height for the dropdown */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Show dropdown on hover */
+.nav-item.about:hover .dropdown-menu {
+    display: block;
+    max-height: 450px; /* Ensure the dropdown retains the fixed height when visible */
+    overflow-y: auto; /* Keep scrolling enabled */
+}
+
+
+/* Adjust for About Us dropdown menu */
+.nav-item.applicant .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.applicant:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust for About Us dropdown menu */
+.nav-item.resources .dropdown-menu {
+    position: absolute;
+    top: 70%; /* Position just below the parent item */
+    left: 170px; /* Align with the left margin */
+    right: 170px; /* Align with the right margin */
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Ensure dropdown is on top */
+    display: none; /* Initially hide */
+}
+
+/* Show dropdown on hover */
+.nav-item.resources:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* Adjust for About Us dropdown menu */
+.nav-item.download .dropdown-menu {
+    position: absolute;
+    top: 70%; 
+    left: 170px;
+    right: 80px; 
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    display: none; 
+}
+
+/* Show dropdown on hover */
+.nav-item.download:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Adjust spacing for nav links */
+.nav-link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-link:hover {
+    color: #0098DB;
+    border-bottom: 3px solid #0098DB;
+}
+
+.dropdown-header {
+    color: green;
+    font-size: 1.1rem;
+    
+}
+
+/* Increase spacing of dropdown items */
+.dropdown-item {
+    padding: 2px 10px; /* Adjust padding for more space between items */
+    font-size: 15px; /* Increase font size for readability */
+    color: black;
+    font-weight: 500;
+}
+
+/* Ensure all columns are the same size */
+.dropdown-menu .container .row {
+    display: flex;
+    justify-content: space-between; /* Distribute columns evenly */
+    margin: 0;
+}
+
+/* Each column should take an equal amount of space */
+.dropdown-menu .container .row .col-md-2,
+.dropdown-menu .container .row .col-md-3 {
+    flex: 1; /* Make columns of equal size */
+    padding: 0 2px; /* Add some padding inside */
+    border-right: 2px solid #ddd; /* Add vertical lines between columns */
+}
+
+/* Remove right border on last column */
+.dropdown-menu .container .row .col-md-3:last-child,
+.dropdown-menu .container .row .col-md-2:last-child {
+    border-right: none;
+}
+
+/* Optional: Adjust header margins to add spacing between the title and items */
+.dropdown-header {
+    margin-bottom: 10px;
+}
+
+/* Fixing potential overflow/overlap on small screens */
+@media (max-width: 767px) {
+    .dropdown-menu .container .row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dropdown-menu .container .row .col-md-2,
+    .dropdown-menu .container .row .col-md-3 {
+        padding: 10px 0;
+    }
+}
+
+/* Responsive styles for small screens and tablets */
+@media (max-width: 991px) {
+    .nav-item {
+        margin-right: 5px;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        visibility: visible;
+        opacity: 0;
+        display: none;
+        margin-top: 5px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: white;
+        max-height: 400px; /* Limit dropdown height */
+        overflow-y: auto; /* Enable scrolling */
+        transition: opacity 0.3s ease-in-out;
+    }
+    .show {
+        display: block !important;
+        visibility: visible;
+        opacity: 1;
+    }
+    .dropdown-item {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .dropdown-header {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .nav-link {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .dropdown-menu .container {
+        padding: 0;
+    }
+
+    .dropdown-menu .container .row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dropdown-menu .container .row .col-md-2,
+    .dropdown-menu .container .row .col-md-3 {
+        flex: unset;
+        width: 100%;
+        padding: 10px 0;
+        border-right: none;
+    }
+
+    /* Optional: Add toggle arrows */
+    .nav-item .dropdown-toggle {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 8px 10px;
+    }
+
+    .dropdown-toggle::after {
+        content: '\25BC';
+        float: right;
+    }
+}
+
+/* Custom Dropdown Container */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Toggle */
+.custom-dropdown-toggle {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.custom-dropdown-toggle:hover {
+    background-color: none;
+}
+
+/* Dropdown Menu */
+.custom-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Show dropdown on hover */
+.custom-dropdown:hover .custom-dropdown-menu {
+    display: block;
+}
+
+/* Logout Styling */
+.custom-dropdown-item.logout {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+.custom-dropdown-item.logout:hover {
+    color: #c9302c;
+}
+
+/* Show Menu on Hover */
+.custom-dropdown:hover .custom-dropdown-menu {
+    display: block;
+}
+/* Divider */
+.custom-dropdown-divider {
+    height: 1px;
+    margin: 5px 0;
+    background-color: #ddd;
+}
+
+/* examination section styling */
+.section {
+    background-color: #ffffe0; 
+    border: 1px solid #f9f9f9; 
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #007bff; /* Dark red color */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accessibility-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #d60617; /* Dark red background */
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.accessibility-icon:hover {
+    background-color: #56ff47; /* Lighter red on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #25D366;
+    color: white;
+}
+
+
+.member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.member img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.member h6 {
+    margin: 0;
+    font-size: 1rem;
+}
+.member p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+
+/* Reduce size of the carousel */
+#imageCarouselModal .carousel-inner {
+    max-width: 100%;  /* Set maximum width of the carousel */
+    max-height: 70vh;  /* Set maximum height (using viewport height units) */
+    margin: 0 auto;  /* Center carousel horizontally */
+}
+
+#imageCarouselModal .carousel-item img {
+    width: 100%;  /* Ensure images fit within the carousel width */
+    height: auto;  /* Maintain aspect ratio */
+}
+
+/* You can further adjust for different screen sizes if needed */
+@media (max-width: 768px) {
+    #imageCarouselModal .carousel-inner {
+        max-width: 100%;  /* Make carousel slightly bigger on small screens */
+        max-height: 50vh;  /* Reduce height on small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    #imageCarouselModal .carousel-inner {
+        max-width: 100%;  /* Even smaller on extra small screens */
+        max-height: 45vh;  /* Reduce height further */
+    }
+}

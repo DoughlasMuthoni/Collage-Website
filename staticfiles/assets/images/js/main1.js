@@ -1,29 +1,40 @@
 
 
 
-document.getElementById('searchToggle').addEventListener('click', function (event) {
-  event.preventDefault(); // Prevent form submission if the button is inside a form
-  const searchInput = document.getElementById('searchInput');
-  searchInput.classList.toggle('show');
-      });
+document.addEventListener("DOMContentLoaded", function () {
+    const searchToggle = document.getElementById("searchToggle");
+    const searchInput = document.getElementById("searchInput");
+    const searchForm = searchInput.closest("form");
 
+    searchToggle.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent unintended form submission
 
+        // Toggle visibility of the search input
+        searchInput.classList.toggle("show");
 
-document.querySelectorAll('.dropdown-submenu').forEach(function (submenu) {
-  submenu.addEventListener('mouseover', function () {
-      const dropdown = submenu.querySelector('.dropdown-menu');
-      if (dropdown) {
-          dropdown.classList.add('show');
-      }
-  });
+        if (searchInput.classList.contains("show")) {
+            searchInput.style.display = "block";
+            searchInput.focus(); // Auto-focus when shown
+        } else {
+            searchInput.style.display = "none";
 
-submenu.addEventListener('mouseout', function () {
-    const dropdown = submenu.querySelector('.dropdown-menu');
-    if (dropdown) {
-        dropdown.classList.remove('show');
-    }
-  });
+            // If input has text, submit search on second click
+            if (searchInput.value.trim() !== "") {
+                searchForm.submit();
+            }
+        }
+    });
+
+    // Allow "Enter" key to submit the search
+    searchInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent default form submission
+            searchForm.submit();
+        }
+    });
 });
+
+
 // Get the back-to-top button
 const backToTopButton = document.querySelector('.back-to-top');
 
@@ -50,25 +61,9 @@ src="https://kit.fontawesome.com/a076d05399.js"
 
 
 
-// Toggle dropdowns on mobile
-document.querySelectorAll('.dropdown-submenu > a').forEach(function (submenu) {
-  submenu.addEventListener('click', function (e) {
-      e.preventDefault();
-      const parent = this.closest('.dropdown-submenu');
-      parent.classList.toggle('open');
-  });
-});
 
-// Close other dropdowns when one is opened
-document.querySelectorAll('.nav-item.dropdown > a').forEach(function (dropdown) {
-  dropdown.addEventListener('click', function () {
-      document.querySelectorAll('.nav-item.dropdown').forEach(function (item) {
-          if (item !== dropdown.closest('.nav-item')) {
-              item.classList.remove('open');
-          }
-      });
-  });
-});
+
+
 setTimeout(() => {
   const alertBox = document.getElementById('message-alert');
   if (alertBox) {
@@ -85,3 +80,134 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 5000); // 5000ms = 5 seconds
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Handle click event for dropdowns on small screens
+  const dropdownItems = document.querySelectorAll('.nav-item.dropdown .dropdown-toggle');
+
+  dropdownItems.forEach(item => {
+      item.addEventListener('click', function (e) {
+          if (window.innerWidth <= 992) {
+              e.preventDefault(); // Prevent default anchor behavior
+              e.stopPropagation(); // Stop event from bubbling up
+              
+              let dropdownMenu = this.nextElementSibling;
+              
+              // Close other open dropdowns
+              document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                  if (menu !== dropdownMenu) {
+                      menu.classList.remove('show');
+                  }
+              });
+
+              // Toggle current dropdown
+              dropdownMenu.classList.toggle('show');
+          }
+      });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-item.dropdown')) {
+          document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+              menu.classList.remove('show');
+          });
+      }
+  });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll(".counter");
+  
+    // Function to animate the counter
+    const animateCounter = (counter) => {
+      const target = +counter.getAttribute("data-target"); // Target number
+      const updateCount = () => {
+        const count = +counter.innerText.replace("+", "") || 0; // Current number
+        const increment = target / 100; // Increment value
+  
+        if (count < target) {
+          counter.innerText = `${Math.ceil(count + increment)}+`;
+          setTimeout(updateCount, 10); // Adjust speed by changing the timeout value
+        } else {
+          counter.innerText = `${target}+`; // Set to target if exceeded
+        }
+      };
+  
+      updateCount();
+    };
+  
+    // Observe when counters enter the viewport
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            animateCounter(counter);
+            observer.unobserve(counter); // Stop observing once animation starts
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+  
+    counters.forEach((counter) => {
+      observer.observe(counter);
+    });
+  });
+  
+
+
+// Populate counties
+fetch('/get-counties/')
+.then(response => response.json())
+.then(data => {
+    const countySelect = document.getElementById('id_county');
+    data.counties.forEach(county => {
+        const option = document.createElement('option');
+        option.value = county;
+        option.textContent = county;
+        countySelect.appendChild(option);
+    });
+})
+.catch(error => console.error('Error fetching counties:', error));
+
+// Populate courses based on selected department
+const departmentSelect = document.getElementById('id_department');
+const courseSelect = document.getElementById('id_course');
+
+departmentSelect.addEventListener('change', function () {
+const departmentId = this.value;
+
+// Clear existing courses
+courseSelect.innerHTML = '<option value="" disabled selected>Select a course</option>';
+
+fetch(`/get-courses/${departmentId}/`)
+    .then(response => response.json())
+    .then(data => {
+        data.courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course.id;
+            option.textContent = course.course_name;
+            courseSelect.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching courses:', error));
+});
+
+
+document.querySelectorAll('.section-title').forEach(title => {
+          title.addEventListener('click', function () {
+              const icon = this.querySelector('.toggle-icon');
+              if (icon.textContent === '+') {
+                  icon.textContent = '-';
+              } else {
+                  icon.textContent = '+';
+              }
+          });
+      });
+
+
+

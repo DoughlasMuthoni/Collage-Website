@@ -149,7 +149,7 @@ def adminstrationDetails(request, id):
 
 
 def principalDetail(request):
-    principal_message = get_object_or_404(Administration, position__iexact="Chief Principal")
+    principal_message = get_object_or_404(Administration, position__iexact="Office of Chief Principal")
     
     context = {
         'principal_message': principal_message,

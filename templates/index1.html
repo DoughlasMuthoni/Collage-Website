@@ -663,48 +663,33 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
     
 
     <div class="container my-2">
-        <div class="row">
-            <!-- Principal Section -->
+        <div class="row align-items-start">
+            <!-- Principal Image and Title -->
             {% if principal_message %}
                 <div class="col-md-3 text-center text-dark">
                     {% if principal_message.image %}
-                        <img src="{{ principal_message.image.url }}" class="img-fluid  mb-3" alt="{{ principal_message.title }}">
+                        <img src="{{ principal_message.image.url }}" class="img-fluid mb-3" alt="{{ principal_message.title }}">
                     {% else %}
-                        <img src="{% static 'assets\images\default_img.jpeg' %}" class="img-fluid  mb-3" alt="Default Principal">
+                        <img src="{% static 'assets/images/default_img.jpeg' %}" class="img-fluid mb-3" alt="Default Principal">
                     {% endif %}
-                        <h6 class="fw-bold">{{ principal_message.title }}</h6>
-                        <p class="text-muted">{{ principal_message.position }}</p>
+                    <h6 class="fw-bold">{{ principal_message.title }}</h6>
+                    <p class="text-muted">{{ principal_message.position }}</p>
                 </div>
     
-                 <!-- Welcome Message -->
-                <div class="col-md-6 text-dark">
-                    <h2 class="text-danger fw-bold">Chief Principal Mwala TVC </h2>
-                    <p>{{ principal_message.description|truncatechars:1200|safe }}</p>
-                    
+                <!-- Principal Message -->
+                <div class="col-md-9 text-dark">
+                    <h2 class="text-danger fw-bold">Chief Principal Mwala TVC</h2>
+                    <p>{{ principal_message.description|truncatechars:1900|safe }}</p>
                     <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-primary">Read More</a>
                 </div>
+    
+                
             {% else %}
                 <p class="text-muted">Principal's message is not available at the moment.</p>
             {% endif %}
-    
-            <!-- Mission, Vision, Motto -->
-            <div class="col-md-3 text-dark">
-                <div class="mb-4">
-                    <h4 class="text-danger fw-bold">Mission</h4>
-                    <p> To Produce Competent Employable Graduates by Facilitating Learning, Research and
-                        Innovative Dissemination of Knowledge, Skills and Productive Work Attitudes to Meet SocioEconomic and Cultural Needs of the Citizens of Kenya and Beyond. </p>
-                </div>
-                <div class="mb-4">
-                    <h4 class="text-danger fw-bold">Vision</h4>
-                    <p> A Centre of Excellence in Technical Training for Employable Workforce.  </p>
-                </div>
-                <div>
-                    <h4 class="text-danger fw-bold">Motto</h4>
-                    <p> Unlocking Knowledge, Skills and Work Behaviour in The Heart of Africa</p>
-                </div>
-            </div>
         </div>
     </div>
+    
     <div class="container my-0 bg-transparent">
         <!-- Counter Section -->
         <div class="row text-center">

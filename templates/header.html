@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-12 col-md-3 border-end">
                                         <h6 class="dropdown-header">Administration</h6>
-                                        <a class="dropdown-item" href="{% url 'mwala_app:bog' %}"> Board Of Governors </a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:bog' %}"> Board of Governors </a>
                                         {% for admin in administrators %}
                                             <a class="dropdown-item" href="{% url 'mwala_app:adminstrationDetails' admin.id %}">
                                                 {{ admin.position }}

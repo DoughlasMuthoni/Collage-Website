@@ -221,10 +221,25 @@ body {
 }
 
 @media (max-width: 320px) {
-    .main-nav a {
-        width: 100%;
-        text-align: left;
+    .main-nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        gap: 10px;
+        text-align: center;
     }
+
+    .main-nav a {
+        font-size: 12px;
+    }
+
+    /* Push the last item (HELB Portal) to the third row, last column */
+    .main-nav .special-link {
+        grid-column: 3 / 4; /* place in 3rd column */
+        grid-row: 3; /* third row */
+        justify-self: end; /* align it to the right */
+    }
+}
+
 
     /* Make search bar visible when toggled */
     #searchInput {
@@ -232,7 +247,7 @@ body {
         width: 100%;
         margin-top: 10px;
     }
-}
+
 /* General Header Styling */
 header {
     margin: 0;
@@ -544,6 +559,32 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     color: black;
 }
+
+
+@media (max-width: 576px) {
+    .card-body {
+        min-height: 140px !important; /* Reduce height */
+        padding: 1rem !important;     /* Tighter padding */
+    }
+
+    .card-body i {
+        font-size: 2rem !important;   /* Smaller icons */
+    }
+
+    .card-title {
+        font-size: 1rem !important;   /* Smaller title text */
+        margin-top: 0.5rem !important;
+    }
+
+    .card-text.view {
+        font-size: 0.9rem !important; /* Smaller paragraph text */
+    }
+
+    .content-c {
+        font-size: 0.85rem !important;
+    }
+}
+
 
 
 /* General Footer Styles */

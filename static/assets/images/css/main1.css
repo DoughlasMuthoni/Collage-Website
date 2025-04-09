@@ -539,12 +539,7 @@ body {
     table-layout: fixed; /* Fix column widths */
 }
 
-/* Prevent table cells from wrapping and breaking the layout */
-.table-responsive th, .table-responsive td {
-    white-space: nowrap; /* Prevent wrapping in table cells */
-    overflow: hidden; /* Hide overflowed content */
-    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
-}
+
 
 /* Table header styling */
 .table thead {

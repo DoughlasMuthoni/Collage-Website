@@ -526,23 +526,36 @@ body {
     width: 100%;
     overflow-x: auto; /* Enable horizontal scroll */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    max-width: 100%; /* Ensures it doesn’t stretch beyond its parent container */
+    margin-bottom: 20px; /* Add some spacing at the bottom */
+    padding-bottom: 10px; /* Ensure the padding on the bottom */
+    border: 1px solid #ddd; /* Light border around the table */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Force the table to always require scrolling on small screens */
+.table-responsive table {
+    width: 100%;
+    min-width: 800px; /* Force a minimum width to make the table scroll */
+    table-layout: fixed; /* Fix column widths */
 }
 
 /* Prevent table cells from wrapping and breaking the layout */
-.table-responsive table {
-    width: 100%;
-    min-width: 800px; /* Minimum width to force scroll on smaller screens */
-    border-collapse: collapse;
-    white-space: nowrap; /* Prevents text wrapping */
+.table-responsive th, .table-responsive td {
+    white-space: nowrap; /* Prevent wrapping in table cells */
+    overflow: hidden; /* Hide overflowed content */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 }
 
-/* Styling for better readability */
-.table th,
-.table td {
+/* Table header styling */
+.table thead {
+    background-color: #0098DB; /* Burgundy background for the table header */
+    color: black; /* White text color */
+}
+
+/* Table cell styling */
+.table th, .table td {
     text-align: center;
     vertical-align: middle;
-    color: black;
 }
 
 /* Optional: Fix the header to always stay on top */
@@ -553,6 +566,12 @@ body {
     z-index: 1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     color: black;
+}
+
+/* Alternating row colors */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #c8c9c8; /* Light gray for alternating rows */
+    text-align: center;
 }
 
 
@@ -731,27 +750,6 @@ font-size: 13px;
     text-transform: uppercase;
     }
 
-.table-responsive {
-    border: 1px solid #ddd; /* Light border around the table */
-    border-radius: 5px; /* Rounded corners */
-    overflow: hidden;
-    }
-
-.table thead {
-    background-color: #0098DB; /* Burgundy background for the table header */
-    color: black; /* White text color */
-    }
-
-.table th,
-.table td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #c8c9c8; /* Light gray for alternating rows */
-    text-align: center;
-}
 
 /* # Back to top button */
 

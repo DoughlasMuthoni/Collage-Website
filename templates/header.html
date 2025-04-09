@@ -4,6 +4,7 @@
 
 <header class="bg-light">
     <div class="main-nav d-flex justify-content-between align-items-center flex-wrap w-100">
+        
         <!-- Contact Information -->
         <div class="contact-info d-flex align-items-center">
             <a href="tel:+254712345678" class="text-white me-4">
@@ -14,27 +15,28 @@
             </a>
         </div>
 
-        <nav class="main-nav d-flex align-items-center flex-wrap justify-content-center">
-            <a href="{% url 'mwala_app:allCourses' %}" class="me-3">Our Courses</a>
-            <a href="{% url 'mwala_app:onlineApplication' %}" class="me-3">MAY 2025 INTAKE</a>
-            <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger me-3 move" style="font-size: 10px;">Apply Now</a>
-            <a href="https://students.kuccps.net/login/" class="me-3">KUCCPS</a>
-            <a href="https://portal.hef.co.ke/auth/signin" class="me-3 special-link">HELB Portal</a> <!-- this is the 3rd row one -->
+        <!-- Navigation Links -->
+        <nav class="nav-links">
+            <a href="{% url 'mwala_app:allCourses' %}">Our Courses</a>
+            <a href="{% url 'mwala_app:onlineApplication' %}">MAY 2025 INTAKE</a>
+            <a href="{% url 'mwala_app:onlineApplication' %}" class="btn btn-danger move" style="font-size: 10px; color: white; background-color: red; text-align: center;">Apply Now</a>
+            <a href="https://students.kuccps.net/login/">KUCCPS</a>
+            <a href="https://portal.hef.co.ke/auth/signin" class="special-link">HELB Portal</a>
         </nav>
-        
-        
 
         <!-- Search Form -->
         <div class="nav-item-search d-flex align-items-center">
             <button id="searchToggle" class="btn btn-link p-0 me-2">
-                <i class="fas fa-search" ></i>
+                <i class="fas fa-search"></i>
             </button>
             <form action="{% url 'mwala_app:allCourses' %}" method="get">
                 <input type="text" name="q" id="searchInput" class="form-control search-input me-2" placeholder="Search for a Course" value="{{ query|default:'' }}">
             </form>
         </div>
+
     </div>
 </header>
+
 
 
 <header class="header sticky-top header-border">

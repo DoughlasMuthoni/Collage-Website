@@ -220,25 +220,73 @@ body {
     }
 }
 
-@media (max-width: 320px) {
-    .main-nav {
+/* Responsive Styling - Tablets and below */
+/* Default (Desktop) Styling */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f2f2f2;
+}
+
+/* Tablet and Small Screen Styling */
+@media (max-width: 768px) {
+    .nav-links {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        grid-template-rows: auto auto auto;
         gap: 10px;
+        justify-items: center;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 8px 12px;
+        display: inline-block;
+        width: 100%;
+        max-width: 140px;
         text-align: center;
     }
+}
 
-    .main-nav a {
-        font-size: 12px;
+/* Extra Small Screens */
+@media (max-width: 320px) {
+    .nav-links {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        grid-template-rows: repeat(2, auto);
+        gap: 10px;
+        justify-items: center;
+        align-items: center;
     }
 
-    /* Push the last item (HELB Portal) to the third row, last column */
-    .main-nav .special-link {
-        grid-column: 3 / 4; /* place in 3rd column */
-        grid-row: 3; /* third row */
-        justify-self: end; /* align it to the right */
+    .nav-links .special-link {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: center;
     }
 }
+
+
+
+
 
 
     /* Make search bar visible when toggled */
@@ -321,60 +369,7 @@ body {
     text-decoration: none;
 }
 
-/* Responsive Styling */
-@media (max-width: 768px) {
-    .main-nav {
-        display: grid;
-        grid-template-rows: repeat(3, auto); /* Three rows */
-        row-gap: 10px; /* Spacing between rows */
-        width: 100%;
-        padding: 10px;
-        position: relative;
-    }
 
-    /* Add horizontal rules between rows */
-    .main-nav::before,
-    .main-nav::after {
-        content: '';
-        display: block;
-        height: 1px;
-        background-color: #ccc; /* Light gray line */
-        width: 100%;
-    }
-
-    .main-nav::after {
-        margin-top: 10px;
-    }
-
-    /* Adjust dropdown for small screens */
-    .nav-item {
-        width: 100%;
-    }
-
-    .nav-item .dropdown-menu {
-        position: static;
-        visibility: visible;
-        opacity: 1;
-        display: none; /* Hide by default */
-        max-width: 100%; /* Prevent overflow */
-        overflow-y: auto; /* Enable vertical scroll if needed */
-        overflow-x: auto; /* Disable horizontal scroll */
-    }
-
-    /* Show dropdown when parent is clicked */
-    .nav-item.active .dropdown-menu {
-        display: block;
-    }
-
-    /* Adjust search input */
-    #searchInput {
-        display: none;
-    }
-
-    #searchToggle {
-        display: block;
-    }
-}
 
 @media (max-width: 576px) {
     .main-nav a {

@@ -191,18 +191,18 @@ body {
         width: 100%;
     }
 
-    /* Adjust dropdown for small screens */
+    /* Adjust dropdown for small screens and tablets */
     .nav-item .dropdown-menu {
         position: static;
         visibility: visible;
         opacity: 1;
         display: none; /* Hide by default */
-        width: auto; /* Auto-width based on content */
-        max-width: 90%; /* Ensure it doesn't exceed screen width */
-        box-sizing: border-box; /* Include padding in width */
-        overflow-y: auto; /* Enable vertical scroll if needed */
-        overflow-x: auto; 
-        margin: 0 auto; /* Center the dropdown */
+        width: 50%; /* Full width of parent container */
+        max-width: 50%;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden; /* Avoid horizontal scroll */
+        margin: 0; /* Remove auto margin to prevent centering offset */
     }
 
     /* Show dropdown when parent is clicked */
@@ -219,6 +219,7 @@ body {
         display: block;
     }
 }
+
 
 /* Responsive Styling - Tablets and below */
 /* Default (Desktop) Styling */

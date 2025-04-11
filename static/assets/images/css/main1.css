@@ -201,7 +201,7 @@ body {
         max-width: 50%;
         box-sizing: border-box;
         overflow-y: auto;
-        overflow-x: hidden; /* Avoid horizontal scroll */
+        overflow-x: auto; /* Avoid horizontal scroll */
         margin: 0; /* Remove auto margin to prevent centering offset */
     }
 

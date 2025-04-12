@@ -221,6 +221,31 @@ body {
 }
 
 
+
+@media (max-width: 768px) {
+    /* Hide the input field by default on small screens */
+    #searchInput {
+        display: none;
+        font-size: 12px; /* Smaller font size */
+        padding: 4px 8px; /* Reduced padding */
+    }
+
+    /* Show only the toggle (search icon button) */
+    #searchToggle {
+        display: block;
+        font-size: 14px; /* Smaller icon size */
+        padding: 4px; /* Reduce clickable area */
+        margin: 0;
+    }
+
+    /* If you toggle the input open with JS, you might want this class */
+    .show-search #searchInput {
+        display: block;
+        width: 100%;
+    }
+}
+
+
 /* Responsive Styling - Tablets and below */
 /* Default (Desktop) Styling */
 .nav-links {

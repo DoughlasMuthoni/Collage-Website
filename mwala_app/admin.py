@@ -71,7 +71,7 @@ class DepartmentAdmin(admin.ModelAdmin):
     readonly_fields = ('id',)  # Make the 'id' field read-only
     fieldsets = (
         (None, {
-            'fields': ('title', 'image', 'hod_image','description', 'hod_name', 'hod_message')
+            'fields': ('title', 'image', 'hod_image','description', 'hod_name', 'hod_message', 'hod_info')
         }),
         ('Additional Info', {
             'fields': ('id',),

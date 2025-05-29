@@ -678,23 +678,28 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
         <div class="row align-items-start">
             <!-- Principal Image and Title -->
             {% if principal_message %}
-                <div class="col-md-3 text-center text-dark">
+              <div class="col-md-3 text-center text-dark">
+                <a href="{% url 'mwala_app:principal_detail' %}">
                     {% if principal_message.image %}
                         <img src="{{ principal_message.image.url }}" class="img-fluid mb-3" alt="{{ principal_message.title }}">
                     {% else %}
                         <img src="{% static 'assets/images/default_img.jpeg' %}" class="img-fluid mb-3" alt="Default Principal">
                     {% endif %}
-                    <h6 class="fw-bold">{{ principal_message.title }}</h6>
-                    <p class="text-muted">{{ principal_message.position }}</p>
-                </div>
+                </a>
+                <h6 class="fw-bold">{{ principal_message.title }}</h6>
+                <p class="text-muted">{{ principal_message.position }}</p>
+        </div>
+
     
                 <!-- Principal Message -->
                 <div class="col-md-9 text-dark">
                     <h2 class="text-danger fw-bold">Message from the Principal at Mwala Technical and Vocational College</h2>
                     <p>{{ principal_message.description|truncatechars:1900|safe }}</p>
-                    <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-primary">Read More</a>
+                    <!-- Read More Button -->
+    <div style="position: relative; z-index: 10;">
+        <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-sm btn-primary mt-2">Read More</a>
+    </div>
                 </div>
-    
                 
             {% else %}
                 <p class="text-muted">Principal's message is not available at the moment.</p>

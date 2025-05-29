@@ -44,12 +44,12 @@
                 </div>
                 <!-- Message -->
                 <div class="col-md-8">
-                    <h2 class="text-danger border-bottom pb-2"> Message from the Head of Department</h2>
+                    <h3 class="text-danger border-bottom pb-2"> Message from the HOD {{ department.title }}</h3>
                     <p class="text-justify ">
 
                         {{ department.hod_info|safe }}
                     </p>
-                    <h2 class="text-danger border-bottom pb-2"> {{ department.title }} Department</h2>
+                    <h3 class="text-danger border-bottom pb-2">  Message from the Office of {{ department.title }} Department</h3>
                     <p class="text-justify ">
                         {{ department.hod_message|safe }}
                     </p>

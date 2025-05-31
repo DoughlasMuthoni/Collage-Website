@@ -5,7 +5,7 @@ from .models import Administration, AdmissionApplication, Contact, Course, Depar
 
 @admin.register(Administration)
 class AdministrationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'position', 'image_preview')  # Show an image preview
+    list_display = ('id', 'title', 'position', 'position_level','image_preview')  # Show an image preview
     search_fields = ('title', 'position')
     list_filter = ('position',)
     

@@ -10,6 +10,7 @@ class Administration(models.Model):
     title = models.CharField(max_length=100, help_text="Name of the administrator (e.g., Principal, Dean, etc.)")
     position = models.CharField(max_length=100, help_text="Position or role (e.g., Principal, Vice Principal)")
     description = RichTextUploadingField(help_text="Description of responsibilities or role")
+    position_level = models.CharField(max_length=100,  blank=True, null=True)
     image = models.ImageField(upload_to='administration_images/', blank=True, null=True, help_text="Upload a profile picture")
 
 

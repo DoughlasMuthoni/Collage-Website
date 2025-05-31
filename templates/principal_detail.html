@@ -43,12 +43,12 @@
                 <img src="{% static 'assets\images\default_img.jpeg' %}" class="img-fluid  mb-3" alt="Default Principal">
                 {% endif %}
                 <h6 class="fw-bold">{{ principal_message.title }}</h6>
-                <p class="text-muted">{{ principal_message.position }}</p>
+                <p class="text-muted">{{ principal_message.position_level }}</p>
             </div>
     
             <!-- Full Welcome Message -->
             <div class="col-md-9 text-dark">
-                <h2 class="text-danger fw-bold">Message from Chief Principal Mwala Technical and Vocational College</h2>
+                <!-- <h2 class="text-danger fw-bold">Message from Chief Principal Mwala Technical and Vocational College</h2> -->
                 <p>{{ principal_message.description|safe }}</p>
                 <a href="{% url 'mwala_app:index' %}" class="btn btn-secondary">Back to Home</a>
             </div>

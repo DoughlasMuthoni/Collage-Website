@@ -1698,8 +1698,11 @@ th {
 
 /* Ensure the right section aligns with the left section */
 .member-styles {
-    min-height: 100%; /* Make the right section match the height of the left section */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
+
 
 /* Optional: Add some padding to the right section to make the content look more aligned */
 .member-styles .member {

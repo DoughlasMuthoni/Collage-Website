@@ -25,7 +25,7 @@ class Department(models.Model):
     description =models.CharField(max_length=1200)  # Detailed description of the department
     hod_name = models.CharField(max_length=150)  # Head of Department's name
     hod_message =RichTextUploadingField()  # Message from the Head of Department
-    hod_info =RichTextUploadingField(max_length=1200, blank=True, null=True)
+    hod_info =RichTextUploadingField(max_length=12000, blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -106,6 +106,7 @@ class SupportingDepartment(models.Model):
     hod_name = models.CharField(max_length=150)  # Head of Department name
     hod_message = RichTextUploadingField()  # Head of Department message
     position = models.CharField(max_length=100) 
+    hod_information =RichTextUploadingField(max_length=12000, blank=True, null=True)
 
     def __str__(self):
         return self.title

@@ -81,7 +81,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(SupportingDepartment)
 class SupportingDepartmentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'hod_name', 'position', 'image')  # Display these fields in the admin list
+    list_display = ('title', 'hod_name', 'position', 'image', 'hod_information')  # Display these fields in the admin list
     search_fields = ('title', 'hod_name', 'position')  # Make title, hod_name, and position searchable
     list_filter = ('position',)  # Add filtering by position to the list view
 

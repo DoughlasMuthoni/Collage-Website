@@ -33,13 +33,17 @@
                     <img src="{% static 'assets\images\default_img.jpeg' %}" class="img-fluid border border-3 border-primary shadow" alt="{{ department.title }}">
                     {% endif %}
                     <p class="mt-3 fw-bold text-secondary">
-                       {{ department.position }} <br>
-                       <span class="text-muted">{{ department.hod_name }}</span>
+                        <span class="text-muted">{{ department.hod_name }}</span><br>
+                       {{ department.position }} 
+                       
                     </p>
                 </div>
                 <!-- Message -->
                 <div class="col-md-8">
-                    <h2 class="text-danger border-bottom pb-2">{{ department.title }} </h2>
+                    <p class="text-justify text-dark">
+                        {{ department.hod_information|safe }}
+                    </p>
+                    <h2 class="text-danger border-bottom pb-2">Message from the {{ department.title }} </h2>
                     <p class="text-justify text-dark">
                         {{ department.hod_message|safe }}
                     </p>

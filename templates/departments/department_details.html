@@ -16,7 +16,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="breadcrumb__text">
-                        <h1 class="display-4 fw-bold mb-3">Mwala TVC Departments</h1>
+                        <h3 class="display-4 fw-bold mb-3">Mwala TVC Departments</h3>
                         <nav class="breadcrumb d-inline-flex bg-transparent p-0">
                             <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger">Home</a>
                             <a href="{% url 'mwala_app:index' %}" class="breadcrumb-item text-danger"> All Departments</a>
@@ -50,7 +50,7 @@
 
                         {{ department.hod_info|safe }}
                     </p>
-                    <h3 class="text-danger border-bottom pb-2">  Message from the Office of {{ department.title }} Department</h3>
+                    <h4 class="text-danger border-bottom pb-2">  Message from the Office of {{ department.title }} Department</h4>
                     <p class="text-justify ">
                         {{ department.hod_message|safe }}
                     </p>
@@ -61,8 +61,8 @@
     
     <section class="courses-table py-0 bg-light">
         <div class="container">
-            <h2 class="text-center mb-4 text-primary">{{ department.title }}</h2>
-            <p class="text-center text-danger text-bold">Main intakes are in January and September</p>
+            <h2 class="text-center mb-4 text-primary">{{ department.title }} courses</h2>
+            <p class="text-center text-danger text-bold">Main intakes are in January, May and September</p>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered align-middle" style="border-top: 2px solid red;">
                     <thead class="table text-center">

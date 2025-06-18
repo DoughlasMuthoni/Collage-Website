@@ -15,7 +15,7 @@ def homePage(request):
     notices = Notice.objects.order_by('-date')[:3]
     job_vacancies  = JobsVacancies.objects.order_by('-deadlineDate')[:4]
     departments = Department.objects.order_by('-title')[:5]
-    principal_message = Administration.objects.filter(position__iexact="Office of Chief Principal").first()
+    principal_message = Administration.objects.filter(position__iexact="Office of Principal").first()
     # Group courses by their levels
     course_levels = Course.objects.values_list('course_level', flat=True).distinct().order_by('-course_level')[:3]
     courses_by_level = {
@@ -149,7 +149,7 @@ def adminstrationDetails(request, id):
 
 
 def principalDetail(request):
-    principal_message = get_object_or_404(Administration, position__iexact="Office of Chief Principal")
+    principal_message = get_object_or_404(Administration, position__iexact="Office of Principal")
     
     context = {
         'principal_message': principal_message,

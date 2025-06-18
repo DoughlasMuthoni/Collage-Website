@@ -78,9 +78,9 @@
                                     <div class="col-12 col-md-3 border-end">
                                         <h6 class="dropdown-header">Administrators</h6>
                                         <a class="dropdown-item" href="{% url 'mwala_app:bog' %}"> Board of Governors </a>
-                                        <a class="dropdown-item" href="{% url 'mwala_app:principal_detail' %}"> Office of Chief Principal </a>
+                                        <a class="dropdown-item" href="{% url 'mwala_app:principal_detail' %}"> Office of Principal </a>
                                        {% for admin in administrators %}
-    {% if admin.position != "Office of Chief Principal" %}
+    {% if admin.position != "Office of Principal" %}
         <a class="dropdown-item" href="{% url 'mwala_app:adminstrationDetails' admin.id %}">
             {{ admin.position }}
         </a>
@@ -116,7 +116,7 @@
                                                 {{ student_affair.title }}
                                             </a>
                                         {% empty %}
-                                            <span>No affairs available</span>
+                                            <span></span>
                                         {% endfor %}
                                     </div>
                                 </div>

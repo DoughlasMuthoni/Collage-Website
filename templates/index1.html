@@ -62,7 +62,7 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-file-text" style="font-size: 3rem; color: red;"></i>
+                        <i class="bi bi-file-text" style="font-size: 3rem; color: white;"></i>
                         <h5 class="card-title mt-3" style="text-align:center;">Service Charter</h5>
                         <a href="{% url 'mwala_app:serviceCharter' %}">
                             <p class="card-text view" style="text-align:center; color:white;">View our charter</p>
@@ -75,7 +75,7 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-gear" style="font-size: 3rem; color: red;"></i>
+                        <i class="bi bi-gear" style="font-size: 3rem; color: white;"></i>
                         <h5 class="card-title mt-3" style="text-align:center;">Services</h5>
                         <a href="{% url 'mwala_app:mwalaServices' %}">
                             <p class="card-text view" style="text-align:center; color:white;">List of Services</p>
@@ -88,7 +88,7 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-download" style="font-size: 3rem; color: red;"></i>
+                        <i class="bi bi-download" style="font-size: 3rem; color: white;"></i>
                         <h5 class="card-title mt-3 content-c" style="text-align:center;">Student Downloads</h5>
                         <a href="{% url 'mwala_app:all_notices' %}">
                             <p class="card-text view content-c" style="text-align:center; color:white;">List of Student forms</p>
@@ -104,8 +104,8 @@
     <div class="container my-5 note">
         <!-- Notice Section -->
         <div class="notices-section">
-            <div class="notices-header">
-                IMPORTANT NOTICES <span class="text-danger">!!!</span>
+            <div class="notices-header" style=" background-color: #0098DB ;" >
+                IMPORTANT NOTICES <span class="text-danger" >!!!</span>
             </div>
             <div class="notices-body">
                 {% for notice in notices %}
@@ -154,7 +154,7 @@
                     </a>
                     <div class="card-body">
                         <a href="{% url 'mwala_app:news_details' news_id=news_item.id %}" style="text-decoration: none;">
-                            <h5 class="card-title">{{ news_item.title }}</h5>
+                            <h5 class="card-title" style="color: #0098DB ;;">{{ news_item.title }}</h5>
                         </a>
                         <p class="card-text">
                             {{ news_item.description|truncatechars:150|safe }}
@@ -217,7 +217,7 @@
 
 
     <div class="container py-2">
-        <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #007bff ; border-bottom: 2px solid red;">OUR PROGRAMS</h2>
+        <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #0098DB ; border-bottom: 2px solid red;">OUR PROGRAMS</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             
            
@@ -265,7 +265,7 @@
                             <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top-news " alt="{{ department.title }}"></a>
                         {% endif %}
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title text-primary">{{ department.title }}</h5>
+                                <h5 class="card-title " style="color: #0098DB;">{{ department.title }}</h5>
                                 <p class="card-text text-dark">{{ department.description|truncatechars:120|safe }}</p>
                                 <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
                             </div>
@@ -346,7 +346,7 @@
     
     <div class="container-fluid bg-brown text-dark py-4">
         <div class="text-center">
-            <h2 class="fw-bold">
+            <h2 class="fw-bold " style="color: #0098DB;">
                 <i class="fas fa-cogs me-2"></i> OUR CORE VALUES
             </h2>
             <p class="mt-2">
@@ -384,7 +384,7 @@
                 <div class="tab-content" id="myTabContent">
                     <!-- Core Functions -->
                     <div class="tab-pane fade show active" id="core-functions" role="tabpanel" aria-labelledby="core-functions-tab">
-                        <h3 class="text-primary fw-bold">Core Functions</h3>
+                        <h3 class="text-pdark fw-bold">Core Functions</h3>
                         <ul class="list-unstyled">
                             <li>
                                 <i class="fas fa-check-circle text-success "></i>
@@ -419,7 +419,7 @@
     
                     <!-- Why Join -->
                     <div class="tab-pane fade" id="why-join" role="tabpanel" aria-labelledby="why-join-tab">
-                        <h3 class="text-primary fw-bold">Why Join Mwala TVC</h3>
+                        <h3 class="text-c fw-bold">Why Join Mwala TVC</h3>
                         <p>
                             Mwala TVC offers a range of opportunities for growth and development in the TVET sector. Join us to access high-quality training, research, and innovation opportunities.
                             <ul>
@@ -460,7 +460,7 @@
                             </button>
                         </h2>
                         <div id="faqOne" class="accordion-collapse collapse" aria-labelledby="faqOneHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-danger">
+                            <div class="accordion-body text-dark">
                                 Mwala Technical and Vocational College is a public Technical and Vocational Education Training Institution situated about 250 meters, off Makutano/Kithimani road, Mwala Sub county. The College is approximately 102.9 kilometers from Nairobi city and 36.9 kilometers East of Machakos Town. 
                             </div>
                         </div>
@@ -473,7 +473,7 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body  text-danger">
+                            <div class="accordion-body  text-dark">
                                 The College offers courses Accredited by Technical and Vocational Education and Training Authority (TVETA), in accordance with TVET) Act No. 29 of 2013. The College offers academic programmes spread across seven teaching departments; namely: Agriculture and Applied Sciences, Building and Civil Engineering, Business Studies and ICT, Electrical and Electronic Engineering, Fashion Design and Cosmetology, Hospitality and Tourism Management, Mechanical and Automotive Engineering.
                             </div>
                         </div>
@@ -485,7 +485,7 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body  text-danger">
+                            <div class="accordion-body  text-dark">
                                 The College offers courses Accredited by Technical and Vocational Education and Training Authority (TVETA), in accordance with TVET) Act No. 29 of 2013.
                             </div>
                         </div>
@@ -497,7 +497,7 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body  text-danger">
+                            <div class="accordion-body  text-dark">
                                 Yes, you can. Use the following link:
                                 Use our admissions on the website. http://127.0.0.1:8000/onlineApplication/
                             </div>
@@ -510,7 +510,7 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-danger">
+                            <div class="accordion-body text-dark">
                                 Yes, you are free to register for more than one course.
                             </div>
                         </div>
@@ -522,7 +522,7 @@
                             </button>
                         </h2>
                         <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeading" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body  text-danger">
+                            <div class="accordion-body  text-dark">
                                 Yes, we have hostels within our campus and provide food and accommodation to all our boarding students.
 
 
@@ -534,7 +534,7 @@
     
             <!-- About Section -->
             <div class="col-md-6 mb-4">
-                <div class="p-4 bg-success text-white  shadow-sm">
+                <div class="p-4  text-dark shadow-sm " >
                     <h3 class="fw-bold">About Mwala TVC</h3>
                     <p>
                         Mwala Technical and Vocational College is a public Technical and Vocational Education Training Institution 
@@ -558,7 +558,7 @@
        
       
             <div class="container my-2 text-dark">
-                <h1 class="gallery-title text-danger">Our Gallery</h1>
+                <h1 class="gallery-title" style="color: #0098DB;">Our Gallery</h1>
                 <p class="gallery-description">
                   
                   Our gallery is a space for inspiration and connection. Come and discover 
@@ -667,7 +667,7 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
             </div>
                   <!-- View More Button -->
             <div class="text-center mt-4">
-                <a href="{% url 'mwala_app:gallery' %}" class="btn btn-primary">View More</a>
+                <a href="{% url 'mwala_app:gallery' %}" class="btn" style="color: #0098DB;">View More</a>
             </div>
             </div>
    
@@ -693,11 +693,11 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
     
                 <!-- Principal Message -->
                 <div class="col-md-9 text-dark">
-                    <h2 class="text-danger fw-bold">Message from Chief Principal Mwala Technical and Vocational College</h2>
+                    <h2 class=" fw-bold"style="color: #0098DB;">Message from Chief Principal Mwala Technical and Vocational College</h2>
                     <p>{{ principal_message.description|truncatechars:1900|safe }}</p>
                     <!-- Read More Button -->
     <div style="position: relative; z-index: 10;">
-        <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-sm btn-primary mt-2">Read More</a>
+        <a href="{% url 'mwala_app:principal_detail' %}" class="btn btn-sm  mt-2"style="color: #0098DB;">Read More</a>
     </div>
                 </div>
                 
@@ -711,26 +711,26 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
         <!-- Counter Section -->
         <div class="row text-center">
             <div class="col-md-3">
-                <h1 class="fw-bold display-4 text-primary counter" data-target="84">0+</h1>
+                <h1 class="fw-bold display-4  counter" style="color: #0098DB;" data-target="84">0+</h1>
                 <p>Programs</p>
             </div>
             <div class="col-md-3">
-                <h1 class="fw-bold display-4 text-primary counter" data-target="44">0+</h1>
+                <h1 class="fw-bold display-4  counter" style="color: #0098DB;" data-target="44">0+</h1>
                 <p>Number of Trainers</p>
             </div>
             <div class="col-md-3">
-                <h1 class="fw-bold display-4 text-primary counter" data-target="3600">0+</h1>
+                <h1 class="fw-bold display-4  counter" style="color: #0098DB;" data-target="3600">0+</h1>
                 <p>Number of Graduands</p>
             </div>
             <div class="col-md-3">
-                <h1 class="fw-bold display-4 text-primary counter" data-target="5">0+</h1>
+                <h1 class="fw-bold display-4 counter" style="color: #0098DB;" data-target="5">0+</h1>
                 <p>Number of Departments</p>
             </div>
         </div>
     </div>
     <div class="container my-5">
         <!-- Partners Section -->
-        <h2 class="text-center mb-4 text-danger">Our Partners</h2>
+        <h2 class="text-center mb-4 " style="color: #0098DB;">Our Partners</h2>
         <div class="row justify-content-center text-center align-items-center">
             <div class="col-6 col-md-4 col-lg-2 mb-4">
                 <img src="{% static 'assets/images/knec_logo.png' %}" alt="Google" class="img-fluid rounded shadow-sm">

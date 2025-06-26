@@ -27,11 +27,11 @@
             </div>
         </div>
     </section>
-    <section class="principal-message py-3 bg-light border-top border-primary">
+    <section class="principal-message py-3 bg-light border-top border-primary"data-aos="fade-up">
         <div class="container border-top border-primary">
             <div class="row shadow-lg rounded department-meassage p-4 d-flex align-items-start">
                 <!-- Image -->
-                <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="col-md-4 text-center mb-4 mb-md-0"data-aos="fade-right">
                     {% if department.hod_image %}
                         <img src="{{ department.hod_image.url }}" class="img-fluid  border border-3 border-primary shadow" alt="{{ department.title }}">
                     {% else %}
@@ -59,7 +59,7 @@
         </div>
     </section>
     
-    <section class="courses-table py-0 bg-light">
+    <section class="courses-table py-0 bg-light"data-aos="fade-up">
         <div class="container">
             <h2 class="text-center mb-4 text-primary">{{ department.title }} courses</h2>
             <p class="text-center text-danger text-bold">Main intakes are in January, May and September</p>

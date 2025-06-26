@@ -5,7 +5,7 @@
 
 {% block content %}
     
-<div class="container my-5">
+<div class="container my-5"data-aos="fade-up">
     <h1 class="text-center mb-4">All Downloadable Forms</h1>
     <div class="container my-5">
         <!-- Notice Section -->
@@ -13,7 +13,7 @@
           <div class="notices-header">
             All FORMS
           </div>
-          <div class="notices-body">
+          <div class="notices-body"data-aos="fade-up">
             {% for notice in notices %}
             <a href="{{ notice.uploadNotice.url }}" target="_blank" class="text-decoration-none">
                 <div class="notices-item d-flex align-items-center justify-content-between">

@@ -56,52 +56,52 @@
     </div>
    
     
-    <div class="container-fluid position-relative" style="margin-top: -100px; z-index: 10;">
-        <div class="row justify-content-center text-decoration-none gx-3 gy-4">
-            <!-- Service Charter Box -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-file-text" style="font-size: 3rem; color: white;"></i>
-                        <h5 class="card-title mt-3" style="text-align:center;">Service Charter</h5>
-                        <a href="{% url 'mwala_app:serviceCharter' %}">
-                            <p class="card-text view" style="text-align:center; color:white;">View our charter</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Services Box -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-gear" style="font-size: 3rem; color: white;"></i>
-                        <h5 class="card-title mt-3" style="text-align:center;">Services</h5>
-                        <a href="{% url 'mwala_app:mwalaServices' %}">
-                            <p class="card-text view" style="text-align:center; color:white;">List of Services</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Student Downloads Box -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card text-center border-0 shadow-lg" style="background-color: green; color: black;">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 200px;">
-                        <i class="bi bi-download" style="font-size: 3rem; color: white;"></i>
-                        <h5 class="card-title mt-3 content-c" style="text-align:center;">Student Downloads</h5>
-                        <a href="{% url 'mwala_app:all_notices' %}">
-                            <p class="card-text view content-c" style="text-align:center; color:white;">List of Student forms</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+   <div class="position-relative" style="margin-top: -6rem; z-index: 10;">
+  <div class="container">
+    <div class="row justify-content-center g-4">
+
+      <!-- Service Charter -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class=" text-white rounded-3 shadow p-4 text-center" style="background-color: #049c18;" data-aos="fade-up" >
+          <i class="bi bi-file-text fs-1 mb-3 d-block"></i>
+          <h5 class="fw-semibold mb-2">Service Charter</h5>
+          <a href="{% url 'mwala_app:serviceCharter' %}" class="text-white text-decoration-underline">
+            View our charter
+          </a>
         </div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class=" text-white rounded-3 shadow p-4 text-center" style="background-color: #049c18;" data-aos="fade-up" data-aos-delay="100">
+          <i class="bi bi-gear fs-1 mb-3 d-block"></i>
+          <h5 class="fw-semibold mb-2">Services</h5>
+          <a href="{% url 'mwala_app:mwalaServices' %}" class="text-white text-decoration-underline">
+            List of Services
+          </a>
+        </div>
+      </div>
+
+      <!-- Student Downloads -->
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class=" text-white rounded-3 shadow p-4 text-center" style="background-color: #049c18;" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-download fs-1 mb-3 d-block"></i>
+          <h5 class="fw-semibold mb-2">Student Downloads</h5>
+          <a href="{% url 'mwala_app:all_notices' %}" class="text-white text-decoration-underline">
+            List of Student forms
+          </a>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
+
+
     
     
     
-    <div class="container my-5 note">
+    <div class="container my-5 note"data-aos="fade-up">
         <!-- Notice Section -->
         <div class="notices-section">
             <div class="notices-header" style=" background-color: #0098DB ;" >
@@ -140,11 +140,11 @@
     </div>
     
     
-    <div class="container my-2">
+    <div class="container my-2"data-aos="fade-up">
         <h2 class="text-start text-success py-2 px-3 rounded d-flex align-items-center">
             <i class="fas fa-calendar-alt me-2"></i> News and Events
         </h2>
-        <div class="row g-4">
+        <div class="row g-4"data-aos="fade-up">
             <!-- Display the first 3 news -->
             {% for news_item in limited_news %}
             <div class="col-md-4 d-flex">
@@ -168,7 +168,7 @@
         
         
         <!-- View All Button -->
-        <div class="col-12 mt-4 text-center">
+        <div class="col-12 mt-4 text-center"data-aos="fade-up">
             <a href="{% url 'mwala_app:newsEvents' %}" class="btn btn-outline-danger">
                 View All News <i class="fas fa-arrow-right"></i>
             </a>
@@ -176,7 +176,7 @@
         
         
 
-    <div class="jobs-section container my-5">
+    <div class="jobs-section container my-5"data-aos="fade-up">
         <h2 class="text-start text-success py-2 px-3 rounded d-flex align-items-center">
             <i class="fas fa-briefcase me-2"></i> Jobs and Vacancies
         </h2>
@@ -216,7 +216,7 @@
         
 
 
-    <div class="container py-2">
+    <div class="container py-2"data-aos="fade-up">
         <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #0098DB ; border-bottom: 2px solid red;">OUR PROGRAMS</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             
@@ -243,18 +243,18 @@
         {% endfor %}
         
         </div>
-        <div class="notices-footer mt-2">
+        <div class="notices-footer mt-2"data-aos="fade-up">
             <a href="{% url 'mwala_app:allCourses' %}">View All Programs →</a>
           </div>
 
     </div>
 
-    <section class="department-cards py-5">
+    <section class="department-cards py-5"data-aos="fade-up">
         <div class="container">
-            <div class="text-center mb-4">
+            <div class="text-center mb-4"data-aos="fade-up">
                 <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">MWALA TECHNICAL & VOCATIONAL COLLEGE DEPARTMENTS</h2>
             </div>
-            <div class="row text-center">
+            <div class="row text-center"data-aos="fade-up">
                 <!-- Card 1 -->
                  {% for department in departments %}
                     <div class="col-md-4 mb-4 d-flex">
@@ -264,7 +264,7 @@
                         {% else %}
                             <a href="{% url 'mwala_app:department_details' department.id %}"><img src="{% static 'assets\images\default_img.jpeg' %}" class="card-img-top-news " alt="{{ department.title }}"></a>
                         {% endif %}
-                            <div class="card-body d-flex flex-column">
+                            <div class="card-body d-flex flex-column"data-aos="fade-up">
                                 <h5 class="card-title " style="color: #0098DB;">{{ department.title }}</h5>
                                 <p class="card-text text-dark">{{ department.description|truncatechars:120|safe }}</p>
                                 <a href="{% url 'mwala_app:department_details' department.id %}" class="btn btn-link text-danger mt-auto">View the department →</a>
@@ -275,7 +275,7 @@
                 <p class="text-danger mt-2"><i class="fas fa-exclamation-circle me-1"></i> No Departments uploaded Yet</p>
                 {% endfor %}
             </div>
-            <div class="col-12 mt-4 text-center">
+            <div class="col-12 mt-4 text-center"data-aos="fade-up">
                 <a href="{% url 'mwala_app:departments' %}" class="btn btn-outline-danger">
                     View All Departments <i class="fas fa-arrow-right"></i>
                 </a>
@@ -289,7 +289,7 @@
         <div class="row g-0 text-center">
             <!-- Vision -->
             <div class="col-md-4">
-                <div class="card border-0 text-white" style="height:300px;" >
+                <div class="card border-0 text-white" style="height:300px;"data-aos="fade-right" >
                     <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img1.jpg'); background-size: cover; background-position: center; height: 100vh;">
                         <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.7);"></div>
                         <div class="position-relative z-1">
@@ -325,7 +325,7 @@
             </div>
     
             <!-- motto -->
-            <div class="col-md-4">
+            <div class="col-md-4"data-aos="fade-left">
                 <div class="card border-0 text-white"  style="height:300px;">
                     <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img4.jpg'); background-size: cover; background-position: center; height: 100vh;">
                         <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.7);"></div>
@@ -344,7 +344,7 @@
         </div>
     </div>
     
-    <div class="container-fluid bg-brown text-dark py-4">
+    <div class="container-fluid bg-brown text-dark py-4" >
         <div class="text-center">
             <h2 class="fw-bold " style="color: #0098DB;">
                 <i class="fas fa-cogs me-2"></i> OUR CORE VALUES
@@ -359,15 +359,15 @@
         </div>
     </div>
     
-    <div class="container py-2">
+    <div class="container py-2"data-aos="fade-up">
         <div class="row align-items-center">
             <!-- Left Section: Image -->
-            <div class="col-md-6">
+            <div class="col-md-6"data-aos="fade-right">
                 <img src="{% static 'assets\images\mwala_img4.jpg' %}" alt="Core Values Image" class="img-fluid rounded shadow-sm">
             </div>
     
             <!-- Right Section: Content -->
-            <div class="col-md-6">
+            <div class="col-md-6"data-aos="fade-up">
                 <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="core-functions-tab" data-bs-toggle="tab" data-bs-target="#core-functions" type="button" role="tab" aria-controls="core-functions" aria-selected="true">
@@ -381,7 +381,7 @@
                     </li>
                 </ul>
     
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent"data-aos="fade-up">
                     <!-- Core Functions -->
                     <div class="tab-pane fade show active" id="core-functions" role="tabpanel" aria-labelledby="core-functions-tab">
                         <h3 class="text-pdark fw-bold">Core Functions</h3>
@@ -418,7 +418,7 @@
                     </div>
     
                     <!-- Why Join -->
-                    <div class="tab-pane fade" id="why-join" role="tabpanel" aria-labelledby="why-join-tab">
+                    <div class="tab-pane fade" id="why-join" role="tabpanel" aria-labelledby="why-join-tab"data-aos="fade-up">
                         <h3 class="text-c fw-bold">Why Join Mwala TVC</h3>
                         <p>
                             Mwala TVC offers a range of opportunities for growth and development in the TVET sector. Join us to access high-quality training, research, and innovation opportunities.
@@ -446,14 +446,14 @@
     </div>
     
 
-    <div class="container py-5">
+    <div class="container py-5"data-aos="fade-up">
         <div class="row">
             <!-- FAQ Section -->
-            <div class="col-md-6 mb-4">
-                <h3 class="fw-bold mb-4">Frequently Asked Questions</h3>
+            <div class="col-md-6 mb-4"data-aos="fade-up">
+                <h3 class="fw-bold mb-4"data-aos="fade-up">Frequently Asked Questions</h3>
                 <div class="accordion" id="faqAccordion">
                     <!-- Question 1 -->
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqOneHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="false" aria-controls="faqOne">
                                 Where is Mwala TVC  located?
@@ -466,7 +466,7 @@
                         </div>
                     </div>
                     <!-- Question 2 -->
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
                                 Which  courses does Mwala TVC offer?
@@ -478,7 +478,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
                                 Is Mwala Technical and Vocational Collage Courses Accredited and registered by the government?
@@ -490,7 +490,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
                                Can you apply for a course online?
@@ -503,7 +503,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
                                Can i do more than one Course?
@@ -515,7 +515,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
+                    <div class="accordion-item"data-aos="fade-up">
                         <h2 class="accordion-header" id="faqTwoHeading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
                                 Do you have Hostels at Mwala TVC?
@@ -533,7 +533,7 @@
             </div>
     
             <!-- About Section -->
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4"data-aos="fade-up">
                 <div class="p-4  text-dark shadow-sm " >
                     <h3 class="fw-bold">About Mwala TVC</h3>
                     <p>
@@ -674,11 +674,11 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
     </section>
     
 
-    <div class="container my-2">
+    <div class="container my-2"data-aos="fade-up">
         <div class="row align-items-start">
             <!-- Principal Image and Title -->
             {% if principal_message %}
-              <div class="col-md-3 text-center text-dark">
+              <div class="col-md-3 text-center text-dark"data-aos="fade-right">
                 <a href="{% url 'mwala_app:principal_detail' %}">
                     {% if principal_message.image %}
                         <img src="{{ principal_message.image.url }}" class="img-fluid mb-3" alt="{{ principal_message.title }}">
@@ -707,7 +707,7 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
         </div>
     </div>
     
-    <div class="container my-0 bg-transparent">
+    <div class="container my-0 bg-transparent"data-aos="fade-up">
         <!-- Counter Section -->
         <div class="row text-center">
             <div class="col-md-3">
@@ -728,7 +728,7 @@ document.querySelector('#imageCarouselModal ').addEventListener('click', functio
             </div>
         </div>
     </div>
-    <div class="container my-5">
+    <div class="container my-5"data-aos="fade-up">
         <!-- Partners Section -->
         <h2 class="text-center mb-4 " style="color: #0098DB;">Our Partners</h2>
         <div class="row justify-content-center text-center align-items-center">

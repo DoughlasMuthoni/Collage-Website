@@ -32,11 +32,11 @@
             </div>
         </div>
     </section>
-    <div class="container my-5">
+    <div class="container my-5"data-aos="fade-up">
         <div class="row">
             <!-- Principal Section -->
             {% if principal_message %}
-            <div class="col-md-3 text-center text-dark">
+            <div class="col-md-3 text-center text-dark"data-aos="fade-right">
                 {% if principal_message.image %}
                 <img src="{{ principal_message.image.url }}" class="img-fluid  border border-3 border-primary shadow" alt="{{ principal_message.title }}">
                 {% else %}
@@ -48,7 +48,7 @@
             </div>
     
             <!-- Full Welcome Message -->
-            <div class="col-md-9 text-dark">
+            <div class="col-md-9 text-dark"data-aos="fade-up">
                 <!-- <h2 class="text-danger fw-bold">Message from Chief Principal Mwala Technical and Vocational College</h2> -->
                 <p>{{ principal_message.description|safe }}</p>
                 <a href="{% url 'mwala_app:index' %}" class="btn btn-secondary">Back to Home</a>

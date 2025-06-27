@@ -85,19 +85,19 @@
 }
  /* Breaking news header */
  .breaking-news {
-    background-color: red;
-    color: white;
+    background-color: #0098DB;
+    color: rgb(226, 17, 17);
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 6px;
+    padding: 0px 3px 3px 3px;
 }
 
 .breaking-news marquee {
-    background-color: rgb(85, 85, 230);
-    color: white;
-    padding: 5px;
+    background-color:  #fff;
+    color: rgb(226, 17, 17);
+    /* padding: 5px; */
     font-size: 14px;
     font-weight: bold;
     margin: 0;
@@ -105,7 +105,7 @@
 }
 
 .breaking-news span {
-    margin-left: 10px;
+    margin-left: 8px;
     font-size: 14px;
 }
 
@@ -130,7 +130,7 @@ body {
     justify-content: center; /* Center links on desktop */
     align-items: center;
     padding: 10px 15px;
-    background-color: hsl(118, 100%, 25%);
+    background-color: #0D6D35;
 }
 
 /* Navigation Links */
@@ -301,7 +301,7 @@ body {
         justify-items: center;
         align-items: center;
         width: 100%;
-        background-color: hsl(118, 100%, 25%); /* Add background to make borders visible */
+        background-color: #0D6D35; /* Add background to make borders visible */
     }
 
     .nav-links a {
@@ -311,7 +311,7 @@ body {
         text-align: center;
         border-bottom: 1px solid #ccc; /* Horizontal lines */
         color: #000;
-        background-color: hsl(118, 100%, 25%);
+        background-color: #0D6D35;
     }
 
     .nav-links a:nth-child(odd) {
@@ -373,7 +373,7 @@ body {
     justify-content: center; /* Center links on desktop */
     align-items: center;
     padding: 10px 15px;
-    background-color: hsl(118, 100%, 25%);
+    background-color: #0D6D35;
 }
 
 /* Navigation Links */
@@ -445,7 +445,7 @@ body {
 
 
 .note{
-    border-top: 2px solid #007bff;
+    border-top: 2px solid #0098DB;
 }
 
 
@@ -455,10 +455,10 @@ body {
 }
 .btn-blue:hover{
     color: white;
-    background-color: #25D366;
+    background-color: #0D6D35;
 }
 .btn-green {
-    background-color: #116B38;
+    background-color: #0D6D35;
     color: white;
 }
 .btn-green:hover{
@@ -470,7 +470,7 @@ body {
     right: 12px;
     width: 60px;
     height: 60px;
-    background-color: #25D366;
+    background-color: #0D6D35;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -532,23 +532,23 @@ body {
 }
 
 .btn-blue {
-    background-color: #007bff;
+    background-color: #0098DB ;
     color: white;
     border: none;
 }
 
 .btn-blue:hover {
-    background-color: #0056b3;
+    background-color: #0098DB ;
 }
 
 .btn-green {
-    background-color: #28a745;
+    background-color: #0D6D35;
     color: white;
     border: none;
 }
 
 .btn-green:hover {
-    background-color: #218838;
+    background-color: #0D6D35;
 }
 
 /* Responsive carousel height adjustments */
@@ -600,7 +600,7 @@ body {
 
 /* Table header styling */
 .table thead {
-    background-color: #0098DB; /* Burgundy background for the table header */
+    background-color: #0098DB ; /* Burgundy background for the table header */
     color: black; /* White text color */
 }
 
@@ -663,13 +663,13 @@ margin-bottom: 1rem;
 }
 
 .footer a {
-color: blue;
+color: #0098DB;
 transition: color 0.3s ease;
 text-decoration: none;
 }
 
 .footer {
-color: blue;
+color: #0098DB;
 background-color: black;
 font-size: 14px;
 padding-bottom: 15px;
@@ -775,7 +775,7 @@ margin-bottom: 5px;
 .footer .copyright {
 padding-top: 25px;
 padding-bottom: 25px;
-background-color: green;
+background-color: black;
 color: white;
 }
 
@@ -812,7 +812,7 @@ font-size: 13px;
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #0098DB;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -825,7 +825,7 @@ font-size: 13px;
     }
 
 .back-to-top:hover {
-background: #6776f4;
+background: #0098DB;
 color: #fff;
     }
 
@@ -843,7 +843,7 @@ opacity: 1;
     
 }
 .contact-info p strong{
-    color: #007bff;
+    color: #0098DB;
 }
 .contact-info p {
     color: black;
@@ -857,7 +857,7 @@ opacity: 1;
     margin: 0 auto;
 }
 .btn-submit {
-    background-color: #007bff;
+    background-color: #0098DB;
     color: white;
     font-weight: bold;
 }
@@ -868,13 +868,13 @@ opacity: 1;
 
 /* Custom Styling to Match the Design */
 .notices-section {
-border: 2px solid #007bff;
+border: 2px solid #0098DB;
 border-radius: 8px;
 overflow: hidden;
 }
 
 .notices-header {
-background-color: #007bff;
+background-color: #0098DB;
 color: white;
 padding: 15px;
 text-align: center;
@@ -899,7 +899,7 @@ font-size: 1.5rem;
 
 .notices-item:hover {
     
-    border-bottom: solid #007bff 2px;
+    border-bottom: solid #0098DB 2px;
     transform: scale(0.99); /* Zoom-out effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     background-color: #f8f9fa; /* Slight background change */
@@ -927,7 +927,7 @@ color: red;
 text-decoration: none;
 }
 .notices-footer a:hover{
-    color: #0056b3;
+    color: #0098DB;
 }
 .notices-footer a:hover {
 text-decoration: underline;
@@ -949,7 +949,7 @@ text-decoration: underline;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px #007bff;
+    box-shadow: 0 4px 6px #0098DB;
 }
 
 .program-card h5 {
@@ -1048,7 +1048,7 @@ form .form-control {
 }
 
 .jobs-section h2 {
-    color: #007bff;
+    color: #0098DB;
     margin-bottom: 20px;
 }
 
@@ -1073,7 +1073,7 @@ form .form-control {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 20px;
-    border-left: 6px solid #007bff;
+    border-left: 6px solid #0098DB;
     height: 100%;
 }
 .job-card:hover{
@@ -1429,7 +1429,7 @@ button.btn-primary:hover {
 }
 
 .dropdown-header {
-    color: green;
+    color: #0D6D35;
     font-size: 1.1rem;
     
 }

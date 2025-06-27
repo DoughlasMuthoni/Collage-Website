@@ -239,7 +239,7 @@
         <marquee behavior="scroll" direction="left" scrollamount="8"> 
            
             {% for news_item in breaking_news %}
-               <a href="{% url 'mwala_app:newsEvents' %}" class="text-decoration-none text-white" >{{ news_item.title }} ( {{ news_item.date }}) |</a> 
+               <a href="{% url 'mwala_app:newsEvents' %}" class="text-decoration-none text-danger" >{{ news_item.title }} ( {{ news_item.date }}) |</a> 
             {% endfor %}
         </marquee>  
     </div>

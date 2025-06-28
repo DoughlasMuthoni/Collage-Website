@@ -301,7 +301,7 @@ body {
         justify-items: center;
         align-items: center;
         width: 100%;
-        background-color: #0D6D35; /* Add background to make borders visible */
+        background-color: #0098DB; /* Add background to make borders visible */
     }
 
     .nav-links a {
@@ -311,7 +311,7 @@ body {
         text-align: center;
         border-bottom: 1px solid #ccc; /* Horizontal lines */
         color: #000;
-        background-color: #0D6D35;
+        background-color: #0098DB;
     }
 
     .nav-links a:nth-child(odd) {

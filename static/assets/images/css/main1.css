@@ -130,7 +130,7 @@ body {
     justify-content: center; /* Center links on desktop */
     align-items: center;
     padding: 10px 15px;
-    background-color: #0D6D35;
+    background-color: #0098DB;
 }
 
 /* Navigation Links */
@@ -373,7 +373,7 @@ body {
     justify-content: center; /* Center links on desktop */
     align-items: center;
     padding: 10px 15px;
-    background-color: #0D6D35;
+    background-color: #0098DB;
 }
 
 /* Navigation Links */
@@ -669,7 +669,7 @@ text-decoration: none;
 
 .footer {
 color: white;
-background-color: black;
+background-color: #333333;
 font-size: 14px;
 padding-bottom: 15px;
 position: relative;
@@ -798,7 +798,7 @@ margin-bottom: 5px;
 .footer .copyright {
 padding-top: 25px;
 padding-bottom: 25px;
-background-color: black;
+background-color: #333333;
 color: white;
 }
 

@@ -18,7 +18,7 @@
 .move {
     color: #fff;
     font-size: 1rem; /* Adjust font size for better readability */
-    background-color: #ff0000;
+    background-color: rgb(226, 17, 17);
     border-color: #007bff;
     position: relative;
     animation: pulse 1.5s infinite;
@@ -36,9 +36,9 @@
 }
 
 .move:hover {
-    background-color: #b32400;
+    background-color: rgb(226, 17, 17);
     border-color: #004085;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgb(226, 17, 17);
     transform: scale(1.2);
 }
 
@@ -86,7 +86,7 @@
  /* Breaking news header */
  .breaking-news {
     background-color: #0098DB;
-    color: rgb(226, 17, 17);
+    color: white;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -1314,7 +1314,7 @@ form .form-control {
 }
 
 .card-header {
-    background: linear-gradient(45deg, #007bff, #0056b3);
+    background: linear-gradient(45deg, #0098DB, #0098DB);
     color: white;
 }
 .card-body p {
@@ -1322,12 +1322,12 @@ form .form-control {
     color: #555;
 }
 button.btn-primary {
-    background-color: #007bff;
+    background-color: #0098DB;
     border: none;
     transition: background-color 0.3s ease;
 }
 button.btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0098DB;
 }
 
 
@@ -1426,16 +1426,6 @@ button.btn-primary:hover {
     display: none; 
 }
 
-/* Show dropdown on hover */
-.nav-item.download:hover .dropdown-menu {
-    display: block;
-}
-
-/* Dropdown item hover effect */
-.dropdown-item:hover {
-    background-color: #007bff;
-    color: white;
-}
 
 /* Adjust spacing for nav links */
 .nav-link {
@@ -1464,6 +1454,18 @@ button.btn-primary:hover {
     color: black;
     font-weight: 500;
 }
+
+/* Show dropdown on hover */
+.nav-item.download:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+    background-color: #0098DB;
+    color: white;
+}
+
 
 /* Ensure all columns are the same size */
 .dropdown-menu .container .row {

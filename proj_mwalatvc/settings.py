@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mwala_app',
     'admin_app',
     'ckeditor',
+    'dbbackup',
 ]
 
 MIDDLEWARE = [
@@ -88,23 +89,23 @@ WSGI_APPLICATION = 'proj_mwalatvc.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Uses the SQLite file in the project directory
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mwala_tvc',
-#         'USER': 'Mwala',
-#         'PASSWORD': 'mwalatvc',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3', 
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mwala_tvc',
+        'USER': 'Mwala',
+        'PASSWORD': 'mwalatvc',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation

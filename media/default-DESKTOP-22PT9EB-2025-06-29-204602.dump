@@ -1,0 +1,697 @@
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: 127.0.0.1    Database: mwala_tvc
+-- ------------------------------------------------------
+-- Server version	10.6.20-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add administration',7,'add_administration'),(26,'Can change administration',7,'change_administration'),(27,'Can delete administration',7,'delete_administration'),(28,'Can view administration',7,'view_administration'),(29,'Can add course',8,'add_course'),(30,'Can change course',8,'change_course'),(31,'Can delete course',8,'delete_course'),(32,'Can view course',8,'view_course'),(33,'Can add notice',9,'add_notice'),(34,'Can change notice',9,'change_notice'),(35,'Can delete notice',9,'delete_notice'),(36,'Can view notice',9,'view_notice'),(37,'Can add department',10,'add_department'),(38,'Can change department',10,'change_department'),(39,'Can delete department',10,'delete_department'),(40,'Can view department',10,'view_department'),(41,'Can add supporting department',11,'add_supportingdepartment'),(42,'Can change supporting department',11,'change_supportingdepartment'),(43,'Can delete supporting department',11,'delete_supportingdepartment'),(44,'Can view supporting department',11,'view_supportingdepartment'),(45,'Can add jobs vacancies',12,'add_jobsvacancies'),(46,'Can change jobs vacancies',12,'change_jobsvacancies'),(47,'Can delete jobs vacancies',12,'delete_jobsvacancies'),(48,'Can view jobs vacancies',12,'view_jobsvacancies'),(49,'Can add image gallery',13,'add_imagegallery'),(50,'Can change image gallery',13,'change_imagegallery'),(51,'Can delete image gallery',13,'delete_imagegallery'),(52,'Can view image gallery',13,'view_imagegallery'),(53,'Can add news',14,'add_news'),(54,'Can change news',14,'change_news'),(55,'Can delete news',14,'delete_news'),(56,'Can view news',14,'view_news'),(57,'Can add student affairs',15,'add_studentaffairs'),(58,'Can change student affairs',15,'change_studentaffairs'),(59,'Can delete student affairs',15,'delete_studentaffairs'),(60,'Can view student affairs',15,'view_studentaffairs'),(61,'Can add contact',16,'add_contact'),(62,'Can change contact',16,'change_contact'),(63,'Can delete contact',16,'delete_contact'),(64,'Can view contact',16,'view_contact'),(65,'Can add feedback',17,'add_feedback'),(66,'Can change feedback',17,'change_feedback'),(67,'Can delete feedback',17,'delete_feedback'),(68,'Can view feedback',17,'view_feedback'),(69,'Can add admission application',18,'add_admissionapplication'),(70,'Can change admission application',18,'change_admissionapplication'),(71,'Can delete admission application',18,'delete_admissionapplication'),(72,'Can view admission application',18,'view_admissionapplication'),(73,'Can add tenders',19,'add_tenders'),(74,'Can change tenders',19,'change_tenders'),(75,'Can delete tenders',19,'delete_tenders'),(76,'Can view tenders',19,'view_tenders'),(77,'Can add brochures',20,'add_brochures'),(78,'Can change brochures',20,'change_brochures'),(79,'Can delete brochures',20,'delete_brochures'),(80,'Can view brochures',20,'view_brochures');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext DEFAULT NULL,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL CHECK (`action_flag` >= 0),
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(7,'mwala_app','administration'),(18,'mwala_app','admissionapplication'),(20,'mwala_app','brochures'),(16,'mwala_app','contact'),(8,'mwala_app','course'),(10,'mwala_app','department'),(17,'mwala_app','feedback'),(13,'mwala_app','imagegallery'),(12,'mwala_app','jobsvacancies'),(14,'mwala_app','news'),(9,'mwala_app','notice'),(15,'mwala_app','studentaffairs'),(11,'mwala_app','supportingdepartment'),(19,'mwala_app','tenders'),(6,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2025-06-29 16:44:09.672304'),(2,'auth','0001_initial','2025-06-29 16:44:17.488308'),(3,'admin','0001_initial','2025-06-29 16:44:19.870473'),(4,'admin','0002_logentry_remove_auto_add','2025-06-29 16:44:19.928764'),(5,'admin','0003_logentry_add_action_flag_choices','2025-06-29 16:44:20.017204'),(6,'contenttypes','0002_remove_content_type_name','2025-06-29 16:44:22.368922'),(7,'auth','0002_alter_permission_name_max_length','2025-06-29 16:44:23.034200'),(8,'auth','0003_alter_user_email_max_length','2025-06-29 16:44:23.693634'),(9,'auth','0004_alter_user_username_opts','2025-06-29 16:44:23.720111'),(10,'auth','0005_alter_user_last_login_null','2025-06-29 16:44:24.122468'),(11,'auth','0006_require_contenttypes_0002','2025-06-29 16:44:24.158406'),(12,'auth','0007_alter_validators_add_error_messages','2025-06-29 16:44:24.205322'),(13,'auth','0008_alter_user_username_max_length','2025-06-29 16:44:24.512372'),(14,'auth','0009_alter_user_last_name_max_length','2025-06-29 16:44:24.858504'),(15,'auth','0010_alter_group_name_max_length','2025-06-29 16:44:25.122695'),(16,'auth','0011_update_proxy_permissions','2025-06-29 16:44:25.146821'),(17,'auth','0012_alter_user_first_name_max_length','2025-06-29 16:44:25.433758'),(18,'mwala_app','0001_initial','2025-06-29 16:44:25.622892'),(19,'mwala_app','0002_course','2025-06-29 16:44:25.853752'),(20,'mwala_app','0003_remove_course_title','2025-06-29 16:44:26.186234'),(21,'mwala_app','0004_alter_course_course_level','2025-06-29 16:44:26.204635'),(22,'mwala_app','0005_notice','2025-06-29 16:44:26.447259'),(23,'mwala_app','0006_remove_notice_link_notice_uploadnotice','2025-06-29 16:44:27.155866'),(24,'mwala_app','0007_department','2025-06-29 16:44:28.062502'),(25,'mwala_app','0008_alter_department_course','2025-06-29 16:44:30.487291'),(26,'mwala_app','0009_remove_department_course_course_department','2025-06-29 16:44:35.748080'),(27,'mwala_app','0010_supportingdepartment','2025-06-29 16:44:36.150500'),(28,'mwala_app','0011_jobsvacancies','2025-06-29 16:44:36.529850'),(29,'mwala_app','0012_alter_jobsvacancies_uploadnotice','2025-06-29 16:44:36.551858'),(30,'mwala_app','0013_rename_uploadnotice_jobsvacancies_uploadjobs','2025-06-29 16:44:37.279640'),(31,'mwala_app','0014_imagegallery','2025-06-29 16:44:37.840840'),(32,'mwala_app','0015_news','2025-06-29 16:44:38.263306'),(33,'mwala_app','0016_studentaffairs','2025-06-29 16:44:38.977691'),(34,'mwala_app','0017_contact_alter_studentaffairs_details','2025-06-29 16:44:39.550999'),(35,'mwala_app','0018_feedback','2025-06-29 16:44:40.387641'),(36,'mwala_app','0019_rename_departments_feedback_department_choices_and_more','2025-06-29 16:44:42.390777'),(37,'mwala_app','0020_admissionapplication','2025-06-29 16:44:42.937856'),(38,'mwala_app','0021_imagegallery_description_imagegallery_title','2025-06-29 16:44:43.927472'),(39,'mwala_app','0022_studentaffairs_image','2025-06-29 16:44:44.205489'),(40,'mwala_app','0023_alter_administration_description_and_more','2025-06-29 16:44:45.086170'),(41,'mwala_app','0024_alter_course_course_level','2025-06-29 16:44:45.334892'),(42,'mwala_app','0025_admissionapplication_county_and_more','2025-06-29 16:44:50.330241'),(43,'mwala_app','0026_studentaffairs_name','2025-06-29 16:44:51.132820'),(44,'mwala_app','0027_alter_studentaffairs_name','2025-06-29 16:44:51.989983'),(45,'mwala_app','0028_feedback_submitted_at','2025-06-29 16:44:52.977018'),(46,'mwala_app','0029_tenders','2025-06-29 16:44:53.150162'),(47,'mwala_app','0030_department_hod_image_alter_department_description','2025-06-29 16:44:53.933116'),(48,'mwala_app','0031_mwalabrachures','2025-06-29 16:44:54.221532'),(49,'mwala_app','0032_mwalabrachures_title_alter_mwalabrachures_brochure','2025-06-29 16:44:56.216866'),(50,'mwala_app','0033_brochures_delete_mwalabrachures','2025-06-29 16:44:56.752599'),(51,'mwala_app','0034_alter_supportingdepartment_position','2025-06-29 16:44:57.447791'),(52,'mwala_app','0035_alter_course_course_level','2025-06-29 16:44:57.470604'),(53,'mwala_app','0036_department_hod_info','2025-06-29 16:44:58.205967'),(54,'mwala_app','0037_administration_position_level','2025-06-29 16:44:58.651297'),(55,'mwala_app','0038_supportingdepartment_hod_info','2025-06-29 16:44:59.170806'),(56,'mwala_app','0039_alter_supportingdepartment_hod_info','2025-06-29 16:44:59.745236'),(57,'mwala_app','0040_remove_supportingdepartment_hod_info_and_more','2025-06-29 16:45:00.602858'),(58,'mwala_app','0041_alter_department_hod_info_and_more','2025-06-29 16:45:00.630997'),(59,'sessions','0001_initial','2025-06-29 16:45:01.305751');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_administration`
+--
+
+DROP TABLE IF EXISTS `mwala_app_administration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_administration` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `position` varchar(100) NOT NULL,
+  `description` longtext NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `position_level` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_administration`
+--
+
+LOCK TABLES `mwala_app_administration` WRITE;
+/*!40000 ALTER TABLE `mwala_app_administration` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_administration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_admissionapplication`
+--
+
+DROP TABLE IF EXISTS `mwala_app_admissionapplication`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_admissionapplication` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `kcse_grade` varchar(5) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `intake_month` varchar(20) NOT NULL,
+  `kcse_certificate` varchar(100) NOT NULL,
+  `birth_certificate` varchar(100) NOT NULL,
+  `submitted_at` datetime(6) NOT NULL,
+  `county` varchar(50) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mwala_app_admissiona_department_id_a30b3c7b_fk_mwala_app` (`department_id`),
+  KEY `mwala_app_admissionapplication_course_id_8a1afa51` (`course_id`),
+  CONSTRAINT `mwala_app_admissiona_course_id_8a1afa51_fk_mwala_app` FOREIGN KEY (`course_id`) REFERENCES `mwala_app_course` (`id`),
+  CONSTRAINT `mwala_app_admissiona_department_id_a30b3c7b_fk_mwala_app` FOREIGN KEY (`department_id`) REFERENCES `mwala_app_department` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_admissionapplication`
+--
+
+LOCK TABLES `mwala_app_admissionapplication` WRITE;
+/*!40000 ALTER TABLE `mwala_app_admissionapplication` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_admissionapplication` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_brochures`
+--
+
+DROP TABLE IF EXISTS `mwala_app_brochures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_brochures` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `brochure` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_brochures`
+--
+
+LOCK TABLES `mwala_app_brochures` WRITE;
+/*!40000 ALTER TABLE `mwala_app_brochures` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_brochures` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_contact`
+--
+
+DROP TABLE IF EXISTS `mwala_app_contact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_contact` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `message` longtext NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_contact`
+--
+
+LOCK TABLES `mwala_app_contact` WRITE;
+/*!40000 ALTER TABLE `mwala_app_contact` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_contact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_course`
+--
+
+DROP TABLE IF EXISTS `mwala_app_course`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `qualification` varchar(255) NOT NULL,
+  `duration` varchar(100) NOT NULL,
+  `examination_body` varchar(10) NOT NULL,
+  `course_level` varchar(200) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mwala_app_course_department_id_eb259c4f_fk_mwala_app` (`department_id`),
+  CONSTRAINT `mwala_app_course_department_id_eb259c4f_fk_mwala_app` FOREIGN KEY (`department_id`) REFERENCES `mwala_app_department` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_course`
+--
+
+LOCK TABLES `mwala_app_course` WRITE;
+/*!40000 ALTER TABLE `mwala_app_course` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_course` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_department`
+--
+
+DROP TABLE IF EXISTS `mwala_app_department`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `description` varchar(1200) NOT NULL,
+  `hod_name` varchar(150) NOT NULL,
+  `hod_message` longtext NOT NULL,
+  `hod_image` varchar(100) DEFAULT NULL,
+  `hod_info` longtext DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_department`
+--
+
+LOCK TABLES `mwala_app_department` WRITE;
+/*!40000 ALTER TABLE `mwala_app_department` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_department` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_feedback`
+--
+
+DROP TABLE IF EXISTS `mwala_app_feedback`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_feedback` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `organization_name` varchar(255) NOT NULL,
+  `visit_date` date NOT NULL,
+  `time_in` time(6) NOT NULL,
+  `time_out` time(6) NOT NULL,
+  `department_choices` varchar(255) NOT NULL,
+  `service_rating` varchar(20) NOT NULL,
+  `complaints` varchar(3) NOT NULL,
+  `complaints_description` longtext DEFAULT NULL,
+  `compliments` varchar(3) NOT NULL,
+  `compliments_description` longtext DEFAULT NULL,
+  `submitted_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_feedback`
+--
+
+LOCK TABLES `mwala_app_feedback` WRITE;
+/*!40000 ALTER TABLE `mwala_app_feedback` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_feedback` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_imagegallery`
+--
+
+DROP TABLE IF EXISTS `mwala_app_imagegallery`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_imagegallery` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_imagegallery`
+--
+
+LOCK TABLES `mwala_app_imagegallery` WRITE;
+/*!40000 ALTER TABLE `mwala_app_imagegallery` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_imagegallery` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_jobsvacancies`
+--
+
+DROP TABLE IF EXISTS `mwala_app_jobsvacancies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_jobsvacancies` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `position` varchar(200) NOT NULL,
+  `deadlineDate` date NOT NULL,
+  `uploadJobs` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_jobsvacancies`
+--
+
+LOCK TABLES `mwala_app_jobsvacancies` WRITE;
+/*!40000 ALTER TABLE `mwala_app_jobsvacancies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_jobsvacancies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_news`
+--
+
+DROP TABLE IF EXISTS `mwala_app_news`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_news` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `description` longtext NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `video_attachment` varchar(100) DEFAULT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_news`
+--
+
+LOCK TABLES `mwala_app_news` WRITE;
+/*!40000 ALTER TABLE `mwala_app_news` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_news` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_notice`
+--
+
+DROP TABLE IF EXISTS `mwala_app_notice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_notice` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `uploadNotice` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_notice`
+--
+
+LOCK TABLES `mwala_app_notice` WRITE;
+/*!40000 ALTER TABLE `mwala_app_notice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_notice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_studentaffairs`
+--
+
+DROP TABLE IF EXISTS `mwala_app_studentaffairs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_studentaffairs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `details` longtext NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_studentaffairs`
+--
+
+LOCK TABLES `mwala_app_studentaffairs` WRITE;
+/*!40000 ALTER TABLE `mwala_app_studentaffairs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_studentaffairs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_supportingdepartment`
+--
+
+DROP TABLE IF EXISTS `mwala_app_supportingdepartment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_supportingdepartment` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `hod_name` varchar(150) NOT NULL,
+  `hod_message` longtext NOT NULL,
+  `position` varchar(100) NOT NULL,
+  `hod_information` longtext DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_supportingdepartment`
+--
+
+LOCK TABLES `mwala_app_supportingdepartment` WRITE;
+/*!40000 ALTER TABLE `mwala_app_supportingdepartment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_supportingdepartment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `mwala_app_tenders`
+--
+
+DROP TABLE IF EXISTS `mwala_app_tenders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mwala_app_tenders` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `deadlineDate` date NOT NULL,
+  `uploadJobs` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mwala_app_tenders`
+--
+
+LOCK TABLES `mwala_app_tenders` WRITE;
+/*!40000 ALTER TABLE `mwala_app_tenders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mwala_app_tenders` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-06-29 20:46:04

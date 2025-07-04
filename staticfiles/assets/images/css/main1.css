@@ -18,7 +18,7 @@
 .move {
     color: #fff;
     font-size: 1rem; /* Adjust font size for better readability */
-    background-color: #ff0000;
+    background-color: rgb(226, 17, 17);
     border-color: #007bff;
     position: relative;
     animation: pulse 1.5s infinite;
@@ -36,9 +36,9 @@
 }
 
 .move:hover {
-    background-color: #b32400;
+    background-color: rgb(226, 17, 17);
     border-color: #004085;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgb(226, 17, 17);
     transform: scale(1.2);
 }
 
@@ -85,19 +85,19 @@
 }
  /* Breaking news header */
  .breaking-news {
-    background-color: red;
+    background-color: #0098DB;
     color: white;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 6px;
+    padding: 0px 3px 3px 3px;
 }
 
 .breaking-news marquee {
-    background-color: rgb(85, 85, 230);
-    color: white;
-    padding: 5px;
+    background-color:  #fff;
+    color: rgb(226, 17, 17);
+    /* padding: 5px; */
     font-size: 14px;
     font-weight: bold;
     margin: 0;
@@ -105,7 +105,7 @@
 }
 
 .breaking-news span {
-    margin-left: 10px;
+    margin-left: 8px;
     font-size: 14px;
 }
 
@@ -115,7 +115,12 @@ header {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
+}
+
+/* Prevent horizontal scroll on small screens */
+body {
+    overflow-x: hidden;
 }
 
 /* Main Navigation */
@@ -125,7 +130,7 @@ header {
     justify-content: center; /* Center links on desktop */
     align-items: center;
     padding: 10px 15px;
-    background-color: hsl(118, 100%, 25%);
+    background-color: #0098DB;
 }
 
 /* Navigation Links */
@@ -183,14 +188,21 @@ header {
     .main-nav {
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
     }
 
-    /* Adjust dropdown for small screens */
+    /* Adjust dropdown for small screens and tablets */
     .nav-item .dropdown-menu {
         position: static;
         visibility: visible;
         opacity: 1;
         display: none; /* Hide by default */
+        width: 50%; /* Full width of parent container */
+        max-width: 50%;
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: auto; /* Avoid horizontal scroll */
+        margin: 0; /* Remove auto margin to prevent centering offset */
     }
 
     /* Show dropdown when parent is clicked */
@@ -208,6 +220,214 @@ header {
     }
 }
 
+
+
+@media (max-width: 768px) {
+    /* Hide the input field by default on small screens */
+    #searchInput {
+        display: none;
+        font-size: 12px; /* Smaller font size */
+        padding: 4px 8px; /* Reduced padding */
+    }
+
+    /* Show only the toggle (search icon button) */
+    #searchToggle {
+        display: block;
+        font-size: 14px; /* Smaller icon size */
+        padding: 4px; /* Reduce clickable area */
+        margin: 0;
+    }
+
+    /* If you toggle the input open with JS, you might want this class */
+    .show-search #searchInput {
+        display: block;
+        width: 100%;
+    }
+}
+
+
+/* Responsive Styling - Tablets and below */
+/* Default (Desktop) Styling */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #f2f2f2;
+}
+
+/* Tablet and Small Screen Styling */
+@media (max-width: 768px) {
+    .nav-links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        grid-template-rows: auto auto auto;
+        gap: 10px;
+        justify-items: center;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 8px 12px;
+        display: inline-block;
+        width: 100%;
+        max-width: 140px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        gap: 10px;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        background-color: #0098DB; /* Add background to make borders visible */
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #ccc; /* Horizontal lines */
+        color: #000;
+        background-color: #0098DB;
+    }
+
+    .nav-links a:nth-child(odd) {
+        border-right: 1px solid #ccc; /* Optional: line between columns */
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none; /* No line under last */
+    }
+
+    .nav-links .btn {
+        font-size: 12px;
+        border: none;
+        background-color: red;
+        color: white;
+        width: 100%;
+        margin: 5px 0;
+        padding: 10px;
+    }
+
+    /* Optional: Add rounded corners */
+    .nav-links a,
+    .nav-links .btn {
+        border-radius: 4px;
+    }
+}
+
+
+
+
+
+
+
+
+    /* Make search bar visible when toggled */
+    #searchInput {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+/* General Header Styling */
+header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+}
+
+/* Prevent horizontal scroll on small screens */
+body {
+    overflow-x: hidden;
+}
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center links on desktop */
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #0098DB;
+}
+
+/* Navigation Links */
+.main-nav a {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #0098DB;
+}
+
+/* Dropdown Menu Styling */
+.nav-item {
+    position: relative;
+    margin-right: 15px;
+}
+
+/* Dropdown Hidden by Default */
+.nav-item .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    min-width: 180px;
+    background: white;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1000;
+}
+
+/* Show dropdown on hover (Desktop) */
+.nav-item:hover .dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+/* Ensure Dropdown is Clickable (Mobile) */
+.nav-item .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+}
+
+
+
 @media (max-width: 576px) {
     .main-nav a {
         width: 100%;
@@ -222,8 +442,10 @@ header {
     }
 }
 
+
+
 .note{
-    border-top: 2px solid #007bff;
+    border-top: 2px solid #0098DB;
 }
 
 
@@ -233,10 +455,10 @@ header {
 }
 .btn-blue:hover{
     color: white;
-    background-color: #25D366;
+    background-color: #0D6D35;
 }
 .btn-green {
-    background-color: #116B38;
+    background-color: #0D6D35;
     color: white;
 }
 .btn-green:hover{
@@ -248,7 +470,7 @@ header {
     right: 12px;
     width: 60px;
     height: 60px;
-    background-color: #25D366;
+    background-color: #0D6D35;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -310,31 +532,125 @@ header {
 }
 
 .btn-blue {
-    background-color: #007bff;
+    background-color: #0098DB ;
     color: white;
     border: none;
 }
 
 .btn-blue:hover {
-    background-color: #0056b3;
+    background-color: #0098DB ;
 }
 
 .btn-green {
-    background-color: #28a745;
+    background-color: #0D6D35;
     color: white;
     border: none;
 }
 
 .btn-green:hover {
-    background-color: #218838;
+    background-color: #0D6D35;
 }
 
-/* Optional: Responsive text alignment for smaller screens */
+/* Responsive carousel height adjustments */
 @media (max-width: 768px) {
-    .carousel-caption {
-        text-align: center;
+    .carousel-inner img {
+        height: 400px; /* Medium screen height */
     }
 }
+
+@media (max-width: 576px) {
+    .carousel-inner img {
+        height: 300px; /* Smaller screens */
+    }
+}
+
+@media (max-width: 320px) {
+    .carousel-inner img {
+        height: 250px; /* Very small screens */
+    }
+    .carousel-caption h1{
+        margin-top:6rem;
+    }
+    .carousel-caption {
+        text-align: center;
+        bottom: 40%; /* Adjust text position */
+    }
+}
+
+/* Ensure the table container allows horizontal scrolling */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    margin-bottom: 20px; /* Add some spacing at the bottom */
+    padding-bottom: 10px; /* Ensure the padding on the bottom */
+    border: 1px solid #ddd; /* Light border around the table */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Force the table to always require scrolling on small screens */
+.table-responsive table {
+    width: 100%;
+    min-width: 800px; /* Force a minimum width to make the table scroll */
+    table-layout: fixed; /* Fix column widths */
+}
+
+
+
+/* Table header styling */
+.table thead {
+    background-color: #0098DB ; /* Burgundy background for the table header */
+    color: black; /* White text color */
+}
+
+/* Table cell styling */
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Optional: Fix the header to always stay on top */
+.table-responsive thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+/* Alternating row colors */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #c8c9c8; /* Light gray for alternating rows */
+    text-align: center;
+}
+
+
+@media (max-width: 576px) {
+    .card-body {
+        min-height: 140px !important; /* Reduce height */
+        padding: 1rem !important;     /* Tighter padding */
+    }
+
+    .card-body i {
+        font-size: 2rem !important;   /* Smaller icons */
+    }
+
+    .card-title {
+        font-size: 1rem !important;   /* Smaller title text */
+        margin-top: 0.5rem !important;
+    }
+
+    .card-text.view {
+        font-size: 0.9rem !important; /* Smaller paragraph text */
+    }
+
+    .content-c {
+        font-size: 0.85rem !important;
+    }
+}
+
 
 
 /* General Footer Styles */
@@ -342,19 +658,18 @@ header {
 
 .footer h4 {
 font-size: 1.25rem;
-color: #c91414;
 margin-bottom: 1rem;
 }
 
 .footer a {
-color: blue;
+color: white;
 transition: color 0.3s ease;
 text-decoration: none;
 }
 
 .footer {
-color: blue;
-background-color: black;
+color: white;
+background-color: #333333;
 font-size: 14px;
 padding-bottom: 15px;
 position: relative;
@@ -378,7 +693,7 @@ font-size: 26px;
 font-weight: 700;
 letter-spacing: 1px;
 font-family: sans-serif;
-color: #0098DB;
+color: white;
 }
 
 .footer .footer-about p {
@@ -393,9 +708,9 @@ justify-content: center;
 width: 40px;
 height: 40px;
 
-border: 1px solid green, transparent 50%;
+border: 1px solid #0098DB, transparent 50%;
 font-size: 16px;
-color: #0098DB;
+color: white;
 margin-right: 10px;
 transition: 0.3s;
 
@@ -440,14 +755,38 @@ padding-top: 0;
 }
 
 .footer .footer-links ul a {
-color: #0098DB;
+color: white;
 display: inline-block;
 line-height: 1;
 }
 
-.footer .footer-links ul a:hover {
-color: green;
+.footer .footer-links ul a {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  padding-left: 0; /* Initial padding */
+  color: inherit;
+  text-decoration: none;
 }
+
+.footer .footer-links ul a:hover {
+  color: #0098DB;
+  padding-left: 10px; /* Move slightly to the right */
+}
+
+.footer .footer-links ul a::before {
+  content: '→'; /* Arrow symbol */
+  position: absolute;
+  left: -15px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.footer .footer-links ul a:hover::before {
+  opacity: 1;
+  left: -20px; /* Animate the arrow slightly left */
+}
+
 
 .footer .footer-contact p {
 margin-bottom: 5px;
@@ -459,7 +798,7 @@ margin-bottom: 5px;
 .footer .copyright {
 padding-top: 25px;
 padding-bottom: 25px;
-background-color: green;
+background-color: #333333;
 color: white;
 }
 
@@ -486,27 +825,6 @@ font-size: 13px;
     text-transform: uppercase;
     }
 
-.table-responsive {
-    border: 1px solid #ddd; /* Light border around the table */
-    border-radius: 5px; /* Rounded corners */
-    overflow: hidden;
-    }
-
-.table thead {
-    background-color: #0098DB; /* Burgundy background for the table header */
-    color: white; /* White text color */
-    }
-
-.table th,
-.table td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #c8c9c8; /* Light gray for alternating rows */
-    text-align: center;
-}
 
 /* # Back to top button */
 
@@ -517,7 +835,7 @@ font-size: 13px;
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #0098DB;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -530,7 +848,7 @@ font-size: 13px;
     }
 
 .back-to-top:hover {
-background: #6776f4;
+background: #0098DB;
 color: #fff;
     }
 
@@ -548,7 +866,7 @@ opacity: 1;
     
 }
 .contact-info p strong{
-    color: #007bff;
+    color: #0098DB;
 }
 .contact-info p {
     color: black;
@@ -562,7 +880,7 @@ opacity: 1;
     margin: 0 auto;
 }
 .btn-submit {
-    background-color: #007bff;
+    background-color: #0098DB;
     color: white;
     font-weight: bold;
 }
@@ -573,13 +891,13 @@ opacity: 1;
 
 /* Custom Styling to Match the Design */
 .notices-section {
-border: 2px solid #007bff;
+border: 2px solid #0098DB;
 border-radius: 8px;
 overflow: hidden;
 }
 
 .notices-header {
-background-color: #007bff;
+background-color: #0098DB;
 color: white;
 padding: 15px;
 text-align: center;
@@ -604,7 +922,7 @@ font-size: 1.5rem;
 
 .notices-item:hover {
     
-    border-bottom: solid #007bff 2px;
+    border-bottom: solid #0098DB 2px;
     transform: scale(0.99); /* Zoom-out effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     background-color: #f8f9fa; /* Slight background change */
@@ -632,7 +950,7 @@ color: red;
 text-decoration: none;
 }
 .notices-footer a:hover{
-    color: #0056b3;
+    color: #0098DB;
 }
 .notices-footer a:hover {
 text-decoration: underline;
@@ -654,7 +972,7 @@ text-decoration: underline;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px #007bff;
+    box-shadow: 0 4px 6px #0098DB;
 }
 
 .program-card h5 {
@@ -753,7 +1071,7 @@ form .form-control {
 }
 
 .jobs-section h2 {
-    color: #007bff;
+    color: #0098DB;
     margin-bottom: 20px;
 }
 
@@ -778,7 +1096,7 @@ form .form-control {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 20px;
-    border-left: 6px solid #007bff;
+    border-left: 6px solid #0098DB;
     height: 100%;
 }
 .job-card:hover{
@@ -996,7 +1314,7 @@ form .form-control {
 }
 
 .card-header {
-    background: linear-gradient(45deg, #007bff, #0056b3);
+    background: linear-gradient(45deg, #0098DB, #0098DB);
     color: white;
 }
 .card-body p {
@@ -1004,12 +1322,12 @@ form .form-control {
     color: #555;
 }
 button.btn-primary {
-    background-color: #007bff;
+    background-color: #0098DB;
     border: none;
     transition: background-color 0.3s ease;
 }
 button.btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0098DB;
 }
 
 
@@ -1108,16 +1426,6 @@ button.btn-primary:hover {
     display: none; 
 }
 
-/* Show dropdown on hover */
-.nav-item.download:hover .dropdown-menu {
-    display: block;
-}
-
-/* Dropdown item hover effect */
-.dropdown-item:hover {
-    background-color: #007bff;
-    color: white;
-}
 
 /* Adjust spacing for nav links */
 .nav-link {
@@ -1134,7 +1442,7 @@ button.btn-primary:hover {
 }
 
 .dropdown-header {
-    color: green;
+    color: #0D6D35;
     font-size: 1.1rem;
     
 }
@@ -1146,6 +1454,18 @@ button.btn-primary:hover {
     color: black;
     font-weight: 500;
 }
+
+/* Show dropdown on hover */
+.nav-item.download:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover {
+    background-color: #0098DB;
+    color: white;
+}
+
 
 /* Ensure all columns are the same size */
 .dropdown-menu .container .row {
@@ -1381,7 +1701,7 @@ th {
 .member {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .member img {
     width: 90px;
@@ -1398,6 +1718,22 @@ th {
     font-size: 0.9rem;
 }
 
+/* Increase the spacing between the member divs */
+
+
+/* Ensure the right section aligns with the left section */
+.member-styles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* Optional: Add some padding to the right section to make the content look more aligned */
+.member-styles .member {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 
 /* Reduce size of the carousel */

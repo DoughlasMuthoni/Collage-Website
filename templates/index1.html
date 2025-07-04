@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="carousel-item active">
+            <div class="carousel-item ">
                 <img src="{% static 'assets\images\mwala_caurosel1.jpg' %}" class="d-block w-100 carousel-zoom" alt="Slide 1">
                 <div class="carousel-caption">
                     <h1>Welcome to Mwala Technical and Vocational College</h1>
@@ -57,7 +57,7 @@
    
     
    <div class="position-relative" style="margin-top: -6rem; z-index: 10;">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row justify-content-center g-4">
 
       <!-- Service Charter -->
@@ -101,7 +101,7 @@
     
     
     
-    <div class="container my-5 note"data-aos="fade-up">
+    <div class="container-fluid my-5  py-2 note"data-aos="fade-up">
         <!-- Notice Section -->
         <div class="notices-section">
             <div class="notices-header" style=" background-color: #0098DB ;" >
@@ -140,7 +140,7 @@
     </div>
     
     
-    <div class="container my-2"data-aos="fade-up">
+    <div class="container-fluid my-2"data-aos="fade-up">
         <h2 class="text-start py-2 px-3 rounded d-flex align-items-center" style="color: #0D6D35;">
             <i class="fas fa-calendar-alt me-2"></i> News and Events
         </h2>
@@ -176,7 +176,7 @@
         
         
 
-    <div class="jobs-section container my-5"data-aos="fade-up">
+    <div class="jobs-section container-fluid my-5"data-aos="fade-up">
         <h2 class="text-start  py-2 px-3 rounded d-flex align-items-center" style="color:#0D6D35;">
             <i class="fas fa-briefcase me-2"></i> Jobs and Vacancies
         </h2>
@@ -216,7 +216,7 @@
         
 
 
-    <div class="container py-2"data-aos="fade-up">
+    <div class="container-fluid py-2"data-aos="fade-up">
         <h2 class="text-center mb-2 text-white rounded" style="padding: 5px; background-color: #0098DB ; border-bottom: 2px solid red;">OUR PROGRAMS</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             
@@ -250,7 +250,7 @@
     </div>
 
     <section class="department-cards py-5"data-aos="fade-up">
-        <div class="container">
+        <div class="container-fluid">
             <div class="text-center mb-4"data-aos="fade-up">
                 <h2 class="text-white py-3 rounded" style="background-color: #0098DB; border-bottom: 2px solid red;">MWALA TECHNICAL & VOCATIONAL COLLEGE DEPARTMENTS</h2>
             </div>
@@ -285,66 +285,101 @@
     </section>
 
 
-    <div class="container-fluid p-0 py-0"style="max-height: 700px;">
-        <div class="row g-0 text-center">
-            <!-- Vision -->
-            <div class="col-md-4">
-                <div class="card border-0 text-white" style="height:300px;"data-aos="fade-right" >
-                    <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img1.jpg'); background-size: cover; background-position: center; height: 100vh;">
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.7);"></div>
-                        <div class="position-relative z-1">
-                            <div class="icon mb-3">
-                                <i class="fas fa-trophy text-warning fs-1"></i>
-                            </div>
-                            <h4 class="card-title fw-bold">Vision</h4>
-                            <p class="card-text text-white">
-                                A Centre of Excellence in Technical Training for Employable Workforce. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  
+</head>
+<body>
+
+<style>
+.tvc-no-gap {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .tvc-no-gap > [class^="col-"] {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .tvc-section {
+      background-size: cover;
+      background-position: center;
+      height: 350px;
+      position: relative;
+      color: white;
+    }
+
+    .tvc-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .tvc-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .tvc-content h4 {
+      font-weight: bold;
+    }
+
+    .tvc-content p {
+      margin: 0;
+    }
+  </style>
+
+
+<div class="container-fluid tvc-no-gap">
+  <div class="row tvc-no-gap text-center">
     
-            <!-- Mission -->
-            <div class="col-md-4">
-                <div class="card border-0 text-white" style="height:300px;"data-aos="fade-up">
-                    <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img3.jpg'); background-size: cover; background-position: center; height: 100vh;">
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.7);"></div>
-                        <div class="position-relative z-1">
-                            <div class="icon mb-3">
-                                <i class="fas fa-bullseye text-primary fs-1"></i>
-                            </div>
-                            <h4 class="card-title fw-bold">Mission</h4>
-                            <p class="card-text text-white">
-                                To Produce Competent Employable Graduates by Facilitating Learning, Research and
-                                Innovative Dissemination of Knowledge, Skills and Productive Work Attitudes to Meet SocioEconomic and Cultural Needs of the Citizens of Kenya and Beyond. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- motto -->
-            <div class="col-md-4"data-aos="fade-left">
-                <div class="card border-0 text-white"  style="height:300px;">
-                    <div class="card-body position-relative bg-dark bg-opacity-50" style="background-image: url('static/assets/images/mwala_img4.jpg'); background-size: cover; background-position: center; height: 100vh;">
-                        <div class="overlay position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.7);"></div>
-                        <div class="position-relative z-1">
-                            <div class="icon mb-3">
-                                <i class="fas fa-briefcase text-success fs-1"></i>
-                            </div>
-                            <h4 class="card-title fw-bold">Motto</h4>
-                            <p class="card-text text-white">
-                                Unlocking Knowledge, Skills and Work Behaviour in The Heart of Africa
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Vision -->
+    <div class="col-md-4" data-aos="fade-right">
+      <div class="tvc-section" style="background-image: url('static/assets/images/mwala_img1.jpg');">
+        <div class="tvc-overlay"></div>
+        <div class="tvc-content">
+          <i class="fas fa-trophy text-warning fs-1 mb-2"></i>
+          <h4>Vision</h4>
+          <p>A Centre of Excellence in Technical Training for Employable Workforce.</p>
         </div>
+      </div>
     </div>
+
+    <!-- Mission -->
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="tvc-section" style="background-image: url('static/assets/images/mwala_img3.jpg');">
+        <div class="tvc-overlay"></div>
+        <div class="tvc-content">
+          <i class="fas fa-bullseye text-primary fs-1 mb-2"></i>
+          <h4>Mission</h4>
+          <p>To Produce Competent Employable Graduates by Facilitating Learning, Research and Innovation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motto -->
+    <div class="col-md-4" data-aos="fade-right">
+      <div class="tvc-section" style="background-image: url('static/assets/images/mwala_img4.jpg');">
+        <div class="tvc-overlay"></div>
+        <div class="tvc-content">
+          <i class="fas fa-briefcase text-success fs-1 mb-2"></i>
+          <h4>Motto</h4>
+          <p>Unlocking Knowledge, Skills and Work Behaviour in The Heart of Africa.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
     
-    <div class="container-fluid bg-brown text-dark py-4" >
+    <div class="container-fluid-fluid bg-brown text-dark py-4" >
         <div class="text-center">
             <h2 class="fw-bold " style="color: #0098DB;">
                 <i class="fas fa-cogs me-2"></i> OUR CORE VALUES
@@ -359,94 +394,70 @@
         </div>
     </div>
     
-    <div class="container py-2"data-aos="fade-up">
+    <div class="container-fluid py-2"data-aos="fade-up">
         <div class="row align-items-center">
             <!-- Left Section: Image -->
             <div class="col-md-6"data-aos="fade-right">
                 <img src="{% static 'assets\images\mwala_img4.jpg' %}" alt="Core Values Image" class="img-fluid rounded shadow-sm">
             </div>
     
-            <!-- Right Section: Content -->
-            <div class="col-md-6"data-aos="fade-up">
+          <div class="col-md-6" data-aos="fade-up">
+                <!-- Tab Nav -->
                 <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="core-functions-tab" data-bs-toggle="tab" data-bs-target="#core-functions" type="button" role="tab" aria-controls="core-functions" aria-selected="true">
-                            Core Functions
-                        </button>
+                    <button class="nav-link active" id="core-functions-tab" data-bs-toggle="tab" data-bs-target="#core-functions" type="button" role="tab" aria-controls="core-functions" aria-selected="true">
+                        Core Functions
+                    </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="why-join-tab" data-bs-toggle="tab" data-bs-target="#why-join" type="button" role="tab" aria-controls="why-join" aria-selected="false">
-                            Why Join Mwala TVC
-                        </button>
+                    <button class="nav-link" id="why-join-tab" data-bs-toggle="tab" data-bs-target="#why-join" type="button" role="tab" aria-controls="why-join" aria-selected="false">
+                        Why Join Mwala TVC
+                    </button>
                     </li>
                 </ul>
-    
-                <div class="tab-content" id="myTabContent"data-aos="fade-up">
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="myTabContent" data-aos="fade-up">
                     <!-- Core Functions -->
-                    <div class="tab-pane fade show active" id="core-functions" role="tabpanel" aria-labelledby="core-functions-tab">
-                        <h3 class="text-pdark fw-bold">Core Functions</h3>
-                        <ul class="list-unstyled">
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Team Work and Academic Excellence 
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Professional and Academic Integrity 
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Leadership, Service, Social Justice, and Entrepreneurship
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Creative and Innovative Thinking and Learning
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Diversity, Equity, and Inclusion
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Pride in Self, Community, and the College
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle text-success "></i>
-                                Accountability and Lifelong Learning
-                            </li>
-                        </ul>
+                    <div class="tab-pane  show active" id="core-functions" role="tabpanel" aria-labelledby="core-functions-tab">
+                    <h3 class="text-pdark fw-bold">Core Functions</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Team Work and Academic Excellence</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Professional and Academic Integrity</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Leadership, Service, Social Justice, and Entrepreneurship</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Creative and Innovative Thinking and Learning</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Diversity, Equity, and Inclusion</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Pride in Self, Community, and the College</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Accountability and Lifelong Learning</li>
+                    </ul>
                     </div>
-    
+
                     <!-- Why Join -->
-                    <div class="tab-pane fade" id="why-join" role="tabpanel" aria-labelledby="why-join-tab"data-aos="fade-up">
-                        <h3 class="text-c fw-bold">Why Join Mwala TVC</h3>
-                        <p>
-                            Mwala TVC offers a range of opportunities for growth and development in the TVET sector. Join us to access high-quality training, research, and innovation opportunities.
-                            <ul>
-                                <li>
-                                     <strong>Qualified Faculty:</strong>Our dedicated faculty members have extensive technical and 
-                                    academic expertise, ensuring that students receive the highest quality education.
-                                </li>
-                                <li>
-                                     <strong>Industry Partnerships:</strong> We collaborate with industry leaders to ensure that our 
-                                programs are aligned with current industry trends and demands.
-                                </li>
-                                <li>
-                                   <strong>  Supportive Community: </strong>At Mwala Technical and Vocational College we foster a 
-                                    supportive and inclusive community where students can thrive academically and 
-                                    personally
-                                </li>
-                                
-                            </ul>
-                        </p>
+                    <div class="tab-pane fade" id="why-join" role="tabpanel" aria-labelledby="why-join-tab" data-aos="fade-up">
+                    <h3 class="text-c fw-bold">Why Join Mwala TVC</h3>
+                    <p>
+                        Mwala TVC offers a range of opportunities for growth and development in the TVET sector. Join us to access high-quality training, research, and innovation opportunities.
+                    </p>
+                    <ul>
+                        <li>
+                        <strong>Qualified Faculty:</strong> Our dedicated faculty members have extensive technical and academic expertise, ensuring that students receive the highest quality education.
+                        </li>
+                        <li>
+                        <strong>Industry Partnerships:</strong> We collaborate with industry leaders to ensure that our programs are aligned with current industry trends and demands.
+                        </li>
+                        <li>
+                        <strong>Supportive Community:</strong> At Mwala Technical and Vocational College we foster a supportive and inclusive community where students can thrive academically and personally.
+                        </li>
+                    </ul>
                     </div>
                 </div>
-            </div>
+        </div>
+
         </div>
     </div>
     
 
-    <div class="container py-5"data-aos="fade-up">
+    <div class="container-fluid py-5"data-aos="fade-up">
         <div class="row">
             <!-- FAQ Section -->
             <div class="col-md-6 mb-4"data-aos="fade-up">
@@ -555,7 +566,7 @@
     </div>
     
     <section class="department-cards py-1">
-  <div class="container my-2 text-dark" data-aos="fade-up">
+  <div class="container-fluid my-2 text-dark" data-aos="fade-up">
     <h1 class="gallery-title" style="color: #0098DB;">Our Gallery</h1>
     <p class="gallery-description">
       Our gallery is a space for inspiration and connection. Come and discover 
@@ -563,20 +574,27 @@
     </p>
 
     <div class="row gy-4 gallery">
-      {% for image in first_8_images %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card gallery-item">
-            <img src="{{ image.image.url }}" 
-                 alt="Gallery Item {{ forloop.counter }}" 
-                 class="card-img-top img-fluid gallery-image">
-            <div class="card-body-image">
-              <p class="card-text text-danger">{{ image.date }}</p>
-              <span>{{ image.title }}</span>
-            </div>
+  {% for image in first_8_images %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <a href="{{ image.image.url }}" 
+         data-lightbox="mwala-gallery" 
+         data-title="{{ image.title }} - {{ image.date }}">
+        <div class="gallery-hover-container">
+          <img src="{{ image.image.url }}" 
+               alt="Gallery Item {{ forloop.counter }}" 
+               class="img-fluid w-100 gallery-image">
+          <div class="overlay-text">
+            <i class="fas fa-search-plus"></i>
           </div>
         </div>
-      {% endfor %}
+      </a>
+      <div class="card-body-image mt-2 text-center">
+        <p class="card-text text-danger mb-1">{{ image.date }}</p>
+        <span class="card-text text-dark">{{ image.title }}</span>
+      </div>
     </div>
+  {% endfor %}
+</div>
 
     <!-- View More Button -->
     <div class="text-center mt-4"data-aos="fade-up">
@@ -587,7 +605,7 @@
 
     
 
-    <div class="container my-2"data-aos="fade-up">
+    <div class="container-fluid my-2"data-aos="fade-up">
         <div class="row align-items-start">
             <!-- Principal Image and Title -->
             {% if principal_message %}
@@ -620,7 +638,7 @@
         </div>
     </div>
     
-    <div class="container my-0 bg-transparent"data-aos="fade-up">
+    <div class="container-fluid my-0 bg-transparent"data-aos="fade-up">
         <!-- Counter Section -->
         <div class="row text-center">
             <div class="col-md-3">
@@ -641,7 +659,7 @@
             </div>
         </div>
     </div>
-    <div class="container my-5"data-aos="fade-up">
+    <div class="container-fluid my-5"data-aos="fade-up">
         <!-- Partners Section -->
         <h2 class="text-center mb-4 " style="color: #0098DB;">Our Partners</h2>
         <div class="row justify-content-center text-center align-items-center">

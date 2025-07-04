@@ -113,7 +113,7 @@ tr.djn-tr>.original {
 }
 
 .object-tools .historylink {
-    background-color: #0098DB ;
+    background-color: #3c8dbc;
     width: 100%;
     display: block;
     padding: 5px;
@@ -338,7 +338,7 @@ input[type="text"]
 }
 
 .calendar td.selected a {
-    background: #0098DB ;
+    background: #3C8DBC;
     color: #fff !important;
 }
 
@@ -363,19 +363,16 @@ input[type="text"]
 .timelist a:focus,
 .calendar td a:hover,
 .timelist a:hover {
-    background: #0098DB ;
+    background: #3C8DBC;
     color: white;
 }
 
 .calendar td a:active,
 .timelist a:active {
-    background: #0098DB ;
+    background: #3C8DBC;
     color: white;
 }
 
-.text-c{
-   color: #0098DB; 
-}
 .calendarnav {
     font-size: 10px;
     text-align: center;
@@ -478,7 +475,7 @@ input[type="text"]
 }
 
 .selector-chosen h2 {
-    background: #0098DB ;
+    background: #007bff;
     color: #fff;
 }
 
@@ -609,7 +606,7 @@ a.active.selector-chooseall:focus,
 a.active.selector-clearall:focus,
 a.active.selector-chooseall:hover,
 a.active.selector-clearall:hover {
-    color: #0098DB ;
+    color: #447e9b;
 }
 
 a.active.selector-chooseall,
@@ -759,7 +756,7 @@ body.no-sidebar .main-header {
 }
 
 #jazzy-collapsible .collapsible-header:hover {
-    background: #0098DB;
+    background: #007bff;
     color: white;
 }
 
@@ -768,7 +765,7 @@ body.no-sidebar .main-header {
 }
 
 #jazzy-carousel .carousel-indicators li {
-    background-color: #0098DB;
+    background-color: #007bfe;
 }
 
 #jazzy-carousel .carousel-indicators {
